@@ -1,17 +1,14 @@
 # Object-Oriented Programming and Design
 
-## Topics
+Learn to model state and behavior, preserve contracts, and design small extensible systems.
 
-- Classes, objects, fields, methods, constructors, and access control.
-- Encapsulation, abstraction, inheritance, and polymorphism.
-- Interfaces, composition, overriding, and overloading.
-- Coupling, cohesion, and responsibility boundaries.
-- Common design patterns and when a simple design is better.
+## Chapter sequence
 
-## Practice
+| Chapter | Coverage |
+|---|---|
+| [1. Objects, classes, and encapsulation](oop-and-design/chapter-01-objects-classes-and-encapsulation.md) | State, methods, invariants, abstraction, equality and lifecycle |
+| [2. Inheritance, polymorphism, and interfaces](oop-and-design/chapter-02-inheritance-polymorphism-and-interfaces.md) | Overloading/overriding, subtype contracts, composition, interfaces |
+| [3. Responsibility, SOLID, and patterns](oop-and-design/chapter-03-responsibility-solid-and-design-patterns.md) | Cohesion/coupling, SOLID principles, common patterns and trade-offs |
+| [4. Object-design interview workbook](oop-and-design/chapter-04-object-design-interview-workbook.md) | Requirements, API/state modeling, testability, class-design exercises |
 
-Model a small library, shopping cart, or classroom system. Explain what each class owns, how objects collaborate, and how the design could be tested or extended.
-
-## Connection to the goals
-
-OOP is common in product-company interviews and useful for teaching programming concepts. Interviewers may ask for code or a low-level design; teacher exams may emphasize definitions and language behavior.
+Language syntax varies; focus on the design contract and verify how the chosen interview language implements dispatch, access, and object lifetime.
