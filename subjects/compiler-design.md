@@ -1,18 +1,14 @@
 # Compiler Design
 
-## Topics
+Follow source code through a compiler and learn the standard intermediate analyses used in GATE CS and language implementation.
 
-- Compiler stages and the difference between compilation and interpretation.
-- Lexical analysis, tokens, regular expressions, and finite automata.
-- Parsing, grammars, parse trees, and syntax-directed translation.
-- Semantic analysis, symbol tables, and type checking.
-- Intermediate representation, code generation, and optimization basics.
-- Runtime environments, activation records, and memory layout.
+## Chapter sequence
 
-## Practice
+| Chapter | Coverage |
+|---|---|
+| [1. Compiler pipeline and lexical analysis](compiler-design/chapter-01-compiler-pipeline-and-lexical-analysis.md) | Stages, tokens, regular expressions, automata, longest match |
+| [2. Grammars and parsing](compiler-design/chapter-02-parsing-and-grammars.md) | CFGs, parse trees/ASTs, LL and LR, FIRST/FOLLOW, conflicts |
+| [3. Semantic analysis and runtime](compiler-design/chapter-03-semantic-analysis-and-runtime.md) | Types, symbol tables, syntax-directed translation, activation records |
+| [4. Intermediate code, optimization, and dataflow](compiler-design/chapter-04-intermediate-code-optimization-and-dataflow.md) | Three-address code, basic blocks, local optimization, liveness, dataflow |
 
-Trace a small expression through tokenization, parsing, and intermediate-code generation. Identify what a compiler can detect before a program runs.
-
-## Connection to the goals
-
-Compiler design is mainly academic and teacher-exam preparation. It is useful background for programming languages and is less likely to be central in a general software interview.
+Practice by tracing one expression through tokens, a parse tree, typed AST, three-address code, and a control-flow graph. Scope follows the official [GATE CS syllabus](https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/CS_GATE2027_Syllabus.pdf).
