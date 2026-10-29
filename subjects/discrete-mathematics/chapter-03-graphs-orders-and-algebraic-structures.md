@@ -10,10 +10,9 @@ A matching is a set of edges with no shared endpoints. A vertex cover touches ev
 
 ~~~text
 A --- B
-| \   |
-|  \  |
+|     |
 D --- C
-Odd cycle A-B-C-D-A? Check edge set before claiming parity.
+This four-cycle is bipartite: color A,C one color and B,D another.
 ~~~
 
 Always inspect the actual edge list before deciding bipartiteness. For a graph with a matching question, a matching covers vertices, while a vertex cover covers edges.
