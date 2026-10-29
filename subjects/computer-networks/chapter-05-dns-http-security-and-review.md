@@ -1,0 +1,24 @@
+# Chapter 5 — DNS, HTTP, Security, and Review
+
+## 1. DNS and web request
+DNS maps names to records such as A/AAAA addresses. A resolver may query recursively or iteratively and cache answers for TTL. CNAME aliases another name; MX identifies mail exchangers.
+
+When a browser opens a URL: resolve name, establish transport (TCP/TLS for common HTTPS or QUIC/HTTP3), send HTTP request, receive response, fetch dependent resources, render. Proxies/CDNs may change path.
+
+## 2. HTTP and HTTPS
+HTTP is application request/response protocol. Methods include GET, POST, PUT, DELETE; status codes group success (2xx), redirection (3xx), client error (4xx), server error (5xx). Cookies and authorization carry application state; HTTP itself is stateless.
+
+HTTPS is HTTP protected by TLS. Certificates bind identities to public keys through a trust chain. TLS provides confidentiality, integrity, and authentication subject to correct validation.
+
+## 3. Basic security concepts
+Symmetric encryption uses shared secret; public-key cryptography uses key pairs. A digital signature signs a hash with private key and verifies with public key; it provides authenticity/integrity, not confidentiality. Firewalls filter traffic by rules. Authentication proves identity; authorization determines allowed actions.
+
+## 4. Review questions
+**Q1.** What does DNS TTL affect? **A:** Cache lifetime.
+**Q2.** TCP vs HTTP? **A:** Transport versus application protocol.
+**Q3.** What does a signature provide? **A:** Integrity and signer authentication, not secrecy.
+**Q4.** Which HTTP method commonly retrieves? **A:** GET.
+Practice: trace a website request; interpret status codes; compare symmetric/asymmetric crypto; explain certificate validation.
+
+## Notebook work
+Draw DNS resolution and an HTTPS request across application, transport, internet, and link layers.
