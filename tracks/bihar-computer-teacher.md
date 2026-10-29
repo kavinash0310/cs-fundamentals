@@ -1,25 +1,31 @@
 # Bihar Computer Teacher Preparation Track
 
-This track organizes CS study for Bihar teacher recruitment and eligibility exams. It is not an official or exhaustive syllabus: the exam, teaching level, paper structure, and prescribed content can change between notifications.
+Use this track to organize technical CS study for Bihar teacher recruitment. It is a broad preparation map, not an official or exhaustive syllabus: posts, teaching levels, examination stages, and prescribed content vary by notification.
 
-## Technical subject map
+## Technical course sequence
 
-- Computer basics, number systems, Boolean logic, and digital circuits.
-- Computer organization, memory, processor, and I/O.
-- Programming, problem solving, data structures, and algorithms.
-- Databases and SQL.
-- Operating systems and computer networks.
-- Theory of computation and compiler basics.
-- School-level computer science: Python or the language named in the notification, SQL, computational thinking, and age-appropriate explanations.
+- [Computer Fundamentals and ICT](../subjects/computer-fundamentals-ict.md)
+- [Programming Fundamentals](../subjects/programming-fundamentals.md)
+- [Data Structures and Algorithms](../subjects/data-structures-algorithms.md)
+- [Engineering Mathematics and Discrete Mathematics](../subjects/discrete-mathematics.md)
+- [Digital Logic](../subjects/digital-logic.md)
+- [Computer Organization and Architecture](../subjects/computer-organization-architecture.md)
+- [Operating Systems](../subjects/operating-systems.md)
+- [Database Systems and SQL](../subjects/database-systems-sql.md)
+- [Computer Networks](../subjects/computer-networks.md)
+- [Theory of Computation](../subjects/theory-of-computation.md)
+- [Compiler Design](../subjects/compiler-design.md)
+- [School Computer Science and Teaching Practice](../subjects/school-computer-science.md)
 
-The detailed topic lists are in the [subject directory](../README.md#subjects). Prioritize the topics named in the latest notification for your specific exam.
+## Study routine
 
-## Teaching and exam work
+1. Read the exact notification for post, level, eligibility, paper pattern, official subject syllabus, language, and pedagogy requirements.
+2. Study the relevant course chapters and draw the diagrams by hand.
+3. For each topic, prepare a definition, example, short classroom explanation, and 3–5 objective questions.
+4. Practice official previous papers where available; record concepts and mistakes by topic.
+5. Add pedagogy, language, general studies, or Bihar-specific sections only when the notice requires them.
 
-- Read the notification for the teaching level, eligibility, paper pattern, language requirements, and official syllabus.
-- Add pedagogy, teaching methods, and any general-studies or language paper required by that notification. These are not covered by the CS subject notes yet.
-- Practice explaining each topic with a simple example, a diagram or board explanation, and a short question for students.
-- Use official previous question papers where available and keep a separate list of recurring concepts and mistakes.
+The school-level course includes lesson planning, assessment, inclusion, and lab safety as teaching preparation. It does not cover every pedagogy framework or language/general-studies paper that a particular recruitment cycle may prescribe.
 
 ## Official starting points
 
@@ -27,4 +33,4 @@ The detailed topic lists are in the [subject directory](../README.md#subjects). 
 - [BPSC current notices](https://bpsc.bihar.gov.in/page/44/)
 - [Bihar Education Department portal](https://betastate.bihar.gov.in/educationbihar/default)
 
-Always use the latest official notice as the source of truth. The broad overlap in this repository is for planning; it does not imply that every listed topic appears in every Bihar teacher exam.
+Always use the latest official notice as the source of truth.
