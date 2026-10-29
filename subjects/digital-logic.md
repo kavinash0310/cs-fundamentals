@@ -1,18 +1,14 @@
 # Digital Logic
 
-## Topics
+This course develops the number representation, Boolean minimization, and combinational/sequential circuit design needed for digital logic study and computer-hardware foundations.
 
-- Binary, octal, and hexadecimal numbers; signed representation and arithmetic.
-- Boolean algebra, truth tables, logic gates, and De Morgan's laws.
-- Canonical forms, simplification, and Karnaugh maps.
-- Combinational circuits: adders, multiplexers, encoders, and decoders.
-- Sequential circuits: latches, flip-flops, counters, and registers.
-- Basic memory elements and programmable logic devices.
+## Chapter sequence
 
-## Practice
+| Chapter | Coverage |
+|---|---|
+| [1. Number systems, codes, and Boolean algebra](digital-logic/chapter-01-number-systems-codes-and-boolean-algebra.md) | Base conversion, signed two's complement, overflow, gates, Boolean identities |
+| [2. Canonical forms and minimization](digital-logic/chapter-02-canonical-forms-and-minimization.md) | Truth tables, minterms/maxterms, K-maps, don't-cares, tabular method |
+| [3. Combinational circuit design](digital-logic/chapter-03-combinational-circuits.md) | Adders, MUX/DEMUX, encoders/decoders, comparators, ALU blocks |
+| [4. Sequential circuits and arithmetic](digital-logic/chapter-04-sequential-circuits-and-arithmetic.md) | Latches, flip-flops, registers, counters, FSMs, fixed/floating-point arithmetic |
 
-Convert a truth table to a Boolean expression, simplify it, and draw a matching circuit. Trace a small counter or state machine.
-
-## Connection to the goals
-
-Digital logic is important in academic CS and teacher-exam preparation. It is less common in general software interviews but helps explain how computer hardware represents and processes data.
+For every design, move from specification to truth table, expression, minimized circuit, and verification. The official [GATE CS syllabus](https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/CS_GATE2027_Syllabus.pdf) is the scope reference; additional circuit topics may be useful for other exams.
