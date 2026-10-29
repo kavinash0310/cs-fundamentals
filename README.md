@@ -13,6 +13,7 @@ The course notes are written to teach from the page: explanations, diagrams, wor
 |---|---|
 | Computer systems, ICT, number representation, CPU and memory foundations | [Computer Fundamentals and ICT course](subjects/computer-fundamentals-ict.md) |
 | C language and programming reasoning | [Programming Fundamentals course](subjects/programming-fundamentals.md) |
+| Core data structures and algorithms | [Data Structures and Algorithms course](subjects/data-structures-algorithms.md) |
 | The full computer-science subject map | Continue below |
 
 ## Full GATE CS subject map
@@ -33,7 +34,7 @@ The current map follows the ten subject sections of the official GATE CS 2027 sy
 | Computer Networks | [Computer Networks](subjects/computer-networks.md) |
 | General Aptitude | Not yet included; add a dedicated course for the common GATE aptitude section |
 
-**Scope clarity:** The two chapter courses at the top teach foundations and C programming in depth. They do not alone cover the full GATE syllabus. Several other repository subjects are currently topic maps and still need full chapter lessons before this repo can function as a complete self-study course.
+**Scope clarity:** Computer Fundamentals/ICT, Programming Fundamentals, and Data Structures/Algorithms now have linked multi-chapter lessons. They do not alone cover the full GATE syllabus. The other repository subjects are still mostly topic maps and need full chapter lessons before this repo can function as a complete self-study course.
 
 ## Other computer-science courses
 
@@ -44,6 +45,7 @@ The current map follows the ten subject sections of the official GATE CS 2027 sy
 | [Software engineering and system design](subjects/software-engineering-system-design.md) | Important for experienced roles | Useful; depth depends on the notice |
 | [Computer Fundamentals and ICT](subjects/computer-fundamentals-ict.md) | Helpful foundation | Core foundation |
 | [Programming Fundamentals](subjects/programming-fundamentals.md) | Core coding foundation | Core subject foundation |
+| [Data Structures and Algorithms](subjects/data-structures-algorithms.md) | Core coding interview area | Core academic subject area |
 
 ## Learning tracks
 
