@@ -92,13 +92,13 @@ These categories describe common uses, not a strict ranking. A server can be phy
 ~~~mermaid
 flowchart LR
     IN[Input unit] --> MEM[Main memory]
-    MEM <--> CPU[CPU]
-    CPU --> OUT[Output unit]
+    MEM <--> ALU[ALU: arithmetic and logic]
+    ALU --> OUT[Output unit]
     SEC[Secondary storage] <--> MEM
-    subgraph CPU
-      ALU[ALU: arithmetic and logic]
-      CU[Control unit: directs operations]
-      REG[Registers: fastest small storage]
+    subgraph CPU[Central processing unit]
+      ALU
+      CU[Control unit: directs operations] --> ALU
+      REG[Registers: fastest small storage] <--> ALU
     end
 ~~~
 
@@ -277,9 +277,8 @@ Read upward: 101101₂
 - Group bits from the right for the integer part. Pad the left with zeros if needed.
 
 ~~~text
-Binary:       10 1101
-Octal groups: 010 110 101?   Do not insert a bit; regroup the original digits.
-Correct for 101101₂: 101 101 = 55₈
+Binary:       101101
+Octal groups: 101 101 = 5 5, so 55₈
 Hex groups:   0010 1101 = 2D₁₆
 ~~~
 
