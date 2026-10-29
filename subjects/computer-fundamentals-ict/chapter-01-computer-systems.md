@@ -91,14 +91,15 @@ Do not confuse a model of memory organisation with a specific brand or generatio
 ~~~mermaid
 flowchart LR
     IN[Input devices] --> MM[Main memory]
-    MM <--> CPU[CPU]
-    CPU --> OUT[Output devices]
+    MM <--> R[Registers]
+    R <--> ALU[Arithmetic logic unit]
+    ALU --> OUT[Output devices]
     MM <--> SSD[Secondary storage]
     NET[Network interface] <--> MM
-    subgraph CPU
-      CU[Control unit]
-      ALU[Arithmetic logic unit]
-      R[Registers]
+    subgraph CPU[Central processing unit]
+      CU[Control unit] -. control .-> R
+      R
+      ALU
     end
 ~~~
 
