@@ -1,0 +1,25 @@
+# Chapter 1 — Data Models, ER Design, and Relational Model
+
+## 1. Conceptual design
+An entity is distinguishable object; an attribute describes it; a relationship connects entities. ER diagrams model entities, relationships, attributes, and cardinalities (1:1, 1:N, M:N). Participation may be total or partial.
+
+Example: Student enrolls in Course is M:N and has attribute grade. Map it to Enrollment(StudentID,CourseID,grade) with a composite key.
+
+## 2. Relational model
+A relation is a set of tuples over attributes; tables approximate relations. A key uniquely identifies rows. Candidate keys are minimal superkeys; one is selected as primary. Foreign keys reference candidate/primary keys. Domain constraints define allowed values; entity integrity forbids null primary keys; referential integrity enforces valid references.
+
+## 3. Relational algebra
+Selection σ filters rows; projection π selects columns; rename ρ changes names; union/intersection/difference combine compatible relations; Cartesian product pairs rows; join combines matching rows.
+
+Example: σ_dept='CS'(Student) filters CS students; π_name(...) returns names. Join Student and Enrollment on student ID to find course registrations.
+
+Relational algebra is procedural notation for relational queries; SQL expresses similar logic and adds duplicate/null behavior.
+
+## 4. Questions and practice
+**Q1.** Where does an M:N relationship go in relational design? **A:** Separate relation with foreign keys and relationship attributes.
+**Q2.** Candidate key vs superkey? **A:** Candidate is minimal.
+**Q3.** What does projection do? **A:** Selects attributes/columns.
+Practice: model a library; identify keys; translate a sentence into σ and π; distinguish entity from relationship.
+
+## Notebook work
+Draw an ER diagram and map each entity/relationship to relations with keys.
