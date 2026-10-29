@@ -134,7 +134,7 @@ When a table grows, allocate a larger array and reinsert every key using the new
 ## 11. Practice with answers
 
 1. For n=10, give children of zero-based index 3. **Answer:** 7 and 8 (if within the heap).
-2. Insert 95 into max-heap [90,70,80,20,45,50,65]. **Answer:** append, swap with 70, then with 90: [95,90,80,20,45,50,65,70].
+2. Insert 95 into max-heap [90,70,80,20,45,50,65]. **Answer:** append 95, swap upward with 20, then 70, then 90: [95,90,80,70,45,50,65,20].
 3. Which heap operation is O(1)? **Answer:** Peek at the root.
 4. Table size 11, h(k)=k mod 11. Insert 21,32,43 by linear probing. **Answer:** Slots 10,0,1.
 5. What is α for 18 keys in 24 slots? **Answer:** 0.75.
