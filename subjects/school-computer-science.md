@@ -1,20 +1,14 @@
-# Class XI–XII Computer Science
+# School Computer Science and Teaching Practice
 
-## Topics to map against the prescribed school syllabus
+A school-level bridge from computational thinking and programming to systems, cyber safety, and classroom instruction. Check the prescribed textbook and exact teacher-recruitment notification for the relevant level and cycle.
 
-- Computational thinking, algorithms, flowcharts, and pseudocode.
-- Python fundamentals, control flow, functions, strings, lists, tuples, and dictionaries.
-- Data structures and introductory algorithm analysis.
-- Relational databases and SQL basics.
-- Computer systems, Boolean logic, operating-system concepts, and networks.
-- Cyber safety, responsible technology use, and current syllabus-specific topics.
+## Chapter sequence
 
-## Practice
+| Chapter | Coverage |
+|---|---|
+| [1. Computational thinking and Python](school-computer-science/chapter-01-computational-thinking-and-python.md) | Decomposition, tracing, values, control flow, functions |
+| [2. Data structures, algorithms, and SQL](school-computer-science/chapter-02-data-structures-algorithms-and-sql.md) | Collections, search/sort concepts, trace tables, relational data and queries |
+| [3. Systems, networks, and cyber safety](school-computer-science/chapter-03-computer-systems-networks-and-cyber-safety.md) | Computer components, OS, web flow, security and responsible technology |
+| [4. Teaching, assessment, and lab safety](school-computer-science/chapter-04-teaching-methods-assessment-and-lab-safety.md) | Lesson objectives, explanations, formative assessment, inclusion and safety |
 
-Write short Python programs, trace their output, create simple SQL queries, and prepare a plain-language explanation plus a classroom example for each concept.
-
-## Connection to the goals
-
-This subject keeps teacher preparation anchored to school-level content and teaching clarity. Product interview candidates can use it to strengthen programming explanations, but it does not replace interview-level DSA or system design.
-
-Check the relevant official notification and prescribed textbooks before treating this list as the syllabus for a particular exam cycle.
+Use each lesson as a starting point for a board explanation, worked example, and student practice question. The course is not a substitute for the notification's pedagogy or language papers.
