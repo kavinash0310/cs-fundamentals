@@ -11,7 +11,7 @@ A greedy algorithm repeatedly makes a locally attractive choice and commits to i
 Common proof tools:
 
 - **Exchange argument:** replace an optimal solution's choice with the greedy choice and show feasibility and no larger cost.
-- **Cut property:** for a cut of a graph, a minimum-weight edge crossing that cut is safe for a minimum spanning tree (when handled consistently with ties).
+- **Cut property:** a cut partitions vertices into two groups. A lightest edge crossing a cut that respects the edges already chosen is safe to add to an MST; ties may allow more than one safe edge.
 - **Stays-ahead argument:** after each step the greedy partial solution is at least as good as any competitor under a defined measure.
 
 ### Activity selection
@@ -134,7 +134,7 @@ Example: a triangle with edge weights AB=2, AC=2, BC=1. An MST chooses BC and on
 2. A graph has 8 vertices. How many edges must a spanning tree have? **Answer:** 7.
 3. Can Dijkstra solve a graph with all weights zero or positive? **Answer:** Yes.
 4. A reachable negative cycle exists. What does it mean for a vertex reachable from that cycle? **Answer:** Its path cost can be reduced without bound; no finite shortest distance exists.
-5. Give one counterexample to the rule “choose the smallest edge incident to the current vertex” for building an MST. **Answer:** Greedy local selection can choose several cheap edges inside one region and defer a necessary connection; use the cut-safe rule and maintain cycle checks rather than an unproved local rule.
+5. Why does Kruskal need a cycle check before adding an edge? **Answer:** Adding an edge whose endpoints are already connected creates a cycle, so the selected edges would no longer form a tree.
 6. Why does Kruskal sort edges? **Answer:** It considers candidate safe edges in nondecreasing cost order.
 7. Give the difference between Prim and Kruskal. **Answer:** Prim grows one tree; Kruskal merges components.
 
