@@ -1,17 +1,14 @@
 # Theory of Computation
 
-## Topics
+A structured course on formal languages, finite automata, context-free computation, and computability.
 
-- Alphabets, strings, languages, and regular expressions.
-- Finite automata: DFA, NFA, conversion, and minimization.
-- Regular languages and pumping-lemma reasoning.
-- Context-free grammars, parse trees, and pushdown automata.
-- Turing machines, decidability, and introductory complexity classes.
+## Chapter sequence
 
-## Practice
+| Chapter | Coverage |
+|---|---|
+| [1. Languages and finite automata](theory-of-computation/chapter-01-languages-and-finite-automata.md) | Alphabets, languages, DFA/NFA, subset construction, closure |
+| [2. Regular expressions, minimization, and pumping](theory-of-computation/chapter-02-regular-expressions-minimization-and-pumping.md) | Regex/automata, DFA minimization, regular pumping lemma, decision properties |
+| [3. CFGs and pushdown automata](theory-of-computation/chapter-03-context-free-grammars-and-pushdown-automata.md) | Derivations, parse trees, ambiguity, normal forms, PDA and stack |
+| [4. CFL pumping, Turing machines, and decidability](theory-of-computation/chapter-04-cfl-pumping-turing-machines-and-decidability.md) | CFL pumping, TMs, reductions, halting, decidability, P/NP preview |
 
-Build automata for simple pattern languages, convert between a regular expression and an automaton, and trace grammar derivations.
-
-## Connection to the goals
-
-This is primarily academic and teacher-exam preparation material. It is uncommon in general product interviews, though it develops precise reasoning about language and computation.
+For pumping-lemma proofs, explicitly handle every legal decomposition. For reductions, write the membership equivalence and direction. Topics follow the core of the official [GATE CS syllabus](https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/CS_GATE2027_Syllabus.pdf).
