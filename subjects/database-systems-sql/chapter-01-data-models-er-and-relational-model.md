@@ -13,7 +13,7 @@ Selection σ filters rows; projection π selects columns; rename ρ changes name
 
 Example: σ_dept='CS'(Student) filters CS students; π_name(...) returns names. Join Student and Enrollment on student ID to find course registrations.
 
-Relational algebra is procedural notation for relational queries; SQL expresses similar logic and adds duplicate/null behavior.
+Tuple relational calculus is declarative: specify which tuples satisfy a logical predicate, e.g. {s.name | Student(s) ∧ s.dept='CS'}. Relational algebra and safe relational calculus have the same expressive power for relational queries. SQL expresses similar logic and adds duplicate/null behavior.
 
 ## 4. Questions and practice
 **Q1.** Where does an M:N relationship go in relational design? **A:** Separate relation with foreign keys and relationship attributes.
