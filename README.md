@@ -1,50 +1,62 @@
 # CS Fundamentals
 
-A practical computer science study map for two goals:
+A chapter-based computer-science learning repository for two goals:
 
-1. Prepare for software engineering interviews at product companies.
-2. Build subject knowledge for Bihar computer science teacher exams.
+1. Build undergraduate-level foundations for GATE CS and related exams.
+2. Prepare for Bihar computer-science teacher exams and product-company interviews.
 
-The shared core is computer science fundamentals. Interview preparation adds coding practice, design, and communication; teacher-exam preparation adds school-level CS, pedagogy, and any general or language papers required by the current notification.
+The course notes are written to teach from the page: explanations, diagrams, worked examples, practice, and answer explanations. Write diagrams and key definitions into a notebook to make the material your own.
 
-## Subjects
+## Start here
 
-| Subject | Product interviews | Bihar teacher preparation |
-| --- | --- | --- |
-| [Computer fundamentals and ICT](subjects/computer-fundamentals-ict.md) | Helpful foundation | Core foundation |
-| [Programming fundamentals](subjects/programming-fundamentals.md) | Core | Core |
-| [Object-oriented programming and design](subjects/oop-and-design.md) | Core for many roles | Useful; depth depends on the exam |
-| [Data structures and algorithms](subjects/data-structures-algorithms.md) | Core | Core |
-| [Discrete mathematics](subjects/discrete-mathematics.md) | Useful for reasoning and algorithms | Supports theory subjects |
-| [Digital logic](subjects/digital-logic.md) | Usually supporting knowledge | Core CS foundation |
-| [Computer organization and architecture](subjects/computer-organization-architecture.md) | Helpful systems knowledge | Core CS foundation |
-| [Operating systems](subjects/operating-systems.md) | Core systems interview topic | Core |
-| [Database systems and SQL](subjects/database-systems-sql.md) | Core | Core |
-| [Computer networks](subjects/computer-networks.md) | Core systems interview topic | Core |
-| [Theory of computation](subjects/theory-of-computation.md) | Usually supporting knowledge | Core academic topic |
-| [Compiler design](subjects/compiler-design.md) | Usually supporting knowledge | Core academic topic |
-| [Class XI–XII computer science](subjects/school-computer-science.md) | Useful for clear explanations | Core for teacher preparation |
-| [Software engineering and system design](subjects/software-engineering-system-design.md) | Core as experience grows | Useful; depth depends on the exam |
+| Course | Start |
+|---|---|
+| Computer systems, ICT, number representation, CPU and memory foundations | [Computer Fundamentals and ICT course](subjects/computer-fundamentals-ict.md) |
+| C language and programming reasoning | [Programming Fundamentals course](subjects/programming-fundamentals.md) |
+| The full computer-science subject map | Continue below |
 
-## Suggested order
+## Full GATE CS subject map
 
-1. Computer fundamentals and programming.
-2. Data structures, algorithms, and discrete mathematics.
-3. OOP, databases, operating systems, and networks.
-4. Digital logic, architecture, theory of computation, and compilers.
-5. Follow the relevant track for interview practice or teacher-exam revision.
+The current map follows the ten subject sections of the official GATE CS 2027 syllabus. Exam syllabi change; recheck the official source for your attempt.
 
-For interviews, start solving problems alongside the first two subjects. For Bihar teacher exams, use the school-CS subject as a parallel track and check each new notification for the exact paper, eligibility, and syllabus.
+| Official area | Repository course |
+|---|---|
+| Engineering Mathematics | [Discrete Mathematics](subjects/discrete-mathematics.md), plus further mathematics chapters to add |
+| Digital Logic | [Digital Logic](subjects/digital-logic.md) |
+| Computer Organization and Architecture | [Computer Organization and Architecture](subjects/computer-organization-architecture.md) |
+| Programming and Data Structures | [Programming Fundamentals](subjects/programming-fundamentals.md) and [Data Structures and Algorithms](subjects/data-structures-algorithms.md) |
+| Algorithms | [Data Structures and Algorithms](subjects/data-structures-algorithms.md) |
+| Theory of Computation | [Theory of Computation](subjects/theory-of-computation.md) |
+| Compiler Design | [Compiler Design](subjects/compiler-design.md) |
+| Operating System | [Operating Systems](subjects/operating-systems.md) |
+| Databases | [Database Systems and SQL](subjects/database-systems-sql.md) |
+| Computer Networks | [Computer Networks](subjects/computer-networks.md) |
+| General Aptitude | Not yet included; add a dedicated course for the common GATE aptitude section |
 
-## What each subject note contains
+**Scope clarity:** The two chapter courses at the top teach foundations and C programming in depth. They do not alone cover the full GATE syllabus. Several other repository subjects are currently topic maps and still need full chapter lessons before this repo can function as a complete self-study course.
 
-Each note gives a topic checklist, what to practice, and how the subject connects to the two goals. The lists are a starting curriculum, not a claim that every employer or exam asks every topic.
+## Other computer-science courses
 
-## Tracks
+| Course | Product interviews | Bihar teacher preparation |
+|---|---|---|
+| [Object-oriented programming and design](subjects/oop-and-design.md) | Core for many roles | Useful; depth depends on the notice |
+| [School computer science](subjects/school-computer-science.md) | Useful for clear explanations | Core for teacher preparation |
+| [Software engineering and system design](subjects/software-engineering-system-design.md) | Important for experienced roles | Useful; depth depends on the notice |
+| [Computer Fundamentals and ICT](subjects/computer-fundamentals-ict.md) | Helpful foundation | Core foundation |
+| [Programming Fundamentals](subjects/programming-fundamentals.md) | Core coding foundation | Core subject foundation |
+
+## Learning tracks
 
 - [Product company interviews](tracks/product-interviews.md)
-- [Bihar computer teacher preparation](tracks/bihar-computer-teacher.md)
+- [Bihar computer-teacher preparation](tracks/bihar-computer-teacher.md)
 
-## Keep the exam scope current
+Teacher recruitment varies by post, teaching level, and cycle. Check the exact current notification for syllabus, eligibility, paper structure, language, pedagogy, and general-studies requirements. Product-company interview loops vary by company, role, and level.
 
-Bihar recruitment and eligibility details can change by exam cycle and teaching level. This repository is a broad preparation map, not an official syllabus. Start from the latest [BPSC syllabus page](https://bpsc.bihar.gov.in/syllabus/) and [BPSC notices](https://bpsc.bihar.gov.in/page/44/); use the official notice for the exam you plan to take. The [Bihar Education Department portal](https://betastate.bihar.gov.in/educationbihar/default) also lists teacher-recruitment material.
+## Official exam sources
+
+- [GATE 2027 CS syllabus — IIT Madras](https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/CS_GATE2027_Syllabus.pdf)
+- [BPSC syllabus page](https://bpsc.bihar.gov.in/syllabus/)
+- [BPSC current notices](https://bpsc.bihar.gov.in/page/44/)
+- [BPSC 2023 Higher Secondary teacher question booklet](https://bpsc.bihar.gov.in/wp-content/uploads/2025/01/NB-2023-07-11-09.pdf)
+
+Historical question booklets are for practice and pattern awareness; use the latest official notice as the source of truth for the next recruitment exam.
