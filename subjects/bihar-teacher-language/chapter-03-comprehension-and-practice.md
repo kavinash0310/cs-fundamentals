@@ -62,7 +62,7 @@ Choose the best answer. For practice, allow 20 minutes; then check explanations.
 12. द्वंद्व; both parents are included.
 13. आ; अपमान होना।
 14. भविष्यत् काल।
-15. “प्रत्येक बच्चा खेलता है” (or “प्रत्येक बच्चा खेलती है” when the referent is feminine); प्रत्येक is singular.
+15. “प्रत्येक बच्चा खेलता है” (or “प्रत्येक बच्ची खेलती है” when the referent is feminine); प्रत्येक is singular.
 16. Book borrowing increased after the schedule change, but the passage does not establish that the change caused it.
 17. The central topic or claim supported by the whole passage.
 18. It overgeneralizes beyond the described class.
