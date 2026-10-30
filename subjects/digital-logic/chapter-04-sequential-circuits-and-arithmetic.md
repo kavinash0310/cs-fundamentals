@@ -42,3 +42,36 @@ For a synchronous D flip-flop, input D must be stable before setup interval and 
 IEEE single-precision normalized value uses 1.fraction × 2^(exponent-127). Example exponent bits 10000001₂=129 gives unbiased exponent 2; fraction 010... means significand 1.01₂=1.25, so value is 5.
 
 **Practice:** Trace mod-3 sequence; state what happens for unused state 11; decode sign/exponent/fraction fields; distinguish rounding error from overflow and underflow.
+
+## Extended lesson: flip-flops, timing, and state transitions
+
+A sequential circuit has state. A clocked design can be modeled as:
+~~~text
+next_state = f(current_state, inputs)
+outputs    = g(current_state, inputs)
+~~~
+For a D flip-flop, Q(next)=D at the active clock edge. For a JK flip-flop: 00 holds, 01 resets, 10 sets, 11 toggles. A T flip-flop toggles when T=1 and holds when T=0.
+
+### Timing constraints
+
+Setup time is the minimum interval input data must be stable before the active edge; hold time is the minimum interval it must remain stable after. Violations can cause metastability, where the output takes an unpredictable time to settle. A synchronizer uses cascaded flip-flops to reduce the probability that metastability propagates across clock domains; it does not make the probability exactly zero.
+
+A synchronous counter changes state on a shared clock. A 3-bit binary up-counter cycles 000→001→010→011→100→101→110→111→000. A modulo-6 counter must reset after 101, producing only six states. Derive the next-state equations from the chosen sequence and ensure unused states recover safely.
+
+### FSM design workflow
+
+1. State the behavioral sequence and reset state.
+2. Draw state diagram and label input/output behavior.
+3. Choose Moore outputs (state-only) or Mealy outputs (state plus input).
+4. Assign binary state codes.
+5. Derive next-state/output table, minimize logic, implement flip-flops and combinational logic.
+6. Check reset, unreachable states, and timing.
+
+Moore outputs tend to change only on state transitions; Mealy outputs may react immediately to input changes, which can reduce state count but introduce glitch/timing concerns.
+
+### Questions with answers
+
+- What does D hold before a clock edge? The value that will be captured at the active edge.
+- Why synchronize an asynchronous input? To reduce metastability risk when crossing into a clock domain.
+- How many states does a 3-bit register encode? 2^3=8.
+- What distinguishes Moore and Mealy outputs? Dependence on state alone versus state and current input.
