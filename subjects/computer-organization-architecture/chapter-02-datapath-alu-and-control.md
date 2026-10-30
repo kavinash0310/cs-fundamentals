@@ -34,3 +34,31 @@ Practice: trace store, branch, and add instructions; sketch required control sig
 
 ## Notebook work
 Draw a load datapath and highlight the active route in a different color.
+
+
+## 6. Control-signal reasoning
+
+A single-cycle datapath can be understood by tracing source operands and destinations:
+
+| Instruction | ALU work | Memory | Register write | PC choice |
+|---|---|---|---|---|
+| Register add | combine two register values | none | ALU result | sequential |
+| Load | base + offset | read | memory value | sequential |
+| Store | base + offset | write | none | sequential |
+| Conditional branch | compare/subtract | none | none | target if condition |
+
+Each mux selects among alternative values. For example, load chooses memory data for register writeback; an arithmetic instruction chooses ALU result. Control must prevent unintended writes on a store or branch.
+
+Signed overflow example using 8 bits: 100 + 60 = 160 mathematically, outside signed range [-128,127]. Binary addition produces 10100000, which reads as -96; same-sign positive inputs yielded a negative result, so overflow=1. By contrast, carry-out can occur without signed overflow.
+
+A microinstruction can specify several compatible control actions in one cycle. The control store maps an instruction/state to a sequence; sequencing logic chooses the next microinstruction.
+
+**Questions**
+1. For a load, which value selects register writeback? Memory output.
+2. Does a branch normally write the register file? No.
+3. Can carry and signed overflow differ? Yes; they answer different arithmetic questions.
+4. Why can two's complement subtract with an adder? A-B=A+~B+1.
+
+## 7. Trace practice
+
+For a store at address base 200 plus offset 16, effective address is 216; the data comes from a source register and is written to memory. For branch-if-zero, the ALU/test logic checks the condition; the PC mux chooses target or fall-through. Draw both paths and mark unused components too.
