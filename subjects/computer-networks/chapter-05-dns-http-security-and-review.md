@@ -22,3 +22,14 @@ Practice: trace a website request; interpret status codes; compare symmetric/asy
 
 ## Notebook work
 Draw DNS resolution and an HTTPS request across application, transport, internet, and link layers.
+
+
+## DNS and TLS request trace
+
+A stub resolver asks a recursive resolver; cache may answer immediately. Otherwise resolver follows root, TLD, and authoritative referrals. A/AAAA records map names to IPv4/IPv6 addresses; TTL limits cache lifetime. DNS uses UDP commonly, with TCP for cases such as large/truncated responses or zone transfer; encrypted DNS variants exist.
+
+HTTPS trace: resolve hostname; establish transport; perform TLS handshake, validate certificate name/trust chain, negotiate keys; send HTTP request encrypted; receive response. SNI may reveal hostname in some TLS configurations; encrypted ClientHello changes that exposure.
+
+A digital signature verifies possession of a private key and data integrity, but does not encrypt the message. Symmetric encryption is efficient for bulk data; public-key cryptography helps establish/agree keys and identities.
+
+**Practice:** Explain why a DNS cache can briefly return a stale address; distinguish authentication from authorization; identify the purpose of certificate hostname validation.
