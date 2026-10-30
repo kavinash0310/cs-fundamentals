@@ -55,7 +55,7 @@ Choose the best answer. For practice, allow 20 minutes; then check explanations.
 5. “Although the test was easy, it took time.” Do not pair although with but.
 6. Clear, an adjective; remarkably is an adverb.
 7. Attendance rose; its cause is not given.
-8. C → B → A only if C describes the observed problem before the cause is identified, then the revision follows. Check that “therefore” has its reason.
+8. B → C → A. The inadequate setup time explains the late starts; Therefore introduces the response to that problem.
 9. पढ़ती हैं; plural feminine subject.
 10. राजा का पुत्र; तत्पुरुष समास.
 11. क्रिया-विशेषण; it describes how he speaks.
