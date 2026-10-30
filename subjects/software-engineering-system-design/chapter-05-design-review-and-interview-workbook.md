@@ -35,3 +35,51 @@ Distributed limiters need atomic shared updates or accept approximation. State k
 Upload workflow: authorize upload, issue short-lived presigned URL, store object, verify checksum/size/type, scan asynchronously, mark ready, notify. Use unique object IDs, idempotent completion, retention cleanup for abandoned uploads, and a quarantine state before serving files.
 
 **Practice:** Design a 1MB file limit; handle duplicate completion; explain what happens if object storage succeeds but DB write fails; propose reconciliation.
+
+## Full design exercise: URL shortener
+
+### 1. Clarify scope
+
+Users create a short link and are redirected to the original URL. Decide whether links expire, whether users can choose aliases, whether click analytics are required, and what abuse controls apply. State the two primary journeys: create and redirect.
+
+### 2. Estimate scale
+
+Assume 100 million new links/day and a 10:1 read/write ratio. Average writes/sec ≈100,000,000/86,400≈1,157; reads ≈11,570/sec on average. At 5× peak, plan around 5,800 writes/sec and 58,000 reads/sec. Three years of links gives about 109.5 billion rows. At a rough 100 bytes per stored mapping, raw data is around 11 TB before indexes, replication, and backups. State assumptions; production measurements will refine them.
+
+A seven-character Base62 code has 62^7≈3.5 trillion possible values, enough for this estimate. Generate a unique ID and encode it, or generate a random code and enforce uniqueness with collision retry. Sequential IDs reveal creation volume and can be guessed, so randomization or an opaque allocation scheme may be preferable.
+
+### 3. APIs and data
+
+~~~text
+POST /links {url, custom_alias?, expiry?}
+  -> {short_url, link_id}
+GET /{code}
+  -> 301/302 redirect or not found/expired
+~~~
+
+Mapping table: code (unique key), long_url, created_at, expiry, owner_id, status. Validate scheme and length; protect against internal-address/SSRF abuse if the service fetches previews. Redirect service should not fetch the destination merely to redirect.
+
+### 4. Architecture and trade-offs
+
+~~~text
+client -> API/auth -> ID allocator -> mapping store
+                         |
+                         +-> cache (hot code -> URL)
+redirect request -> cache -> store -> redirect response
+click event -> async queue -> analytics store
+~~~
+
+Keep analytics asynchronous so a slow metrics pipeline does not block redirects. Cache hot mappings with expiry aligned to link lifetime; invalidation is needed for deletion/disable. A relational store is a reasonable start for uniqueness and transactions; partition by code hash when one database no longer meets measured load. Replicas can scale reads but may return stale values after writes.
+
+### 5. Reliability and interview follow-ups
+
+- Duplicate create retry: client idempotency key or unique alias constraint.
+- Cache outage: fall back to database with rate protection.
+- Database overload: shed noncritical analytics, use bounded queues, protect redirect reads.
+- Abuse: rate limits, blocklists, user reporting, safe preview behavior.
+- Metrics: redirect latency/error rate, cache hit ratio, create conflicts, queue lag.
+- Privacy: avoid logging full sensitive query strings; define retention and access controls.
+
+### Interview rubric
+
+Start with requirements and estimates; draw a simple architecture; explain data model and key choice; trace create and redirect requests; identify bottlenecks/failures; state trade-offs and observability. Do not begin by naming trendy databases before understanding read/write patterns.
