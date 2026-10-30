@@ -37,3 +37,32 @@ Request: “Make search better.” Ask: which users and data, exact versus fuzzy
 Functional criteria can be tested with examples; non-functional criteria need a measurement setup. Separate assumptions from commitments. In agile planning, slice a vertical feature that delivers an observable user outcome; avoid splitting only by internal layer.
 
 **Practice:** Write acceptance criteria for profile photo upload, password reset, and CSV export. Include one failure path and one security/privacy condition for each.
+
+## Extended lesson: turn a vague request into testable requirements
+
+Stakeholder: “Make checkout faster.” This is not yet a requirement because “faster” has no measurement and checkout has no agreed boundary. Ask who experiences the delay, which step is slow, on what device/network, and what successful completion means. A clarified requirement could be: “For 95% of valid checkouts under 500 requests/second, the confirmation page appears within 2 seconds, excluding payment-provider outages.”
+
+A user story describes user, need, and value: “As a returning shopper, I want my saved address selected so that I can complete checkout with fewer steps.” Acceptance criteria convert it to observable behavior:
+- Given a signed-in shopper with one verified address,
+- when checkout opens,
+- then that address is preselected and can be changed before payment.
+Also state what happens with zero addresses, multiple addresses, expired sessions, and failed payment.
+
+### Functional and quality requirements
+
+Functional requirements say what the system does: calculate total, validate address, authorize payment, create order. Quality requirements constrain how well it does it: latency, availability, privacy, accessibility, maintainability, and recovery. Make quality attributes measurable where possible. “Secure” is not a test; “all payment endpoints require an authenticated session and reject expired tokens” is closer.
+
+### Lightweight requirements workflow
+
+~~~text
+stakeholder interview -> scenarios/use cases -> requirements
+       ^                                  |
+       |                                  v
+review assumptions <- prototype <- acceptance tests
+~~~
+
+Record assumptions, dependencies, priority, and owner. A prototype can test usability but does not prove production reliability. Changes are normal; version requirements and assess impact rather than pretending the first specification will be perfect.
+
+### Practice
+
+For “users can upload documents,” ask: maximum size/type? Who can view/delete? Are uploads scanned? What happens on a network retry? Which formats are rejected? A strong requirement states behavior for success, validation failure, duplicate submission, and service failure.
