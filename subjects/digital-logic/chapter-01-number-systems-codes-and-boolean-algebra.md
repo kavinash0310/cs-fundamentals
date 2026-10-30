@@ -55,3 +55,29 @@ Floating-point example: 13.25₁₀ = 1101.01₂ = 1.10101₂×2³. In IEEE sing
 Rounding examples matter: decimal 0.1 repeats in binary, so stored value is approximate. Comparing floating values for equality can fail after arithmetic; use an error tolerance chosen from scale and numerical method.
 
 **Practice:** Convert -18 to 8-bit two's complement: 11101110. Identify overflow for 120+20 in 8 bits: yes. Explain why carry-out and signed overflow differ.
+
+## Extended lesson: signed arithmetic and code conversion
+
+In n-bit two's complement, values range from -2^(n-1) to 2^(n-1)-1. To negate x: invert all bits and add 1. Thus in 8 bits, +13=00001101; invert gives 11110010; add 1 gives 11110011, which represents -13.
+
+**Overflow is not the carry flag.** For signed addition, overflow occurs when equal-sign operands produce a result with the opposite sign. In 4 bits:
+~~~text
+  0111  (+7)
++ 0001  (+1)
+= 1000  (-8 if interpreted signed)
+~~~
+The mathematical result +8 is outside the 4-bit signed range, so signed overflow occurred. For unsigned arithmetic, the carry-out is meaningful instead. Adding operands of different signs cannot overflow in two's complement.
+
+Subtraction uses A-B = A + (two's-complement of B) = A + ~B + 1. This allows one adder to do both addition and subtraction by XORing B with a SUB control and using SUB as carry-in.
+
+### BCD and Gray code
+
+8421 BCD stores each decimal digit separately in four bits. After adding two BCD digits, if the 4-bit result exceeds 1001 or has carry-out, add 0110 to correct it. Example: 8+7=15; binary 1000+0111=1111, which is invalid as a BCD digit. Add 0110: 1 0101, producing carry 1 and digit 0101, i.e. decimal 15.
+
+Gray code changes one bit between adjacent values, reducing transition ambiguity in sensors. Binary-to-Gray: keep the most significant bit; each next Gray bit is XOR of adjacent binary bits. For binary 1011, Gray=1110. To decode, copy the first Gray bit and cumulatively XOR it with following Gray bits.
+
+### Boolean laws in circuit design
+
+De Morgan: (AB)'=A'+B' and (A+B)'=A'B'. The consensus theorem can remove a redundant term: AB + A'C + BC = AB + A'C. These identities preserve the truth table while changing gate count, fan-in, or timing.
+
+**Check:** In 5-bit two's complement, what is the range? -16 to +15. Does 0100+1100 overflow? No signed overflow: +4 plus -4 is 0; carry-out alone does not signal signed overflow.
