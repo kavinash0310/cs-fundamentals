@@ -61,3 +61,28 @@ Three-valued logic: NULL='x' is UNKNOWN; WHERE retains only TRUE. NOT IN with a 
 Aggregation example: COUNT(*) counts each row; COUNT(score) skips null scores; AVG(score) divides by non-null count. GROUP BY department creates one aggregate row per group.
 
 **Practice:** Write query for departments with average salary > 80,000; return authors even with no books; explain result of NULL=NULL and IS NULL.
+
+## Join and grouping practice
+
+Suppose Student(sid,name,dept), Enroll(sid,cid,grade), Course(cid,title). Query CS student names and course titles:
+~~~sql
+SELECT DISTINCT s.name, c.title
+FROM Student s
+JOIN Enroll e ON e.sid=s.sid
+JOIN Course c ON c.cid=e.cid
+WHERE s.dept='CS';
+~~~
+The join path follows foreign keys. DISTINCT is needed only if duplicate output pairs are possible and the desired result is a set.
+
+To find departments with at least two students:
+~~~sql
+SELECT dept, COUNT(*) AS n
+FROM Student
+GROUP BY dept
+HAVING COUNT(*) >= 2;
+~~~
+Do not put COUNT(*) in WHERE because aggregation occurs after row filtering.
+
+A correlated EXISTS can test membership without multiplying outer rows. For “students with at least one enrollment,” EXISTS may express intent more directly than joining and deduplicating.
+
+**Practice:** Use LEFT JOIN to retain students with no enrollment; write a NOT EXISTS query for courses with no students; show how a one-to-many join changes row count.
