@@ -35,3 +35,13 @@ B-tree may store records/record references in internal and leaf nodes; B+ tree s
 If each page holds 100 entries, fanout around 100 gives a rough height: root → internal → leaf can cover about 1 million leaves/records (100×100×100). Real occupancy and keys change exact counts.
 
 **Practice:** Trace insertion causing a split; explain why leaf links make range scans efficient; choose B+ tree vs hash index for equality and range queries.
+
+## Storage and query-cost reasoning
+
+A heap file stores records without key order; scans are simple but equality lookup may read every page. Sorted files support ordered/range access but insertion may require shifting/reorganization. Hash file organization maps key to bucket and suits equality lookup, not ranges.
+
+Index is sparse if it has entries for blocks/ranges, dense if it has entries for every search key/record (definitions depend on indexed file organization). Clustered index orders data pages by search key; secondary index points to records in another physical order. A range query on a clustered index often reads fewer scattered pages.
+
+Cost is often estimated in page I/Os rather than CPU comparisons. A B+ tree equality lookup follows root-to-leaf pages; a range lookup adds sequential leaf pages. Hash join partitions/probes relations; nested-loop join can be efficient when outer input is small and inner has index.
+
+**Practice:** Choose heap, sorted, hash, or B+ tree organization for workloads; estimate pages for a full scan; explain why an index may not help when a query returns most rows.
