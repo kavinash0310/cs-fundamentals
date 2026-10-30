@@ -32,3 +32,25 @@ Practice: design DFA for binary strings ending 01; strings with an even number o
 
 ## Notebook work
 Draw a DFA for even parity and a transition table for strings ending in 01.
+
+
+## Worked automaton construction: strings ending in 01
+
+Keep the longest suffix of input that is also a prefix of target 01:
+- q0: no useful suffix.
+- q1: last symbol is 0.
+- q2: suffix 01 seen; accepting.
+
+~~~text
+       0           1
+q0 --------> q1 -------> q2*
+^             |           |
+|             |0          |1
++------1------+           +---> q0
+                            on 0 -> q1
+~~~
+Transition table: q0:0→q1,1→q0; q1:0→q1,1→q2; q2:0→q1,1→q0. Trace 1101: q0→q0→q1→q2, accept. Trace 010: q0→q1→q2→q1, reject because final suffix is 0.
+
+For subset construction, an NFA state set is updated by taking the union of transitions from all current states; for ε-NFA, take ε-closure before and after consuming a symbol. The empty subset is a legitimate dead state.
+
+**Exam checks:** DFA transition function is single-valued; an NFA string is accepted if at least one computation accepts; ε is a string of length zero, not a symbol. Practice: build DFA for strings with exactly one 1; draw NFA for substring 101; convert a small NFA to subset states.
