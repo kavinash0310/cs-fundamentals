@@ -48,3 +48,27 @@ For sequencing, link pronouns to antecedents and transitions:
 Chronology alone may not determine order.
 
 **Practice:** Summarize a 4-sentence paragraph; identify one inference and one fact; edit “Each of the students have submitted their work” according to formal test convention (has).
+
+## Extended lesson: percentage, work, and data interpretation
+
+**Successive percentage change.** A 20% increase followed by a 20% decrease does not return to the start. Starting at 100: 100×1.20=120; 120×0.80=96, so net change is -4%. For a value V, apply each change multiplicatively: V(1+r1)(1+r2).
+
+**Work rates.** If A completes a task in 6 days, rate=1/6 job/day. If B takes 3 days, combined rate=1/6+1/3=1/2 job/day, so together they finish in 2 days. Do not average completion times; add rates. If B joins after A works alone for 2 days, A has completed 2/6=1/3, leaving 2/3. At combined rate 1/2, the remaining work takes (2/3)/(1/2)=4/3 days.
+
+### Ratios and averages
+
+If a mixture contains milk:water=3:2 and total volume is 25 L, one ratio-part is 25/5=5 L, so milk=15 L and water=10 L. Averages are weighted by counts: if 10 scores average 80 and 5 scores average 92, combined mean=(10×80+5×92)/15=84.
+
+### Read the units in a chart
+
+Suppose a table reports sales: Q1=120 units, Q2=150, Q3=135. Q1→Q2 growth=(150-120)/120=25%. Q2→Q3 change=(135-150)/150=-10%. The base belongs in the denominator. If the chart is in thousands, multiply only when the question asks for absolute units; percentage change is unchanged.
+
+### Timed solving routine
+
+- Estimate magnitude before exact arithmetic to catch misplaced decimals.
+- Convert units once and carry them consistently.
+- For rates, use distance = speed × time and work = rate × time.
+- For ratios, sum parts before assigning amounts.
+- Skip a long calculation when an easier option is already eliminated; return if time remains.
+
+**Check:** A price falls 10% from 500, then rises 10%: 500×0.9×1.1=495, a net 1% fall. A cyclist rides 60 km in 2 hours: average speed=30 km/h.
