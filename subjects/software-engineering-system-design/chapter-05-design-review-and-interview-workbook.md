@@ -24,3 +24,14 @@ Practice: present one design in 10 minutes; defend a rejected alternative; add a
 
 ## Notebook work
 Write assumptions at top, then draw one architecture and annotate each trade-off.
+
+
+## Token-bucket rate limiter and file-upload walkthrough
+
+Token bucket has capacity B and refill rate r tokens/second. A request of cost c is accepted if tokens≥c, then consumes c. If not, reject or delay. With B=10,r=2/s, an empty bucket needs 3 seconds to accumulate 6 tokens; after a burst of 10, one token returns every 0.5 seconds.
+
+Distributed limiters need atomic shared updates or accept approximation. State key cardinality, eviction, clock handling, and failure policy. “Limit 100/minute” is ambiguous about boundary bursts; define semantics.
+
+Upload workflow: authorize upload, issue short-lived presigned URL, store object, verify checksum/size/type, scan asynchronously, mark ready, notify. Use unique object IDs, idempotent completion, retention cleanup for abandoned uploads, and a quarantine state before serving files.
+
+**Practice:** Design a 1MB file limit; handle duplicate completion; explain what happens if object storage succeeds but DB write fails; propose reconciliation.
