@@ -141,3 +141,53 @@ Store a temperature as integer milli-degrees Celsius to avoid accidental floatin
 ## Notebook diagram
 
 Draw the class boundary, invariant, public operations, and two object instances. Then sketch two aliases pointing at one mutable list and explain the risk.
+
+
+## 6. Apply encapsulation in code
+
+A good class exposes operations that preserve its rules, not setters for every field. For money, use a decimal representation with an explicit currency and rounding policy; binary floating point is not an exact representation of most decimal fractions.
+
+~~~java
+final class BankAccount {
+    private BigDecimal balance;
+
+    BankAccount(BigDecimal opening) {
+        requirePositiveOrZero(opening);
+        this.balance = opening;
+    }
+
+    public void deposit(BigDecimal amount) {
+        requirePositive(amount);
+        balance = balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) {
+        requirePositive(amount);
+        if (amount.compareTo(balance) > 0) {
+            throw new InsufficientFunds();
+        }
+        balance = balance.subtract(amount);
+    }
+
+    public BigDecimal balance() { return balance; }
+}
+~~~
+
+The failed withdrawal leaves state unchanged because validation happens before assignment. That is an important failure guarantee: either the operation succeeds and preserves the invariant, or it fails without a partial update. In a concurrent account, method-level validation alone is insufficient; the balance check and subtraction must be one atomic transaction protected by a lock or database transaction.
+
+### Entity or value object?
+
+An entity has a continuing identity through state changes: a bank account remains the same account as its balance changes. A value object is defined by its values: two Money(5 USD) values can be interchangeable. Value objects are often immutable; entities usually have controlled state transitions. Ask “would these still be the same domain thing after this field changes?” to identify identity.
+
+Do not model every noun as a class. Use a class when it owns meaningful rules, identity, or behavior. A plain record is appropriate for passive data when invariants are simple and behavior belongs elsewhere. Avoid both an anemic model that scatters rules everywhere and a “god object” that owns unrelated workflows.
+
+### Tell, don't ask
+
+Instead of fetching balance, checking it in a caller, then setting a new balance, ask the account to withdraw. The account has the information needed to enforce its own rule. This reduces the window in which callers can bypass validation. Cross-aggregate workflows may belong in a domain service, but the state owner should still protect its local invariant.
+
+### Additional interview checks
+
+- **What is encapsulation?** A boundary that controls state transitions and hides decisions; private fields alone are not enough.
+- **Should every field have a setter?** No. Add operations that express valid domain changes.
+- **How do you return collections safely?** Immutable snapshots/views or validated operations; consider nested mutability.
+- **What should happen on invalid input?** Define the contract, fail predictably, and preserve prior valid state.
