@@ -32,3 +32,14 @@ Practice: tokenize an assignment; write a regex for identifiers; draw a DFA for 
 
 ## Notebook work
 Annotate a source line with lexemes, tokens, and line/column positions.
+
+
+## Lexer trace and longest match
+
+Rules: identifier = letter(letter|digit)*; integer = digit+; operators include = and ==. On input count==12, the scanner reads count as one identifier, then at position 6 continues past '=' to accept '==' because maximal munch chooses the longest valid token, then scans 12 as one integer.
+
+If two token rules match the same longest lexeme, priority/order resolves the tie. Reserved words are often scanned as identifiers and looked up in a keyword table. Comments and strings need dedicated states to avoid treating internal punctuation as operators.
+
+A finite automaton handles regular token patterns. Nested comments in some languages require counting arbitrary nesting and are not regular in general; language design may restrict them or use additional lexer state/stack-like logic.
+
+**Practice:** Tokenize if(x<=10) total=total+1; mark each lexeme and token. Explain why <= must be recognized before <. Draw states for an integer with optional sign and decimal point.
