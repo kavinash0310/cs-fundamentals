@@ -26,3 +26,14 @@ Practice: select a pattern for interchangeable discounts; split a God class; des
 
 ## Notebook work
 Draw the notification interface and its implementations. State one trade-off of the abstraction.
+
+
+## Pattern trade-off example
+
+Without Strategy, a checkout service may have a long conditional for card, wallet, and bank transfer. Strategy extracts a PaymentMethod interface and implementations. Benefit: add behavior without editing the checkout algorithm. Cost: more types and object wiring; for two stable branches, a simple conditional may be clearer.
+
+Observer decouples event producer from subscribers, but raises questions: ordering, exceptions, duplicate delivery, and unsubscribing. Factory centralizes construction when creation is complex; it is unnecessary for a trivial constructor.
+
+SOLID quick check: if changing tax rules edits inventory storage code, responsibilities are mixed. If a client depends on a huge interface but uses one method, split a focused interface. If a high-level service constructs its concrete database adapter internally, inject an abstraction for testability.
+
+**Practice:** Select Strategy for compression options; Adapter for a legacy API; Decorator for adding logging. Explain one downside for each rather than naming a pattern alone.
