@@ -37,3 +37,11 @@ IPv4 fragmentation example: payload length 4000 bytes, MTU 1500, IPv4 header 20 
 Longest-prefix lookup chooses the most specific matching route. Distance-vector can suffer count-to-infinity; link-state floods topology then computes shortest paths. Both require convergence after changes.
 
 **Practice:** How many /28 subnets fit in /24? 16. Why choose /28 for a small LAN? It allocates 16 addresses (conventionally 14 usable). Compute prefix for 64 total addresses: /26.
+
+## Routing and packet-path example
+
+Host A on subnet X sends to a host outside X. A compares destination prefix with its own subnet; since it is remote, it sends the frame to its default gateway's MAC address, while the IP destination remains the remote host. Router removes link header, examines IP destination/TTL, selects next hop, decrements TTL, and wraps packet in a new link frame for outgoing link.
+
+Distance-vector neighbors exchange route cost vectors; poisoned reverse can prevent some loops but not every topology issue. Link-state advertisements are flooded; each router builds topology database and runs shortest path. Routing-table updates eventually affect forwarding entries.
+
+**Practice:** Distinguish MAC destination from IP destination at first hop; trace TTL across two routers; select longest-prefix route among /8, /16, /24 matches.
