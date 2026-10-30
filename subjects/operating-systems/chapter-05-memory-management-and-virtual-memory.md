@@ -58,3 +58,37 @@ A working set is the pages referenced in a recent window. If active working sets
 Segmentation gives logical variable-sized regions (code, stack, data) with base/limit protection; external fragmentation can occur. Paging uses fixed-size pages and frames, avoiding external fragmentation but possibly wasting space within a page.
 
 **Practice:** With 16 KiB pages, offset uses 14 bits. With TLB hit 0.9, compute EAT using stated hit/miss costs. Explain why a valid page fault should restart the faulting instruction.
+
+## Extended lesson: page-table size and replacement trace
+
+With 32-bit virtual addresses and 4 KiB pages, the offset is 12 bits and the virtual page number is 20 bits. A single-level page table with 32-bit entries has 2^20×4 bytes = 4 MiB of entries per process, even if most regions are unused. A two-level table allocates lower-level tables only for populated address regions. A 64-bit virtual address can make flat page tables impractical, motivating more levels, larger pages, and other structures.
+
+### Compare FIFO and LRU by hand
+
+Reference string: 1,2,3,1,4,2 with 3 frames.
+
+| Reference | FIFO result | LRU result |
+|---|---|---|
+| 1 | fault | fault |
+| 2 | fault | fault |
+| 3 | fault | fault |
+| 1 | hit | hit; 1 becomes most recent |
+| 4 | evict 1, fault | evict 2, fault |
+| 2 | hit | evict 3, fault |
+
+FIFO has 4 faults; LRU has 5 for this string. This does not contradict LRU's stack property: LRU avoids Belady's anomaly when comparing its own fault count at different frame counts. It does not guarantee fewer faults than every other policy on every specific string.
+
+### Protection and sharing
+
+Page-table entries commonly include valid/present, writable, user/kernel, referenced, and dirty information. A process may map the same physical read-only code page as another process, saving memory; copy-on-write allows sharing until one process writes, then creates a private copy. Address translation also enforces isolation: a valid virtual address does not mean a process may access every physical frame.
+
+### Page-fault service path
+
+1. CPU detects absent or disallowed mapping and traps to the OS.
+2. OS verifies the access is legal.
+3. It selects a free frame or victim; dirty victim may be written back.
+4. OS reads requested page from storage and updates the PTE.
+5. TLB entry is invalidated/refilled as needed.
+6. Faulting instruction restarts.
+
+A protection violation is not repaired by simply loading a page; the OS reports an error or terminates the process. This distinction is important in exam questions.
