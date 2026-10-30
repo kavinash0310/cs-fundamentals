@@ -61,3 +61,18 @@ For subsets of {a,b}, under inclusion: {a} and {b} are incomparable; their meet 
 ## Notebook work
 
 Draw one tree, one odd cycle, and one Hasse diagram. Compare Euler and Hamiltonian questions in your own words.
+
+
+## Worked graph and order reasoning
+
+For a connected graph with V=8 vertices, any spanning tree has 7 edges. If the graph has 7 edges and is connected, it is a tree; if it has 8 edges, it contains at least one cycle.
+
+For bipartiteness, attempt a 2-coloring by BFS. If an edge joins equal-colored vertices, no 2-coloring exists. An odd cycle makes this conflict unavoidable. A square is bipartite; a triangle is not.
+
+For a matching, no two selected edges may share a vertex. In a triangle, any matching has at most one edge. A vertex cover is different: choosing two vertices of the triangle covers all three edges.
+
+Modulo arithmetic example: under addition mod 5, every residue has inverse: 0 inverse 0; 1 inverse 4; 2 inverse 3. Under multiplication mod 5, nonzero residues form a group; 0 has no multiplicative inverse.
+
+**Exam checks:** Euler circuit concerns using every edge once; Hamiltonian path concerns visiting every vertex once. Degree-sum is 2E only for undirected graphs. In a Hasse diagram, omit transitive edges.
+
+**Practice:** Determine if a graph is a tree from V,E,connectivity; find a matching and vertex cover on a path of four vertices; draw Hasse diagram of divisors of 6.
