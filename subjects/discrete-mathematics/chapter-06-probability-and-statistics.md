@@ -51,3 +51,18 @@ A test detects a condition with sensitivity 0.9 and false-positive probability 0
 ## Notebook work
 
 Draw a probability tree, a histogram, and a normal curve. Label mean, median, variance, and conditional probability.
+
+
+## Distribution and Bayes worked examples
+
+**Binomial:** For 5 independent fair coin flips, X=head count has mean 2.5 and variance 1.25. P(X=3)=C(5,3)/2⁵=10/32.
+
+**Poisson:** For X~Poisson(λ), P(X=k)=e^-λ λ^k/k!, E[X]=Var(X)=λ. It models counts in a fixed interval under a constant-rate/independence approximation.
+
+**Exponential:** For waiting time T with rate λ, P(T>t)=e^-λt for t≥0; mean=1/λ. It is memoryless: P(T>s+t | T>s)=P(T>t). State units for λ.
+
+**Normal:** Standardize X~N(μ,σ²) with Z=(X-μ)/σ. This converts questions to standard-normal probabilities/table values.
+
+**Conditional example:** If 30 of 100 students study both A and B, 50 study B, then P(A|B)=30/50=0.6. This differs from P(B|A) unless denominators match.
+
+**Practice:** For Binomial(10,.2), mean=2 and variance=1.6. For Poisson(3), P(X=0)=e^-3. For an exponential rate .5/hour, mean waiting time is 2 hours. Always identify the random variable and model assumptions.
