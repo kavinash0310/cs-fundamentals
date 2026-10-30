@@ -22,3 +22,16 @@ Practice: choose index for a query; estimate pages scanned by a full scan; compa
 
 ## Notebook work
 Draw B+ tree internal nodes and linked leaves; trace a range lookup.
+
+
+## B+ tree and I/O cost intuition
+
+A B+ tree of order/fanout f has high branching, so height is about log_f(N); with large f, a table with millions of records can be reached in a few page reads. Internal nodes contain separator keys and child pointers; leaves contain ordered keys and record pointers/data and are linked for range scans.
+
+Search follows one root-to-leaf path. Insert into leaf; if full, split and promote separator; splits can cascade to root. Deletion may borrow from sibling or merge to restore minimum occupancy.
+
+B-tree may store records/record references in internal and leaf nodes; B+ tree stores data entries at leaves and separators internally. Both are balanced multiway search trees; use the exact convention given in a problem.
+
+If each page holds 100 entries, fanout around 100 gives a rough height: root → internal → leaf can cover about 1 million leaves/records (100×100×100). Real occupancy and keys change exact counts.
+
+**Practice:** Trace insertion causing a split; explain why leaf links make range scans efficient; choose B+ tree vs hash index for equality and range queries.
