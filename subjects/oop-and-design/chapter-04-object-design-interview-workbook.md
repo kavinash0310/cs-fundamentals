@@ -18,3 +18,16 @@ Unit-test behavior and boundaries, not private implementation. Test invalid oper
 
 ## Notebook work
 Draw a class diagram for the chosen problem, then explain why each class owns its data.
+
+
+## Worked design: library checkout
+
+Requirements: copy of a book may be checked out by at most one active loan; member may not exceed a limit; return closes loan and may calculate overdue fee.
+
+Objects: BookTitle describes catalog metadata; Copy has copy ID/status; Member has member ID; Loan records member, copy, checkout/due/return times; LibraryService coordinates policy.
+
+Invariants: an active Loan references exactly one checked-out Copy; a returned copy has no active loan. Use a clock interface for deterministic due-date tests. Concurrent checkout needs an atomic reservation/transaction so two requests cannot both claim the same copy.
+
+Tests: checkout available copy succeeds; second concurrent checkout fails; overdue return calculates fee; invalid member is rejected; return twice is idempotent or reports a clear error.
+
+**Interview presentation:** clarify holds, renewals, fines, multiple branches, persistence, and concurrency before implementing every feature. Draw a small class diagram, state each responsibility, then walk through one use case.
