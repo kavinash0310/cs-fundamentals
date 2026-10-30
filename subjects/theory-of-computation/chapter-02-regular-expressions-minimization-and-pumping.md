@@ -40,3 +40,39 @@ A valid proof chooses one string but must defeat every legal split. Do not pick 
 DFA minimization example: states are equivalent only if no suffix distinguishes them. If q accepts ε but r rejects ε, they are immediately distinguishable. If both agree on ε, test transitions: if some symbol sends them to already-distinguishable blocks, split them.
 
 **Practice:** Prove a language with an equal-count dependency nonregular; for a given DFA, find unreachable states then minimize; use complement and product construction to decide equivalence of two DFAs.
+
+## Full worked lesson: regex, minimization, and the pumping proof
+
+A regular expression describes a language using union (|), concatenation, and Kleene star (*). For example, over {0,1}, the expression (0|1)*01 describes all binary strings that end in 01. By contrast, (0|1)*01(0|1)* describes strings containing 01 somewhere.
+
+### Minimize by future behavior
+
+Two states are equivalent when every possible remaining suffix either makes both accepting or both rejecting. Start by partitioning states into accepting and non-accepting groups. Repeatedly split a group when states transition into different groups on some symbol. Stop when no split is possible; merge states in the same final block and remove unreachable states.
+
+For the “ends in 01” DFA from the previous lesson, the accepting state cannot merge with q0 or q1 because ε distinguishes it. q0 and q1 also differ: suffix 1 leads from q1 to acceptance but not from q0. All three states are therefore necessary.
+
+### Pumping lemma: what it proves
+
+If L is regular, there is a pumping length p such that every s∈L with |s|≥p can be written s=xyz with:
+1. |xy|≤p,
+2. |y|>0,
+3. xy^i z∈L for every i≥0.
+
+The lemma is a necessary property of regular languages. It is useful to prove a language is **not** regular; satisfying a chosen pumping test does not prove regularity.
+
+### Worked proof that {a^n b^n | n≥0} is not regular
+
+Assume the language is regular with pumping length p. Choose s=a^p b^p. Because |xy|≤p, both x and y lie entirely among the first p a's. Since |y|>0, y=a^k for some k>0. Pump down with i=0: xz has p-k a's followed by p b's, so the counts differ. Thus xz is not in L, contradicting the pumping lemma. Therefore L is not regular.
+
+The order of proof matters: assume regularity, select a string after p is fixed, consider every allowed split, and show one permitted pump breaks membership. Do not pick a convenient split yourself; the lemma says some split exists, so the proof must handle all legal splits.
+
+### Common proof failures
+
+- Choosing s before the opponent's pumping length is fixed.
+- Forgetting that y may include more than one symbol.
+- Showing only one split fails instead of all legal splits.
+- Claiming a language is regular because it passes one pumping argument.
+
+### Quick questions
+
+Is {0^n1^m} regular? Yes: 0*1*. Does pumping lemma prove a language regular? No. In the proof above, why must y contain only a's? Because xy lies within the first p positions of a^p b^p.
