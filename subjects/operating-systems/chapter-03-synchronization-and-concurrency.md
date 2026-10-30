@@ -31,3 +31,19 @@ Practice: find a lost-update interleaving; outline bounded-buffer operations; ex
 
 ## Notebook work
 Draw two thread timelines showing a race, then add a mutex and show the corrected interleaving.
+
+
+## Semaphore ordering and invariant
+
+For a bounded buffer of capacity N, initialize empty=N, full=0, mutex=1:
+~~~text
+producer: wait(empty); wait(mutex); insert; signal(mutex); signal(full)
+consumer: wait(full); wait(mutex); remove; signal(mutex); signal(empty)
+~~~
+The semaphore counts are invariants: 0≤full≤N, 0≤empty≤N, full+empty=N when no operation is in its critical update. Acquiring empty/full before mutex prevents a thread from holding the mutex while waiting for space/data.
+
+Peterson's algorithm for two processes uses intent flags and turn; under assumptions of atomic reads/writes and memory ordering, it demonstrates mutual exclusion, progress, and bounded waiting. Modern CPUs/compiler reorderings require fences/atomic primitives; do not use textbook code as a production lock.
+
+Condition-variable pattern is lock, while predicate false wait, update predicate, signal/broadcast, unlock. Always protect the predicate with the same lock.
+
+**Practice:** Show the lost update in x=x+1; find why reversing semaphore order can deadlock; distinguish semaphore resource count from mutex ownership.
