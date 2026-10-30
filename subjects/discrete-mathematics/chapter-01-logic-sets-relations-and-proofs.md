@@ -84,3 +84,14 @@ Example: 1+2+...+n=n(n+1)/2. Base n=1 holds. If it holds for n, adding n+1 gives
 ## Notebook work
 
 Draw a truth table for implication, a Venn diagram for De Morgan's law, and a relation-property grid for divisibility and equality.
+
+
+## Worked proof checks
+
+**Contrapositive example:** If n² is even, then n is even. Prove the contrapositive: if n is odd, n=2k+1, so n²=4k²+4k+1=2(2k²+2k)+1 is odd. Therefore n² even implies n even.
+
+**Relation check:** On integers, aRb iff a-b is divisible by 3. Reflexivity: a-a=0 divisible by 3. Symmetry: if 3|(a-b), then 3|(b-a). Transitivity: if 3|(a-b) and 3|(b-c), then 3|(a-c). Thus it is an equivalence relation; its classes are residues 0,1,2.
+
+**Quantifier trap:** “Every person knows someone” is ∀x∃y K(x,y); it does not imply there is one person known by everybody, ∃y∀x K(x,y).
+
+**Practice:** Negate ∀x∃y R(x,y): ∃x∀y¬R(x,y). Prove by induction that n³-n is divisible by 6: base n=0; for step, ((n+1)³-(n+1))-(n³-n)=3n(n+1), divisible by 6 because n(n+1) is even.
