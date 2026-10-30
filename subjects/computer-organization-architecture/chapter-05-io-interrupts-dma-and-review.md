@@ -23,3 +23,27 @@ Practice: trace an interrupt; compare DMA with programmed I/O; calculate CPU tim
 
 ## Notebook work
 Draw the interrupt path and a DMA transfer timeline. Explain where CPU, device, memory, and controller participate.
+
+
+## 5. I/O paths and worked comparison
+
+Polling timeline: CPU reads device status repeatedly until ready, then transfers data. Interrupt timeline: CPU starts I/O, runs another task, device raises interrupt, handler acknowledges/completes work. DMA timeline: CPU programs buffer address/length/direction; controller transfers a block; completion interrupt arrives.
+
+| Method | CPU attention | Best fit | Main cost |
+|---|---|---|---|
+| Programmed I/O | Every poll/transfer | Simple low-rate device | Busy waiting |
+| Interrupt I/O | Per event or chunk | Sporadic events | Interrupt/context overhead |
+| DMA | Setup and completion | Large block transfers | Bus contention and cache coordination |
+
+An interrupt handler should be short: save required state, identify/acknowledge source, record work, defer lengthy processing, restore state. Priority/masking prevents one noisy device from monopolizing CPU.
+
+For a 4 MiB transfer, programmed I/O that copies every byte may require millions of CPU-visible operations; DMA can transfer the block while CPU does useful work. Exact transfer speed still depends on bus and device.
+
+Memory-mapped I/O shares address space with memory; a load/store to the device region may have side effects and must not be cached like ordinary RAM. Device registers often require volatile/ordered access rules.
+
+**Review questions**
+1. Why can polling be wasteful? CPU spends cycles checking readiness.
+2. What does DMA reduce? Per-byte CPU involvement.
+3. Why is an interrupt asynchronous? It may arrive independently of current instruction.
+4. What could invalidate stale cached data after DMA? Cache coherence/invalidation requirements.
+Practice: draw three timelines and annotate when CPU is available for computation.
