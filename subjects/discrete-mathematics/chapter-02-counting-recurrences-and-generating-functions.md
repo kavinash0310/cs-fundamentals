@@ -64,3 +64,16 @@ How many have no adjacent 1s? Let aₙ count length-n strings. Strings beginning
 ## Notebook work
 
 Draw a recursion tree and a Pascal triangle. Label each counting problem with whether order and repetition matter.
+
+
+## Worked recurrence and counting checks
+
+Solve T(n)=2T(n/2)+n, T(1)=1: at each recursion-tree level, total merge work is n; depth is log₂n; leaves contribute n. Thus Θ(n log n). In contrast T(n)=2T(n/2)+1 has n leaves and Θ(n) total.
+
+A length-n binary string with no adjacent 1s has recurrence aₙ=aₙ₋₁+aₙ₋₂: begin with 0 then any valid length n-1 string, or begin with 10 then any valid length n-2 string. With a₀=1 and a₁=2, values begin 1,2,3,5,8,13.
+
+A generating function turns a recurrence into algebra. If aₙ=aₙ₋₁ for n≥1 and a₀=1, then A(x)=1+xA(x), so A(x)=1/(1-x). Compare coefficients to recover the constant sequence.
+
+**Exam checks:** State base cases; verify whether recurrence uses n or n-1; include logarithmic floors only when exact counts are requested; do not apply a Master case without comparing f(n) to n^(log_b a).
+
+**Practice:** Count 4-digit codes from 0-9 with repetition: 10⁴. Without repeated digits and first digit nonzero: 9·9·8·7. Explain why the first position has 9 choices, not 10.
