@@ -42,3 +42,16 @@ Practice: convert 2F₁₆ to binary/decimal; subtract using two's complement; p
 
 ## Notebook work
 Draw a place-value expansion, a two's-complement number line, and a truth table for XOR and De Morgan's law.
+
+
+## Signed arithmetic and floating-point worked examples
+
+Eight-bit two's-complement range is -128..127. Add 70+80: binary result has sign bit 1, although both operands were positive, so signed overflow occurred. Add -70+-80 similarly overflows below -128. Add 100+(-50)=50 and no overflow occurs.
+
+For fixed point with 4 fractional bits, stored integer 28 represents 28/16=1.75. Resolution is 1/16; range depends on total signed bits. Multiplication needs enough product bits before rescaling.
+
+Floating-point example: 13.25₁₀ = 1101.01₂ = 1.10101₂×2³. In IEEE single precision, sign=0, biased exponent=127+3=130 (10000010₂), fraction stores 10101 followed by zeros to 23 bits. This is exact because the binary fraction terminates.
+
+Rounding examples matter: decimal 0.1 repeats in binary, so stored value is approximate. Comparing floating values for equality can fail after arithmetic; use an error tolerance chosen from scale and numerical method.
+
+**Practice:** Convert -18 to 8-bit two's complement: 11101110. Identify overflow for 120+20 in 8 bits: yes. Explain why carry-out and signed overflow differ.
