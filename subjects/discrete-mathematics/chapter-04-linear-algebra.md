@@ -54,3 +54,22 @@ LU factorization writes A=LU, where L is lower triangular and U upper triangular
 ## Notebook work
 
 Perform Gaussian elimination by hand and annotate each row operation. Draw the relationship between determinant, rank, and unique solutions.
+
+
+## Worked elimination and eigenvalue examples
+
+Solve x+y=5 and 2x-y=1. Augmented matrix:
+~~~text
+[1  1 | 5]
+[2 -1 | 1]
+R2 <- R2 - 2R1:
+[1  1 | 5]
+[0 -3 |-9]
+~~~
+Thus y=3, x=2. The pivot in each variable gives a unique solution.
+
+For A=[[2,0],[0,3]], characteristic equation is (2-λ)(3-λ)=0, so eigenvalues are 2 and 3. For λ=2, eigenvectors are multiples of (1,0); for λ=3, multiples of (0,1). These independent eigenvectors form P and diagonal matrix D.
+
+If det(A)=0, columns are dependent and Ax=0 has a nonzero solution. If det(A)≠0, every b has exactly one x. Row reduction can solve a system even when determinant calculation is inconvenient.
+
+**Practice:** Compute determinant of [[1,2],[3,4]] = -2. Explain why no inverse exists if determinant is zero. For a triangular matrix, multiply diagonal entries to find determinant.
