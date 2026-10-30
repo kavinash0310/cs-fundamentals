@@ -29,3 +29,12 @@ Practice: design API for order creation; state error semantics; draw a module bo
 
 ## Notebook work
 Draw the data and control flow for one request, including failure boundaries.
+
+
+## API and architecture worked example
+
+Create-order endpoint: validate cart and authorization; accept an idempotency key; atomically reserve/order records; return order ID and status. A repeated request with same key returns the same logical result. Use 4xx for caller-correctable errors and 5xx for server/dependency failures, with stable error codes and no sensitive internals.
+
+A monolith can still have modular boundaries and one deployment. A service split is justified when independent scaling/ownership/deployment outweighs network calls, duplicated data, and operational load. A queue is appropriate for slow email generation; an order confirmation must not be lost, so persist an outbox event in the same database transaction and publish it reliably.
+
+**Practice:** Design a paginated list endpoint; define cursor stability; identify which service owns a user record; explain how to version an API without breaking old clients.
