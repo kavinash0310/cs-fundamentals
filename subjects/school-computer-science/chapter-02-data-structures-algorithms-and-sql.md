@@ -26,3 +26,19 @@ Practice: trace a search; count word frequencies with a dictionary; query studen
 
 ## Notebook work
 Draw a table relationship and write one query that joins it.
+
+
+## Trace search and SQL examples
+
+Linear search invariant: before checking index i, all previous entries differ from target. Once equal, return; if loop ends, target is absent. Cost worst-case n comparisons.
+
+SQL: find classes with at least 20 students:
+~~~sql
+SELECT class_id, COUNT(*) AS n
+FROM Student
+GROUP BY class_id
+HAVING COUNT(*) >= 20;
+~~~
+The grouping occurs before HAVING. If two tables are joined, teach primary/foreign keys and show the row multiplication in an M:N join.
+
+**Practice:** Trace binary search on [2,5,8,11,15] for 11; write a join from Student to Class; explain why sorting precondition matters; calculate total array traversals for nested loops.
