@@ -41,3 +41,22 @@ On Unix-like systems, fork creates a child process (often copy-on-write pages); 
 A thread context includes its own PC, registers, and stack, while sharing process address space. This makes communication easy but means unsynchronized writes race.
 
 **Practice:** A process blocks on disk I/O: it leaves the running state, another ready process may run, and completion interrupt makes it ready again. Explain why a blocked process is not consuming CPU and why context-switch time is overhead.
+
+## Address spaces and process creation
+
+A process address space is commonly organized into text/code, global/static data, heap, and stack. The OS and MMU prevent one process from directly reading another process's private memory. Shared-memory IPC maps selected pages into both processes, so synchronization is still required.
+
+~~~text
+high address  +-------------------+
+              | stack grows down  |
+              |                   |
+              | free region       |
+              | heap grows up     |
+              | globals/data      |
+low address   | program text      |
+              +-------------------+
+~~~
+
+fork creates a child with a logically separate address space; copy-on-write lets parent and child initially share physical pages until one writes. exec replaces the calling process image while keeping its process identity and selected resources. wait lets a parent collect completion status and avoid an unreaped child entry.
+
+Mode switch and context switch are different: a system call may change privilege mode and return to the same process; a context switch changes which process/thread runs. A process can switch out without a system call (e.g., timer interrupt).
