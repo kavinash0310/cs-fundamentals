@@ -23,3 +23,14 @@ Practice: write one lesson objective; plan a 40-minute lesson on loops; create a
 
 ## Notebook work
 Prepare a board plan: objective, diagram, worked example, student practice, exit ticket.
+
+
+## Build a lesson objective and check misconception
+
+Topic: binary search. Observable objective: “Given a sorted array and target, learner traces each interval and returns its index or not-found result.” Sequence: quick sort prerequisite check; teacher models a trace; class predicts next midpoint; pairs solve; exit ticket checks duplicate/boundary case.
+
+Misconception check: “Can binary search be used on an unsorted array?” Ask for a counterexample, not only yes/no. Learners should explain that discarding half is safe only when ordering supports the comparison.
+
+Formative evidence changes teaching: if many learners update high=mid incorrectly under inclusive bounds, pause and contrast [lo,hi] with [lo,hi). Do not grade only final answer; inspect reasoning and representation.
+
+**Practice:** Create a 10-minute mini-lesson on a loop; specify prerequisite, board diagram, one guided example, one independent task, and an exit question.
