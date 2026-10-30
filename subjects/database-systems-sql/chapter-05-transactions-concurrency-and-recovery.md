@@ -44,3 +44,42 @@ Strict two-phase locking: acquire locks before access, do not release early, and
 Recovery example: T1 writes A and commits; T2 writes B but has not committed when crash occurs. Recovery redoes T1 if its update is missing from data page and undoes T2's uncommitted change, using the log and checkpoint rules.
 
 **Practice:** Identify dirty/non-repeatable/phantom reads from schedules; build a precedence graph; explain why serializable isolation may reduce concurrency.
+
+## Extended lecture: schedules, locks, and restart recovery
+
+A transaction should preserve consistency while concurrent operations interleave. A schedule is conflict-serializable if its precedence graph is acyclic. Create one node per transaction; for every conflicting pair on the same item (at least one write), add an edge from the earlier operation's transaction to the later one's. A cycle means the schedule is not conflict-serializable.
+
+**Worked graph.** T1 does R(A), W(A), R(B); T2 does R(B), W(B), R(A). If T1's W(A) occurs before T2's R(A), add T1→T2. If T2's W(B) occurs before T1's R(B), add T2→T1. The cycle means no serial ordering can preserve both conflicts. Conflict means same data item and at least one write; read-read does not create an edge.
+
+### Strict two-phase locking
+
+In 2PL, a transaction first acquires locks (growing phase), then releases locks (shrinking phase); after it releases one lock, it cannot acquire another. Strict 2PL holds exclusive locks until commit/abort, preventing other transactions from reading uncommitted writes and simplifying recovery. Deadlocks remain possible: T1 holds A and waits for B while T2 holds B and waits for A. A wait-for graph cycle detects deadlock; the system chooses a victim to roll back.
+
+### WAL recovery
+
+Write-ahead logging requires the log record describing an update to reach stable storage before the changed data page is written. A commit record must be durable before the DBMS reports commit success. After a crash, recovery identifies transactions and redoes committed updates that may not have reached data pages; it undoes incomplete transactions whose writes may have reached disk. Exact algorithms may use checkpoints and pageLSNs to limit work.
+
+~~~text
+log: <T1 start>
+     <T1, A, old=5, new=9>
+     <T1 commit>   <-- durable commit
+data page A written later
+~~~
+
+A checkpoint records a recovery boundary, but it does not necessarily force every dirty page to disk. WAL supports atomicity and durability; isolation is handled by concurrency control and consistency by constraints/application logic.
+
+### Isolation anomalies
+
+- Dirty read: observe another transaction's uncommitted write.
+- Nonrepeatable read: same row changes between reads.
+- Phantom: a repeated predicate query gains or loses matching rows.
+- Lost update: concurrent writes overwrite one another.
+
+Isolation-level names and exact phantom behavior vary across DBMS implementations. State the anomaly and mechanism rather than relying only on a label.
+
+### Review
+
+1. Is a schedule with an acyclic precedence graph conflict-serializable? Yes.
+2. Does strict 2PL prevent every deadlock? No; it can create deadlocks.
+3. What must reach stable storage before a dirty page under WAL? The corresponding log record.
+4. What is redo for? Reapply an update from a committed transaction when necessary after a crash.
