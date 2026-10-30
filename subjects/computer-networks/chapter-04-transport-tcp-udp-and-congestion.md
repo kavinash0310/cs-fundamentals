@@ -23,3 +23,16 @@ Practice: trace handshake; calculate sequence/ACK numbers; explain why a lost se
 
 ## Notebook work
 Draw TCP state exchange and distinguish advertised window from congestion window.
+
+
+## TCP sequence/ACK example
+
+If a TCP segment starts at sequence 1000 and carries 500 data bytes, next expected byte is 1500; ACK=1500 acknowledges through byte 1499. ACKs are cumulative. SYN and FIN each consume one sequence number.
+
+TCP receiver advertises window rwnd; sender's congestion window cwnd reflects network congestion. In-flight data is limited by min(rwnd,cwnd). Retransmission timer handles timeout; duplicate ACKs can indicate a gap and trigger fast retransmit.
+
+Flow control protects receiver; congestion control protects the path. Slow start grows cwnd rapidly at first; congestion avoidance grows more slowly; loss response reduces sending rate. Exact modern TCP behavior varies by algorithm.
+
+UDP has no handshake or retransmission guarantee; applications may add reliability, ordering, or congestion control themselves.
+
+**Practice:** If next expected sequence is 4000 and a 300-byte segment begins at 4000, ACK after receipt is 4300. Explain why TCP can deliver bytes in order even if IP packets arrive out of order.
