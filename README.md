@@ -38,7 +38,7 @@ This map follows the ten technical sections of the official GATE CS 2027 syllabu
 
 **Coverage note:** Every GATE CS technical section and General Aptitude has a chaptered course index. This audit expanded the previously thin General Aptitude coverage with explicit lessons on tenses and grammar, powers/exponents/logarithms, mensuration, elementary statistics, maps and plots, 2D/3D spatial reasoning, assembly/grouping, and paper folding/cutting. The notes include worked calculations, diagrams, and answer explanations. They provide a substantial learning base; full GATE readiness still requires past papers and timed mocks.
 
-**Bihar teacher scope:** The technical CS and school-teaching courses support the subject-preparation part. They do not yet contain complete language or General Studies courses for every teacher level. Follow current BPSC Advertisement No. 15/2026 and later corrigenda for the applicable papers; the earlier Advertisement No. 14/2026 is superseded. The teacher track states this boundary explicitly.
+**Bihar teacher scope:** The repo now includes a General Studies course, English/Hindi language notes, selected solved questions from the official 2023 Higher Secondary CS paper, and original timed mini mocks. The GS and language courses are preparation frameworks; current-affairs facts and the paper pattern must be checked against the current BPSC notice. Urdu/Bengali language notes are not included.
 
 ## Other CS and teaching courses
 
@@ -50,6 +50,12 @@ This map follows the ten technical sections of the official GATE CS 2027 syllabu
 | [Computer Fundamentals and ICT](subjects/computer-fundamentals-ict.md) | Helpful foundation | Core technical foundation |
 | [Programming Fundamentals](subjects/programming-fundamentals.md) | Core coding foundation | Core technical foundation |
 | [Data Structures and Algorithms](subjects/data-structures-algorithms.md) | Core coding interview area | Core academic CS area |
+
+## Bihar teacher supporting courses and practice
+
+- [Bihar teacher General Studies](subjects/bihar-general-studies.md)
+- [Bihar teacher language preparation — English and Hindi](subjects/bihar-teacher-language.md)
+- [Practice index: BPSC past-paper walkthroughs and timed mocks](practice/README.md)
 
 ## Learning tracks
 
@@ -67,6 +73,8 @@ Teacher recruitment varies by post, level, and cycle. Check the exact current no
 - [BPSC current notices](https://bpsc.bihar.gov.in/page/44/)
 - [BPSC TRE 4.0 Advertisement No. 15/2026](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-152026-TRE-4.0_BPSC-20260922-dbsf04.pdf)
 - [BPSC Project Manager CS syllabus (supplemental cross-reference; not a teacher syllabus)](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/8-9-25-3-Syllabus-1-109-2025-Project-Manager-Industry-Dept_BPSC-20250908-sgu5bw.pdf)
-- [BPSC 2023 Higher Secondary teacher question booklet](https://bpsc.bihar.gov.in/wp-content/uploads/2025/01/NB-2023-07-11-09.pdf)
+- [BPSC 2023 Higher Secondary Computer Science question booklet](https://bpsc.bihar.gov.in/Archive/2023/NB-2023-08-26-37.pdf)
+- [BPSC 2023 provisional answer key](https://bpsc.bihar.gov.in/Archive/2023/NB-2023-09-01-40.pdf)
+- [GATE 2027 official downloads](https://gate2027.iitm.ac.in/download)
 
 Use historical papers for practice and pattern awareness; use the latest official notice as the source of truth for the next recruitment exam.
