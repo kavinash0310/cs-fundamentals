@@ -35,3 +35,29 @@ A CI pipeline may run formatting/static checks, unit tests, integration tests, p
 A flaky test often depends on wall clock, shared mutable state, random order, or external network. Inject a clock, isolate data, control randomness, and use deterministic fakes where appropriate.
 
 **Practice:** Write test cases for a database migration; explain how to revert schema safely when old and new application versions overlap; review a commit that changes only an API response field.
+
+## Extended lesson: choose tests by risk and feedback speed
+
+The test pyramid is a guide, not a law: many fast unit tests check local rules; fewer integration tests exercise boundaries; a small number of end-to-end tests verify critical user journeys. A unit test should isolate one behavior and make failures easy to diagnose. Integration tests are required for assumptions about a database, queue, filesystem, or third-party API.
+
+For a discount function, test normal case, threshold exactly at boundary, zero items, invalid coupon, expired coupon, and repeated application. Property tests can assert invariants such as “discount is never negative” over many generated inputs. A mock can simulate a payment timeout, but a contract/integration test should still verify the real adapter's request and response shape.
+
+### Example test pyramid
+
+~~~text
+              / E2E: one checkout journey              / integration: DB/API/queue               / unit: totals, validation, rules ~~~
+
+Mocks are useful when a dependency is slow or difficult to control; over-mocking can make tests verify the mock arrangement rather than the real collaboration. Test doubles include dummy (unused argument), stub (canned response), spy (records calls), and mock (asserts expected interaction).
+
+### Delivery workflow
+
+A pull request should be small enough to review, explain behavior and risks, and include test evidence. CI runs formatting/linting, unit and integration tests, and build checks. A deployment strategy canary-releases to a small fraction, watches error/latency metrics, then expands or rolls back. Feature flags decouple deployment from user exposure but need ownership and cleanup.
+
+Git basics: a commit records a snapshot; branches are movable references; merge combines histories. Resolve conflicts by understanding both intent and current behavior, not by blindly choosing “ours” or “theirs.” Keep secrets out of commits; rotate any secret accidentally published.
+
+### Questions
+
+1. Why are many unit tests useful? Fast, focused feedback for local logic.
+2. Does passing unit tests prove the database integration works? No; test the integration boundary.
+3. What does a canary deployment reduce? The blast radius of a bad release.
+4. Why can an end-to-end test suite not replace unit tests? It is slower and failures are harder to localize.
