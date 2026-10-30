@@ -58,3 +58,25 @@ Machine B executes the same program in 0.60 seconds, so B is 1.25 times as fast 
 ## 6. Draw-from-memory check
 
 Draw PC, instruction memory, register file, ALU, and data memory. Trace a load and a branch in separate colors. Write the CPU-time equation beside the diagram.
+
+## Extended lecture: compare processors without guessing
+
+CPU time is approximately: instruction count × average CPI × clock-cycle time. Since clock-cycle time is 1/clock rate, CPU time = IC×CPI/clock rate. Every comparison must name the workload and units. A processor with a higher clock rate can still be slower if its program uses more instructions or takes more cycles per instruction.
+
+**Worked comparison.** Program A executes 2×10^9 instructions at CPI 1.5 and 3 GHz: time=(2×10^9×1.5)/(3×10^9)=1 s. Program B executes 1.5×10^9 instructions at CPI 2 and 2 GHz: time=1.5 s. B has fewer instructions but is slower. MIPS is not a reliable cross-ISA comparison because instruction counts and work per instruction differ.
+
+Amdahl's law limits speedup when only part of a task improves. If fraction f is accelerated by factor s, total speedup = 1/((1-f)+f/s). If 80% of execution becomes 4× faster, speedup=1/(0.2+0.8/4)=2.5×, not 4×. The untouched 20% sets a hard ceiling of 5× even with infinite improvement.
+
+### Addressing-mode calculation
+
+For a 32-bit instruction with a 6-bit opcode and two 5-bit register fields, the remaining immediate field is 32-6-5-5=16 bits. A signed 16-bit immediate represents -32768 through 32767. In a base-plus-offset load, effective address = register value + sign-extended offset. If base=0x1000 and offset=-12, address=0x0FF4. The offset is measured in bytes unless the ISA specifies scaling.
+
+### Essential distinction
+
+ISA is the programmer-visible contract: instructions, registers, memory behavior, exceptions, and encodings. Microarchitecture is one implementation of that contract: pipeline depth, caches, execution units, and prediction. Multiple processors can implement the same ISA with very different performance and energy.
+
+### Self-test with answers
+
+1. Which improves time: reducing CPI by 10% or clock period by 10%, with other values fixed? Either reduces CPU time by 10%.
+2. If a fraction f=0.5 is made 2× faster, total speedup=1/(0.5+0.25)=1.333×.
+3. Why can MIPS mislead? It ignores how much useful work each ISA instruction represents.
