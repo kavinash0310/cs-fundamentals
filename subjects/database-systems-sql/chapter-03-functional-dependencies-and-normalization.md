@@ -53,3 +53,28 @@ A lossless decomposition preserves the original relation under join, without spu
 Armstrong derivation: from A→B, augmentation gives AC→BC; decomposition yields AC→B. Use closure rather than guessing keys: a key's closure must include every attribute and the key must be minimal.
 
 **Practice:** For R(A,B,C) with A→B and B→C, find key and highest normal form; decompose into 3NF and test whether joins can create spurious tuples under the stated FDs.
+
+## Extended lecture: find keys and decompose safely
+
+A functional dependency X→Y means that whenever two tuples agree on attributes X, they must agree on Y. It is a statement about all legal database states, not merely the rows currently stored. Attribute closure X+ is computed by repeatedly applying dependencies whose left side is already contained in the closure.
+
+**Worked closure.** Let R(A,B,C,D) and F={A→B, B→C, AC→D}. Compute A+: start {A}; A→B adds B; B→C adds C; now AC→D applies, so A+={A,B,C,D}. Thus A is a superkey. Since A is a single attribute, it has no proper nonempty subset, so it is a candidate key.
+
+To find all candidate keys, do not stop at one key. Attributes that never occur on any FD right side must appear in every key. Test combinations in increasing size, compute closure, and discard any set that contains an already discovered key.
+
+### 3NF and BCNF
+
+A relation is in BCNF when every nontrivial FD X→A has X as a superkey. It is in 3NF when, for every nontrivial FD, X is a superkey or A is a prime attribute (part of some candidate key). BCNF is stricter and can sacrifice dependency preservation; 3NF synthesis aims to preserve dependencies while making a lossless decomposition.
+
+Example R(A,B,C), F={A→B, B→C}. A is the candidate key because A+={A,B,C}. B→C violates BCNF: B is not a superkey. Decompose into R1(B,C) and R2(A,B). Their common attribute is B, and B→BC makes B a key of R1, so the decomposition is lossless. The dependencies A→B and B→C are each enforceable in one component, so they are preserved.
+
+### Lossless-join test
+
+For a binary decomposition R into R1 and R2, it is lossless with respect to F if the common attributes functionally determine all attributes of at least one component: (R1∩R2)→R1 or (R1∩R2)→R2 in F+. A lossy decomposition can create spurious tuples when the relations are joined back.
+
+### Exam checklist
+
+- State the candidate keys before identifying prime attributes.
+- Use F+ or closure, not intuition about attribute names.
+- Lossless join and dependency preservation are different properties.
+- Decomposition removes redundancy/anomalies; it does not mean “split every table as far as possible.”
