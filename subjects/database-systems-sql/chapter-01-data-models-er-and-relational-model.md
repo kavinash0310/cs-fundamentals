@@ -42,3 +42,15 @@ Candidate key example: relation R(A,B,C), dependencies A→B and B→C. A⁺={A,
 ER mapping reminder: 1:N puts the one-side key as foreign key on the many-side; M:N creates a relation containing both keys and relationship attributes; weak entity key includes owner key plus partial key.
 
 **Practice:** Translate “employees in department D with salary > x” into calculus; compute closures of A and B for the dependencies; identify candidate key and foreign-key direction.
+
+## Relational algebra and calculus: semantics
+
+Relational algebra operators are closed over relations. Selection keeps tuples satisfying a predicate; projection removes attributes and, in pure relational algebra, duplicate tuples; join is product followed by matching selection. Union requires union-compatible schemas.
+
+SQL often uses bag semantics: duplicate rows may remain unless DISTINCT is requested. Therefore a SQL query is not always identical to pure relational algebra without duplicate handling.
+
+Tuple calculus expresses a declarative condition over tuple variables. Safe expressions range over database values and return finite results. Algebra and safe relational calculus have equivalent expressive power for standard relational queries, though SQL adds NULL, duplicates, ordering, and aggregates.
+
+Key derivation example: R(A,B,C), F={A→B,B→C}. A⁺={A,B,C}, so A is a key. Any key must include A because no dependency produces A. Candidate key is {A}.
+
+**Practice:** Translate “names of students with an enrollment in course X” into relational algebra and tuple calculus; identify whether projection may remove duplicates in relational algebra versus SQL.
