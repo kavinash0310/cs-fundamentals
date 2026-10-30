@@ -28,3 +28,14 @@ GATE 2027 General Aptitude covers verbal grammar, vocabulary, reading comprehens
 
 ## Notebook work
 After each timed set, record score, time, and error type. Revisit the weakest area with untimed practice before taking another timed set.
+
+
+## Logic and spatial worked checks
+
+Deduction: “All P are Q; some Q are R” does not imply some P are R; the Q∩R objects may be outside P. Draw overlapping circles to test whether conclusion is forced.
+
+Induction in patterns: sequence 2,5,10,17,26 has differences 3,5,7,9; a plausible next term is 37 (add 11), but always verify whether another rule fits.
+
+Paper folding: if a square is folded left-to-right, a hole at a point off the crease mirrors to the corresponding point in the other half after unfolding. For multiple folds, reverse the folds in reverse order; each crease creates mirrored copies.
+
+**Practice:** Test syllogisms with a Venn diagram; rotate a shape 180°; reflect across vertical axis; fold twice and predict number/locations of holes. State why a guessed number pattern is not a proof of a unique next term.
