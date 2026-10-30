@@ -73,3 +73,71 @@ TLS can provide confidentiality and integrity in transit and authenticate a serv
 2. What does TLS protect? The connection's confidentiality and integrity, plus peer authentication under its trust model.
 3. Why are cookies not part of HTTP's core state? HTTP requests are independent; cookies are an application mechanism sent in headers.
 4. What is the difference between authentication and authorization? Identity verification versus permission checking.
+
+## 5. Mail and file-transfer protocols
+
+Application protocols define message formats and the actions peers perform. Know the direction and purpose before memorizing port numbers.
+
+- SMTP transfers outgoing mail from a client or mail server toward a mail server. Mail submission often uses authentication and transport protection; server-to-server delivery also uses SMTP.
+- POP3 retrieves messages from a mailbox. Its simple model is download-oriented; implementations can leave copies on the server, but POP3 is not the same as IMAP's synchronized multi-folder mailbox model.
+- FTP transfers files over separate control and data connections. Traditional FTP does not encrypt credentials or content. FTPS adds TLS to FTP; SFTP is a distinct file-transfer protocol carried over SSH, not “secure FTP” in the FTP protocol family.
+- HTTP transfers web representations and APIs; SMTP, POP3, and FTP have different message and session semantics.
+
+~~~text
+Sender --SMTP--> outgoing mail server --SMTP--> recipient mail server
+                                                   |
+Client --POP3 retrieval-----------------------------+
+File client --FTP control + data connections--> FTP server
+~~~
+
+A socket API gives a program an endpoint for transport communication. A server commonly binds a local address/port and listens; a client connects to a server endpoint. TCP provides a reliable byte stream, while UDP sends datagrams without built-in delivery or ordering guarantees. The application protocol still decides how messages are framed and interpreted.
+
+**Questions:** Which protocol retrieves mail in a basic download-oriented model? POP3. Which transfers outgoing mail? SMTP. Is SFTP a mode of FTP? No; it is a separate protocol over SSH.
+
+## 6. Wi-Fi: shared wireless LAN
+
+Wi-Fi refers to wireless local networking based on IEEE 802.11 families. A station scans for a network, authenticates as configured, and associates with an access point (AP); the AP bridges wireless clients to the distribution network. An infrastructure network uses an AP; an ad hoc network can allow stations to communicate directly when supported.
+
+Wireless stations share a radio channel and cannot reliably detect collisions while transmitting in the same way a wired Ethernet station can. 802.11 therefore uses collision avoidance: a station senses the medium, waits according to contention rules, and acknowledges successful unicast frames. Hidden terminals can interfere even when two senders cannot hear one another; optional request-to-send/clear-to-send exchange can reduce some such collisions at the cost of overhead.
+
+~~~text
+Laptop ))))\
+Phone  ))))) >  Access Point ---- switch/router ---- Internet
+Tablet ))))/
+~~~
+
+Encryption and authentication protect access and traffic, but a familiar network name is not proof of a trustworthy AP. Prefer modern supported security configured by the network owner, verify the network identity, and use end-to-end TLS for sensitive application traffic. A Wi-Fi password protects network access; it does not replace HTTPS or application authorization.
+
+## 7. Public-key cryptography, signatures, certificates, and firewalls
+
+Symmetric encryption uses one shared secret for encryption and decryption; it is efficient for bulk data. Public-key cryptography uses a key pair. In a basic public-key encryption model, a sender can encrypt to a recipient's public key and only the matching private key decrypts. Real protocols combine public-key operations or key agreement with symmetric session keys rather than encrypting all bulk traffic directly with public-key operations.
+
+A digital signature is different from encryption. The signer computes a digest of the data and signs it with a private signing key; a verifier checks the signature using the corresponding public key and recomputes the digest. This can establish integrity and evidence of key possession under a trust model. It does not hide the message.
+
+A certificate is a signed binding between an identity (such as a DNS name) and a public key, issued by a certificate authority. A client validates the chain to a trusted root, validity period, intended usage, and the exact hostname. Revocation status and trust-store policy matter too. A valid certificate proves neither that the organization is honest nor that its application is safe.
+
+A firewall applies traffic rules at a network boundary or host:
+
+- Stateless packet filters match fields such as addresses, protocol, and port.
+- Stateful firewalls track connection state and allow traffic consistent with established flows.
+- Application proxies can inspect or mediate application-level exchanges.
+
+Use least privilege: allow only required flows and log decisions appropriately. Firewalls reduce exposure but cannot stop every threat, especially malicious content delivered over allowed connections or compromised endpoints.
+
+~~~text
+Private signing key -> signs digest + message
+Public verification key -> verifies signature
+Certificate Authority -> signs certificate binding name to public key
+Firewall -> permits or blocks traffic according to policy
+~~~
+
+### Integrated review
+
+1. A mail client sends a message: SMTP. It retrieves a mailbox in a basic download model: POP3.
+2. A file-transfer diagram shows distinct control and data channels: FTP. If the link says SSH file transfer, it is SFTP, not FTP with a flag.
+3. A signature is valid but the content is visible: expected, because signatures provide integrity/authenticity properties, not confidentiality.
+4. A certificate is valid for example.net but the browser visits other.example: hostname validation must fail.
+5. A public Wi-Fi AP uses a familiar SSID: the name alone does not authenticate the AP.
+6. A firewall allows outbound HTTPS: it does not establish that every HTTPS destination is safe.
+
+This section extends beyond the GATE 2027 computer-network topic list. It is useful broader CS preparation; BPSC teacher candidates must follow the exact current teacher notice for their post and level.
