@@ -35,3 +35,26 @@ Practice: classify operands by mode; compare two machines with different IC/CPI/
 
 ## Notebook work
 Draw fetch-decode-execute and mark where PC changes on a branch.
+
+
+## 5. Worked instruction and performance analysis
+
+Assume an instruction uses base-plus-offset addressing. The instruction is LOAD R3, 12(R5), R5=1000. The effective byte address is 1012; the loaded value is whatever memory stores there. Do not confuse the immediate offset 12 with the loaded data. If the architecture addresses words, an offset may be scaled; the ISA defines that detail.
+
+Machine A executes 1.2 billion instructions at average CPI 1.5 and 2.4 GHz:
+~~~text
+time = 1.2e9 * 1.5 / 2.4e9 = 0.75 seconds
+~~~
+Machine B executes the same program in 0.60 seconds, so B is 1.25 times as fast for this workload. Benchmark conclusions depend on workload and compiler-generated instruction count.
+
+**Addressing-mode check:** In immediate mode the operand value is part of the instruction. In register-indirect mode a register holds the effective address. In base+offset mode the effective address is computed from a base plus displacement. A branch displacement is commonly added to PC, but whether PC refers to current or next instruction is ISA-specific.
+
+**Practice with answers**
+1. 900 million instructions, CPI 2, 1.5 GHz: time = 1.2 s.
+2. If an optimization speeds 40% of execution by 2x, total speedup = 1/(0.6+0.4/2)=1.25.
+3. Which matters when comparing instruction sets? Instruction count, CPI, and cycle time, not any one alone.
+4. A program uses fewer instructions but slower average CPI. Compare products IC×CPI before deciding.
+
+## 6. Draw-from-memory check
+
+Draw PC, instruction memory, register file, ALU, and data memory. Trace a load and a branch in separate colors. Write the CPU-time equation beside the diagram.
