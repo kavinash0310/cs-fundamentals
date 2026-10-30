@@ -117,3 +117,37 @@ Refactor only after understanding behavior and preserving tests/contracts.
 5. Draw a Decorator stack for metrics, logging, and retry around a network client. State why order matters.
 
 **Notebook exercise:** For each SOLID principle, write a one-sentence rule, a violating design, and a repair. Do not memorize only the acronym.
+
+
+## 7. Work through SOLID on an order workflow
+
+Imagine OrderService validates a cart, calculates tax, charges a card, writes a database row, sends email, and formats a receipt. A change to tax rules risks breaking email; every test requires payment and database setup. This is a cohesion problem. Split responsibilities along reasons to change: pricing policy, payment boundary, order persistence, notification, and orchestration.
+
+- **Single Responsibility:** one module has one coherent reason to change; it does not mean one method per class.
+- **Open/Closed:** add a new pricing policy by implementing a contract rather than editing a long conditional in many places.
+- **Liskov Substitution:** every PaymentProcessor implementation honors the same accepted inputs and failure/result contract.
+- **Interface Segregation:** a read-only reporting client should not implement unrelated update methods just because one huge interface requires them.
+- **Dependency Inversion:** high-level checkout flow depends on abstractions; infrastructure adapters implement them.
+
+SOLID is a set of design heuristics, not a command to create five interfaces in every small program. Abstractions are useful when they isolate a volatile boundary, enable meaningful substitution, or simplify testing. An abstraction with only one implementation and no expected variation can add needless indirection.
+
+### Choose patterns by the problem they solve
+
+| Need | Candidate pattern | Cost to watch |
+|---|---|---|
+| Select one of several interchangeable algorithms | Strategy | Extra objects/configuration |
+| Create objects without exposing construction details | Factory | Indirection; avoid if constructor is clear |
+| Add behavior around an object | Decorator | Wrapping order can affect behavior |
+| Notify multiple interested subscribers | Observer | Lifetime, ordering, and error handling |
+| Translate an incompatible external API | Adapter | Mapping and semantic mismatch |
+| Build a complex object step by step | Builder | Boilerplate for simple objects |
+
+For discounts, Strategy can model percentage, fixed amount, or loyalty pricing. For logging around a payment adapter, Decorator can add timing without changing payment logic. Do not choose a pattern because its name sounds “enterprise”; explain the pressure it resolves and the alternative.
+
+### Testing design seams
+
+A useful seam is a place where a test can replace a slow or nondeterministic dependency. Inject a clock to test expiration, a repository to test business rules, and a payment gateway to simulate timeout. Avoid a mock for every internal call; tests should assert externally meaningful behavior, not freeze incidental implementation.
+
+### Design-smell exercise
+
+If a class has many unrelated reasons to change, split by responsibility. If adding a subtype requires modifying every caller's type switch, consider polymorphism or a strategy. If a subclass overrides methods to throw “unsupported,” the parent contract is probably too broad or the subtype is invalid.
