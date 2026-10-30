@@ -19,3 +19,20 @@ Practice: map a web request; classify storage; make a safe-response checklist fo
 
 ## Notebook work
 Draw computer system components and a client-router-server network.
+
+
+## Explain a website request accurately
+
+1. Browser parses URL and may check caches/service workers.
+2. Resolver obtains DNS records or uses cached answer.
+3. Client establishes transport/security connection as needed.
+4. It sends an HTTP request to server/CDN.
+5. Server authorizes and processes; response returns with status and headers.
+6. Browser parses HTML, then requests CSS/images/scripts, often in parallel.
+7. Rendering/layout/painting update the screen.
+
+Layers provide a teaching model, but real paths include proxies, caches, TLS, and multiple protocols. HTTPS protects communication in transit; it does not make a malicious website trustworthy or protect a compromised endpoint.
+
+**Cyber-safety classroom scenario:** A learner receives a message asking for school password. Pause, inspect sender/link independently, do not enter credentials, report through school channel, and delete only according to policy.
+
+**Practice:** Draw local LAN plus router and server; distinguish RAM and storage; name one privacy risk from oversharing personal data.
