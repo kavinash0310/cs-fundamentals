@@ -9,6 +9,8 @@ These are original practice sets with explanations, plus links to official quest
 - [GATE CS previous-year walkthrough](gate-pyq-walkthrough.md) — selected 2023 questions solved step by step against the official key.
 - [GATE CS mini mock 01](gate-cs-mini-mock-01.md) — 20 mixed questions, 45-minute practice, covering all ten CS areas and General Aptitude.
 
+- [Bihar teacher language practice set 01](bihar-teacher-language-practice-01.md) — six original questions each for English, Hindi, Urdu, and Bengali, with explanations; use only the options allowed by the current notice.
+
 ## Official papers
 
 - [BPSC 2023 Higher Secondary General Studies and Computer Science booklet](https://bpsc.bihar.gov.in/Archive/2023/NB-2023-08-26-37.pdf)

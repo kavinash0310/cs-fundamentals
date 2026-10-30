@@ -56,3 +56,56 @@ If a question asks which occurred first among Champaran Satyagraha, Non-Cooperat
 5. Why is “golden age” an incomplete description? It can hide unequal access to power and resources; historical judgments need evidence and scope.
 
 **Notebook exercise:** Draw the timeline above from memory, then add five Bihar places/events and one source for each.
+
+## 7. Use evidence, not a memorized slogan
+
+Historical sources answer different questions and have different limits:
+
+| Source | What it can show | Caution |
+|---|---|---|
+| Archaeological remains | Settlement, tools, material life, trade clues | A building alone does not explain every resident's beliefs |
+| Inscriptions and coins | Names, titles, grants, dates, authority, exchange | Often produced by powerful institutions |
+| Religious and literary texts | Ideas, stories, social norms, debates | A text may describe ideals rather than ordinary practice |
+| Administrative records | Tax, land, laws, official categories | Usually reflect the state's purpose and point of view |
+| Oral accounts and later histories | Memory and community interpretation | Compare date, authorship, and independent evidence |
+
+A strong answer joins evidence to a limited claim. If a question asks about urban life, combine settlement remains, crafts, trade evidence, and the period; do not infer a modern institution from an ancient word without evidence.
+
+### Timeline and cause-and-effect map
+
+~~~text
+Mahajanapadas and Magadha
+    -> Mauryan imperial administration
+    -> regional kingdoms and new cultural centers
+    -> Sultanate and Mughal-era institutions
+    -> Company expansion and revenue change
+    -> 1857 resistance and Crown rule
+    -> organized nationalism and mass movements
+    -> independence, Partition, Constitution
+~~~
+
+This is a framework, not a claim that one period instantly replaced another. Regional institutions and social practices overlapped.
+
+### Bihar anchors to connect with wider history
+
+- **Magadha and Pataliputra:** state formation, strategic location, and imperial administration.
+- **Vaishali:** an important ancient settlement and a tradition of collective political institutions; describe it carefully rather than calling it a modern democracy.
+- **Bodh Gaya and Nalanda:** religious learning, travel, institutions, and exchange across regions.
+- **Jagdishpur and Kunwar Singh:** a major Bihar connection to the 1857 uprising.
+- **Champaran, 1917:** indigo cultivators' grievances became a major experiment in satyagraha and investigation.
+- **Bihar in 1942:** students and local organizers participated in Quit India resistance; local actions differed by district and source.
+
+For every person or movement, make a five-part card: period, place, issue, method, consequence. That format helps with matching questions and short explanations.
+
+### Question set: explain the choice
+
+1. A coin hoard is most directly useful for studying which topics? **Exchange, authority, and iconography.** It may support these topics but cannot by itself reveal every feature of daily life.
+2. Why compare an inscription with archaeological evidence? **Different source types can corroborate or qualify a claim.**
+3. Put these in order: Champaran Satyagraha, Civil Disobedience, Quit India. **1917, 1930, 1942.**
+4. Why is it risky to describe a centuries-long period as socially uniform? **Institutions, regions, groups, and practices change at different rates.**
+5. What makes Vaishali relevant to Bihar history? **It is associated with an ancient gana-sangha/republican tradition in historical accounts; this should not be equated automatically with modern universal suffrage.**
+6. Which Bihar figure is associated with the 1857 resistance at Jagdishpur? **Kunwar Singh.**
+7. A passage says a movement began with one grievance. Can we conclude every participant joined for that same reason? **No. Participants can have different motives; use the evidence given.**
+8. What is the best revision habit for dates? **Attach each date to place, event, actors, and consequence, then retrieve the sequence without notes.**
+
+**Hand-drawn revision:** create a two-lane timeline, one for all-India events and one for Bihar events. Connect lanes only where a source supports the relationship.

@@ -39,3 +39,61 @@ question -> hypothesis -> controlled test -> observations
 6. What makes an experiment fair? Relevant variables are controlled so the factor under investigation can be evaluated.
 
 **Notebook exercise:** Choose one everyday phenomenon—pressure sprayer, reflection, fermentation, or rusting—and write observation, mechanism, and one testable prediction.
+
+## 6. Deeper concepts and worked examples
+
+### Motion, force, work, and energy
+
+Speed = distance/time. Velocity includes direction; acceleration = change in velocity/time. Newton's second law gives net force F = ma. If a 2 kg object accelerates at 3 m/s², net force is 6 N. Weight is gravitational force, W = mg; mass and weight are not interchangeable.
+
+Work is done when a force causes displacement in its direction: W = Fd for a constant aligned force. Energy changes form. A falling object converts gravitational potential energy to kinetic energy, while friction transfers some mechanical energy to heat and sound.
+
+### Heat, electricity, and light
+
+- Conduction transfers energy through material contact; convection moves energy with fluid motion; radiation can travel through a vacuum.
+- In a series circuit, current is the same through each component and resistances add. In a parallel circuit, voltage across branches is the same and current divides.
+- Worked circuit: a 6 V source across 3 Ω gives I = V/R = 2 A for an ohmic resistor.
+- A convex lens converges parallel rays toward a focal region; a concave lens diverges them. A plane mirror forms a virtual, upright image of the same size.
+- Sound is a mechanical wave and needs a medium. Pitch is associated with frequency; loudness relates to amplitude and intensity, though perceived loudness also depends on the listener.
+
+~~~text
+cell / battery -> switch -> load (lamp) -> return wire
+      closed loop: current can flow
+      open switch: loop broken, lamp off
+~~~
+
+### Chemistry: particles and change
+
+Atoms contain protons and neutrons in the nucleus and electrons around it. Atomic number equals the number of protons. In a neutral atom, electron count equals proton count. Molecules may contain atoms of the same or different elements; an ionic compound is held by electrostatic attraction between ions.
+
+A physical change changes state or form without changing chemical identity; a chemical reaction produces new substances. Balance equations by changing coefficients, never by changing the formula of a substance. Example:
+
+~~~text
+2 H2 + O2 -> 2 H2O
+left: 4 H atoms, 2 O atoms
+right: 4 H atoms, 2 O atoms
+~~~
+
+### Biology: systems and health
+
+- Digestion converts food into absorbable molecules; nutrients enter circulation.
+- Blood transports oxygen, nutrients, hormones, heat, and wastes. The heart pumps blood through pulmonary and systemic circuits.
+- Gas exchange occurs across thin respiratory surfaces; cellular respiration releases usable energy from nutrients.
+- Kidneys filter blood and help regulate water and salts. Nervous signals are rapid electrical/chemical communication; hormones are chemical messengers.
+- Plants use stomata for gas exchange. Xylem transports water/minerals and phloem transports sugars; photosynthesis uses light to synthesize sugars from carbon dioxide and water.
+- Vaccines train immune responses. Antibiotics target bacteria, not viruses; correct diagnosis and clinical guidance matter.
+
+### Scientific method and trap avoidance
+
+Use a control group where practical, repeat measurements, specify units, and distinguish correlation from causation. A result should be reproducible enough to evaluate. If two things change together, test alternative explanations before making a causal claim.
+
+### Questions with explanations
+
+1. A 4 kg object accelerates at 2 m/s². Net force? **8 N = 4×2.**
+2. Which circuit arrangement gives each branch the same voltage? **Parallel.**
+3. Why may a bulb fail in an open circuit? **There is no complete conducting path.**
+4. How do you balance H₂ and O₂ forming H₂O? **2H₂ + O₂ → 2H₂O; atom counts match.**
+5. Which cell structure is strongly associated with photosynthesis? **Chloroplasts in photosynthetic eukaryotic cells.**
+6. Why does a concave lens spread parallel rays? **Its optical shape makes emerging rays diverge.**
+7. Can oxygen move from the lungs to tissues without the circulatory system? **The lungs load oxygen into blood; circulation transports it to tissues.**
+8. What makes a testable hypothesis useful? **It predicts an observable result that can be compared with evidence.**

@@ -45,3 +45,58 @@ Question: A policy aims to improve nutrition, but a citizen asks which constitut
 6. Does a government scheme automatically prove a constitutional right has been delivered? No. Measure legal entitlement, actual access, quality, and redress.
 
 **Notebook exercise:** Draw a Union–State–Local chart and place Parliament, Bihar Legislative Assembly, panchayat, municipality, Election Commission, and CAG at the correct level or function.
+
+## 7. How constitutional government works
+
+### Rights, policy goals, and duties
+
+- **Fundamental Rights** limit public power and protect liberties and equality. Their scope, exceptions, and remedies are determined by the Constitution and courts.
+- **Directive Principles of State Policy** guide lawmaking and public policy toward social and economic goals. They are not enforced in court in the same way as Fundamental Rights.
+- **Fundamental Duties** describe responsibilities of citizens. A question about a duty should not be answered with a Directive Principle merely because both concern civic life.
+- The Preamble is a guide to constitutional purpose; the text of the relevant Article and law controls a specific legal question.
+
+### Legislature, executive, judiciary: accountability diagram
+
+~~~text
+Voters -> elected legislature -> makes laws, approves public finance
+                    |
+                    v
+             executive government -> implements law and services
+                    |
+          audit, questions, courts, grievance systems
+                    |
+                    v
+             review, correction, accountability
+~~~
+
+The judiciary interprets law and resolves disputes; it does not replace day-to-day administration. Parliament and state legislatures have different constitutional fields, with a Concurrent List for shared subjects. If laws conflict in a concurrent field, apply the constitutional rule and any facts stated in the question.
+
+### Bihar and local self-government
+
+Bihar's elected state government works through the Legislative Assembly, Council of Ministers, departments, district administration, and local bodies. The Legislative Council is the second House of the state legislature. Panchayats serve rural local government and municipalities serve urban areas. Their exact functions, funds, and staff depend on constitutional provisions and state laws.
+
+A useful service-delivery chain is:
+
+~~~text
+law / policy -> department rules -> budget -> local implementation
+       -> eligible resident receives service -> grievance / audit
+~~~
+
+When evaluating a public scheme, ask at which step the failure occurred. A legal entitlement can exist while access remains difficult; implementation data and grievance redress matter.
+
+### Election and accountability distinctions
+
+The Election Commission of India is responsible for elections to Parliament, state legislatures, and the offices specified in the Constitution. State Election Commissions conduct local-body elections. The Comptroller and Auditor General audits public accounts. A Public Service Commission has a recruitment/advisory role; it does not audit expenditure. These function-to-institution distinctions are common objective-question material.
+
+### Applied questions
+
+1. A question asks which institution audits Union and state government accounts. **The CAG.** The Election Commission conducts specified elections; it is not the audit institution.
+2. Who is politically accountable for a Union Council of Ministers retaining confidence? **The Lok Sabha.** The Council is collectively responsible to it.
+3. Which body conducts elections to panchayats and municipalities? **The State Election Commission**, subject to the constitutional framework.
+4. A student cannot access a public service despite being eligible. Name two governance checks. **Grievance redress and an audit/social audit or public-information process**, depending on the facts.
+5. A policy promises free schooling. Does that sentence alone prove every child received quality schooling? **No. Examine legal scope, access, attendance, facilities, teaching, and outcomes.**
+6. Why is the Governor not the same as the Chief Minister? **The Governor is the constitutional head of the state; the Chief Minister leads the elected Council of Ministers.**
+7. Are local bodies sovereign governments outside the Constitution? **No. Their powers operate within constitutional and state-law arrangements.**
+8. A question asks what guides the state to reduce inequality but is not directly enforceable like a right. **Directive Principles.**
+
+**Diagram exercise:** Draw three columns—Union, Bihar state, local government. Place Parliament, Lok Sabha, Bihar Legislative Assembly, panchayat, municipality, ECI, State Election Commission, and CAG; label each by function, not just location.

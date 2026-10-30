@@ -1,6 +1,6 @@
 # Bihar Teacher General Studies
 
-This course adds the non-computer-science foundation commonly needed alongside a teacher's chosen subject. It is a structured study map, not an assertion that every topic or paper split below is prescribed for every recruitment cycle. BPSC notices and corrigenda control.
+This course teaches broad Bihar and Indian General Studies foundations through eight extended lessons with maps, worked calculations, diagrams, source-checking methods, and explained questions. It is a preparation framework, not an assertion that every topic or paper split below is prescribed for every recruitment cycle. BPSC notices and corrigenda control.
 
 ## Chapter sequence
 

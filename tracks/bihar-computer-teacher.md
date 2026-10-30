@@ -7,7 +7,7 @@ Use this track to organize technical CS study for Bihar teacher recruitment. It 
 - For TRE 4.0, check the current [BPSC Advertisement No. 15/2026](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-152026-TRE-4.0_BPSC-20260922-dbsf04.pdf) and every later corrigendum. Do not rely on the superseded Advertisement No. 14/2026.
 - This repository covers undergraduate/GATE-style technical CS foundations, school-level CS explanations, and a starter set of teaching practice. The technical notes are broader than one school level; use the exact prescribed SCERT/NCERT materials and teacher-exam notice to select depth.
 - [Bihar teacher General Studies course](../subjects/bihar-general-studies.md) covers history, geography, polity, economy, science, quantitative reasoning, environment, and a dated current-affairs method.
-- [Language notes](../subjects/bihar-teacher-language.md) include English, Hindi, Urdu, and Bengali foundations; English and Hindi have the fuller practice chapters.
+- [Language notes](../subjects/bihar-teacher-language.md) include English and Hindi preparation, with separate Urdu and Bengali grammar/comprehension chapters; English and Hindi currently have more total practice.
 - [Practice index](../practice/README.md) links an official 2023 Higher Secondary paper and provisional key, with solved examples and original timed mini mocks. That 2023 booklet used a 40-question General Studies / 80-question Computer Science split; it is historical and does not define a later cycle's pattern.
 
 ## Technical course sequence
@@ -28,8 +28,8 @@ Use this track to organize technical CS study for Bihar teacher recruitment. It 
 ## Supporting papers and practice
 
 - [General Studies](../subjects/bihar-general-studies.md)
-- [English and Hindi language preparation](../subjects/bihar-teacher-language.md)
-- [Solved past-paper walkthroughs and timed mini mocks](../practice/README.md)
+- [English, Hindi, Urdu, and Bengali language preparation](../subjects/bihar-teacher-language.md)
+- [Solved past-paper walkthroughs, language practice, and timed mini mocks](../practice/README.md)
 
 ## Study routine
 
@@ -37,7 +37,7 @@ Use this track to organize technical CS study for Bihar teacher recruitment. It 
 2. Study the relevant course chapters and draw the diagrams by hand.
 3. For each topic, prepare a definition, example, short classroom explanation, and 3–5 objective questions.
 4. Practice official previous papers where available; record concepts and mistakes by topic.
-5. Use the General Studies and English/Hindi courses for supporting papers; verify language options and the latest syllabus in the current notice. Add Urdu/Bengali or specialized pedagogy preparation if your selected paper requires it.
+5. Use the General Studies and language courses for supporting papers; verify language options and the latest syllabus in the current notice. Add deeper prescribed-textbook or specialized pedagogy preparation if your selected paper requires it.
 
 The school-level course includes lesson planning, assessment, inclusion, and lab safety. It is not a full B.Ed/CTET pedagogy course. The language course is a foundation, not a replacement for the current prescribed language syllabus.
 
