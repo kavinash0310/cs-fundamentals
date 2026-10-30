@@ -39,3 +39,16 @@ Practice: derive Σm for XOR; minimize a 3-variable function from its table; ide
 
 ## Notebook work
 Draw the 3-variable Gray-code map and mark one group that wraps at an edge.
+
+
+## Karnaugh-map worked method
+
+For F(A,B,C)=Σm(0,2,5,7), minterms 0 and 2 group where A=0,C=0, yielding A'C'. Minterms 5 and 7 group where A=1,C=1, yielding AC. Thus F=A'C'+AC, the XNOR of A and C; B disappears.
+
+Use Gray order for AB rows 00,01,11,10 and C columns 0,1. Opposite map edges are adjacent because they differ in one bit. A group of four removes two changing variables; group of two removes one.
+
+For don't-care d, include it only if it enlarges a group or reduces implementation cost. Verify a minimized expression against original minterm set and don't-care freedom.
+
+Quine-McCluskey example: minterms 000 and 001 differ only in last bit, combine to 00-. Repeat pairwise by number of ones; a dash position must match before combining.
+
+**Practice:** Minimize XOR using minterms; identify essential prime implicant (one covering a minterm no other prime implicant covers); check a proposed grouping for adjacency and power-of-two size.
