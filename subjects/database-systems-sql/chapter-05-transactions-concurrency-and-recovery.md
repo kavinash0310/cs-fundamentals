@@ -21,3 +21,14 @@ Practice: draw a precedence graph; identify dirty read; trace undo/redo after cr
 
 ## Notebook work
 Make a two-transaction schedule and draw its conflict graph.
+
+
+## Precedence graph and recovery worked checks
+
+Schedule: T1:R(A), T2:W(A), T1:W(B), T2:R(B). Conflicts on A give T1→T2 (T1 read before T2 write); conflicts on B give T2→T1 (T2 read before T1 write). Cycle means not conflict-serializable.
+
+A lock schedule may deadlock: T1 holds A waits for B; T2 holds B waits for A. Wait-for graph has T1→T2 and T2→T1. Strict 2PL prevents other transactions from reading/writing uncommitted writes and simplifies rollback.
+
+Write-ahead logging: before a dirty page reaches disk, its log record must be durable. REDO repeats committed updates after crash; UNDO reverses incomplete updates. Checkpoint records a recovery boundary but does not remove need for logs after it.
+
+**Practice:** Build precedence graph for two schedules; identify dirty read; state whether strict 2PL gives conflict serializability; describe which transaction to undo after a crash.
