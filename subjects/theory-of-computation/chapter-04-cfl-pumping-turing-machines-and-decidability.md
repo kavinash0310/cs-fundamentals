@@ -29,3 +29,16 @@ Practice: trace a TM for unary increment; outline halting contradiction; use a m
 
 ## Notebook work
 Draw a TM configuration and a reduction arrow with the membership equivalence.
+
+
+## Decidability and reduction direction
+
+A decider for A always halts. A recognizer for A accepts members but may run forever on nonmembers. A language is recognizable if some TM recognizes it; its complement is decidable exactly when both sides are recognizable.
+
+To show B is undecidable, reduce a known undecidable A to B: compute f(x), ask whether f(x)∈B, and use the answer to decide A. The arrow points from hard problem to target. Reversing this direction does not prove B hard.
+
+Halting contradiction in outline: assume H(M,x) correctly says whether M halts on x. Build D(y): if H(y,y) says halts, loop forever; otherwise halt. Run D on its own encoding; either answer contradicts behavior.
+
+For complexity, certificate verification must be polynomial in input length. A problem can be in NP without a known polynomial-time solver.
+
+**Practice:** Distinguish “there exists a halting witness” from deciding all inputs; write the reduction equivalence; identify whether a proposed reduction proves A≤B or B≤A.
