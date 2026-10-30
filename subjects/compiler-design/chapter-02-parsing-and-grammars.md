@@ -28,3 +28,19 @@ Practice: derive an expression; compute FIRST/FOLLOW for a small grammar; identi
 
 ## Notebook work
 Show a leftmost derivation, parse tree, and simplified AST for one expression.
+
+
+## FIRST/FOLLOW and predictive parsing example
+
+Grammar:
+~~~text
+S -> a A
+A -> b | ε
+~~~
+FIRST(A)={b,ε}. FIRST(S)={a}. FOLLOW(S)={$}; since A ends S's production, FOLLOW(A)={$}. Predictive table places A→b under lookahead b and A→ε under lookahead $. No cell has two productions, so this small grammar is LL(1).
+
+For E→E+T|T, left recursion causes recursive descent to call E without consuming input. Rewrite using E→T E' and E'→+ T E'|ε. When factoring a grammar, preserve the same language and precedence/associativity.
+
+Shift-reduce parsers maintain a stack of grammar symbols/states. A shift consumes input; a reduce replaces a handle by its left-hand nonterminal. A conflict is not automatically proof the language has no parser; a different grammar/parser class may resolve it.
+
+**Practice:** Compute FIRST/FOLLOW for A→aB|ε, B→b; parse a+b*c with precedence grammar; identify whether subtraction is left-associative.
