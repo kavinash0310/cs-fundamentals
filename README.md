@@ -38,7 +38,7 @@ This map follows the ten technical sections of the official GATE CS 2027 syllabu
 
 **Coverage note:** Every GATE CS technical section and General Aptitude has a chaptered course index. This audit expanded the previously thin General Aptitude coverage with explicit lessons on tenses and grammar, powers/exponents/logarithms, mensuration, elementary statistics, maps and plots, 2D/3D spatial reasoning, assembly/grouping, and paper folding/cutting. The notes include worked calculations, diagrams, and answer explanations. They provide a substantial learning base; full GATE readiness still requires past papers and timed mocks.
 
-**Bihar teacher scope:** The repo now includes a General Studies course, English/Hindi language notes, selected solved questions from the official 2023 Higher Secondary CS paper, and original timed mini mocks. The GS and language courses are preparation frameworks; current-affairs facts and the paper pattern must be checked against the current BPSC notice. Urdu/Bengali language notes are not included.
+**Bihar teacher scope:** The repo now includes a General Studies course, English/Hindi/Urdu/Bengali language notes, selected solved questions from the official 2023 Higher Secondary CS paper, and original timed mini mocks. The GS and language courses are preparation frameworks; current-affairs facts and the paper pattern must be checked against the current BPSC notice. Language modules vary in depth; English and Hindi are more developed than the Urdu and Bengali foundations.
 
 ## Other CS and teaching courses
 
