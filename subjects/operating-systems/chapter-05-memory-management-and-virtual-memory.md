@@ -30,3 +30,16 @@ Practice: split an address; trace FIFO/LRU; compare page sizes; calculate TLB ef
 
 ## Notebook work
 Draw virtual-to-physical translation through TLB and page table, including a page fault branch.
+
+
+## Address translation and page-replacement trace
+
+Page size 1 KiB = 2¹⁰ bytes, so offset uses 10 bits. Virtual address 5000: page number=floor(5000/1024)=4, offset=904. If page 4 maps to frame 9, physical address=9×1024+904=10120.
+
+For 32-bit virtual addresses and 4 KiB pages, offset=12 bits and page number=20 bits. A TLB hit avoids a page-table memory access; a miss may require one or multiple memory accesses, depending on page-table structure.
+
+LRU with 3 frames, reference string 1,2,3,1,4: after 1,2,3, hit 1 updates recency; loading 4 evicts 2, the least recently used. FIFO instead evicts 1, the oldest-loaded. Track recency/order after each reference.
+
+A page fault may be valid demand paging or invalid access. Valid fault: trap to OS, locate page, choose/evict frame if needed, read storage, update page table/TLB, restart instruction. Dirty victim must be written back.
+
+**Practice:** Trace FIFO and LRU for 1,2,3,1,4,2; calculate page offset bits for 8 KiB; explain thrashing using working set.
