@@ -36,3 +36,13 @@ Flow control protects receiver; congestion control protects the path. Slow start
 UDP has no handshake or retransmission guarantee; applications may add reliability, ordering, or congestion control themselves.
 
 **Practice:** If next expected sequence is 4000 and a 300-byte segment begins at 4000, ACK after receipt is 4300. Explain why TCP can deliver bytes in order even if IP packets arrive out of order.
+
+## TCP state and backpressure
+
+Three-way handshake: client SYN, server SYN-ACK, client ACK. It synchronizes sequence state and confirms both directions can communicate. It is not user authentication.
+
+The receiver window is advertised based on available receive buffer. If application reads slowly, advertised window may shrink to zero; sender pauses (with probes) rather than overflowing receiver. Congestion window is sender's estimate of safe network load. Both constrain in-flight bytes.
+
+Head-of-line blocking occurs in ordered TCP stream: a missing earlier segment can delay delivery of later bytes to the application even if they arrived. Applications requiring independent streams may use separate connections or a transport with stream multiplexing.
+
+**Practice:** A segment beginning at seq=9000 carries 700 bytes; next cumulative ACK=9700. Explain what happens if bytes 9700–9999 arrive before 9000–9699; distinguish receive-window closure from congestion response.
