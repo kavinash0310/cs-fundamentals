@@ -29,3 +29,14 @@ Practice: minimize a small DFA; build a regex for strings containing 101; prove 
 
 ## Notebook work
 Write the pumping lemma with all quantifiers and draw a partition-refinement split.
+
+
+## A complete pumping proof pattern
+
+Suppose L={0ⁿ1ⁿ:n≥0} were regular and let p be its pumping length. Choose s=0ᵖ1ᵖ. Every legal split s=xyz has |xy|≤p and |y|>0, so y=0ᵏ for some k>0. Pump i=0: xz has p-k zeros and p ones, so xz∉L. This contradicts the lemma.
+
+A valid proof chooses one string but must defeat every legal split. Do not pick a favorable split yourself. Pumping lemma is one tool; closure under intersection with a known regular language can simplify proofs.
+
+DFA minimization example: states are equivalent only if no suffix distinguishes them. If q accepts ε but r rejects ε, they are immediately distinguishable. If both agree on ε, test transitions: if some symbol sends them to already-distinguishable blocks, split them.
+
+**Practice:** Prove a language with an equal-count dependency nonregular; for a given DFA, find unreachable states then minimize; use complement and product construction to decide equivalence of two DFAs.
