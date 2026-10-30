@@ -25,3 +25,20 @@ Practice: write a grade classifier; trace a loop; create a function for average 
 
 ## Notebook work
 Write a flowchart and matching Python function for a classroom task.
+
+
+## Trace a Python function
+
+~~~python
+def count_even(values):
+    count = 0
+    for value in values:
+        if value % 2 == 0:
+            count += 1
+    return count
+~~~
+For [2,5,8], trace (value,count): (2,1), (5,1), (8,2); returns 2. Loop invariant: after processing the first i values, count equals number of even values in that prefix.
+
+Python list aliasing: b=a does not copy; both names refer to the same mutable list. A shallow copy duplicates the outer list but nested objects may still be shared. This matters when explaining mutation to students.
+
+**Practice:** Modify to return both even and odd counts; specify empty-input output; test negative even number -4; explain why -4%2==0.
