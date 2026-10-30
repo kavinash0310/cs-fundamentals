@@ -58,3 +58,32 @@ A port identifies an application endpoint on a host. A TCP connection is identif
 **Layering check:** DNS resolves a name; IP forwards packets; TCP provides reliable ordered bytes; HTTP defines request/response semantics. One browser request uses multiple protocols and often several connections/streams.
 
 **Practice:** Explain why a server must loop until a complete application message is read; compare connect() in TCP with datagram sendto().
+
+## Extended lecture: quantify end-to-end performance
+
+For a path with links and routers, distinguish four delays at each hop: processing (inspect header), queueing (wait for service), transmission (push bits onto a link), and propagation (signal travel). For a packet of L bits on a link of rate R bit/s, transmission delay is L/R. For distance d and propagation speed v, propagation delay is d/v. Increasing link rate reduces serialization time but does not make the signal travel faster.
+
+**Worked example.** A 1,200-byte packet crosses a 10-Mbit/s link with 20 ms one-way propagation. L=9,600 bits, so transmission is 9,600/10,000,000=0.00096 s=0.96 ms. Ignoring processing and queues, one-hop delay is 20.96 ms. For store-and-forward across three equal links, a packet must be received before retransmission at each router; the packet's serialization contributes three times, as does propagation if all links span equal distance. Pipelining lets later packets enter while earlier ones are forwarded, so steady-state throughput can be much higher than the first-packet delay suggests.
+
+### Bandwidth-delay product
+
+BDP = bottleneck bandwidth × round-trip time. At 100 Mbit/s and 40 ms RTT, BDP=4,000,000 bits=500,000 bytes. Roughly half a megabyte must be in flight to keep that path fully utilized, absent losses and other limits. This explains why a tiny sender window can cap throughput even on a fast link.
+
+~~~text
+sender -- packet in flight ----------------------> receiver
+       <---------------------- ACK (RTT later)
+window too small: sender waits idle between bursts
+~~~
+
+Throughput is bounded by the minimum of link capacity, sender/receiver limits, and window/RTT. Queueing delay rises when offered load approaches service capacity; buffering may absorb bursts but cannot create bandwidth. A router dropping packets at a full queue is a signal that the offered load exceeded what it could serve.
+
+### Circuit and packet switching
+
+Circuit switching reserves a path's resources for a session; it can offer predictable service but may waste reserved capacity during silence. Packet switching statistically multiplexes flows; it uses links efficiently for bursty traffic but introduces queueing and possible loss. In a datagram network, each packet can be routed independently; a virtual circuit establishes logical path state first.
+
+### Practice with solutions
+
+1. A 2,000-byte frame on 20 Mbit/s: transmission time =16,000/20,000,000=0.8 ms.
+2. RTT=50 ms, capacity=8 Mbit/s: BDP=400,000 bits=50,000 bytes.
+3. Does higher bandwidth reduce propagation delay? No; propagation depends primarily on distance and medium.
+4. Why can throughput be low with no packet loss? A small window, high RTT, receiver limit, or queueing can constrain it.
