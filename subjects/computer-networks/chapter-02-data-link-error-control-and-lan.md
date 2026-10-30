@@ -26,3 +26,14 @@ Practice: calculate stop-and-wait utilization; compare Go-Back-N/Selective Repea
 
 ## Notebook work
 Draw a sliding-window timeline with one lost frame and ACK sequence.
+
+
+## CRC and sliding-window worked reasoning
+
+CRC sender appends r zero bits to message polynomial M(x), divides by generator G(x), and appends the r-bit remainder. Receiver divides the received codeword by G; zero remainder means no detected error, not proof that no error occurred.
+
+For stop-and-wait, if round-trip propagation dominates, utilization is roughly transmission/(RTT+transmission). With window W, utilization can approach min(1, W×transmission/(RTT+transmission)), assuming sender always has data and no loss.
+
+Sequence numbers wrap modulo 2^k. Selective Repeat needs a sequence space at least twice the send-window size to avoid ambiguity between old and new frames. ACK/retransmission timers and duplicate handling define correctness.
+
+**Practice:** Why doesn't parity detect two flipped bits? Even parity remains unchanged. Compare cumulative ACK in Go-Back-N with individual ACKs in Selective Repeat. Explain why checksum/CRC is not authentication; attackers can alter data and recompute them.
