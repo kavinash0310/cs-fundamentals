@@ -33,3 +33,32 @@ Accessibility: describe images, use readable contrast, provide keyboard alternat
 Lab safety includes ergonomics, cable/electrical awareness, account sign-out, privacy, backups, respectful collaboration, copyright, and reporting incidents. Follow institution policy for device handling and student data.
 
 **Practice:** Plan accommodations for a student who cannot distinguish color-only signals; design an exit ticket; identify when collaborative work becomes plagiarism.
+
+## Extended lesson: read for claims, evidence, and inference
+
+Read this short passage: “A city installed sensors to optimize traffic lights. Average travel time fell on two major roads, but pedestrian waiting time rose near one school. The project team therefore added a pedestrian-priority phase and published weekly measurements.” The supported conclusion is that the first optimization improved one metric but exposed a trade-off that required another change. It is **not** supported that every city's traffic improved or that sensors alone caused the result.
+
+### A repeatable reading method
+
+1. Identify the author's main claim in one sentence.
+2. Mark the evidence offered and distinguish it from examples or opinion.
+3. Notice contrast words (however, although, therefore) because they show argument structure.
+4. For inference questions, choose the narrowest statement necessarily supported.
+5. For “according to the passage,” do not import outside knowledge.
+
+Vocabulary-in-context questions depend on the sentence. Replace the target word with a simple synonym and see whether the meaning still fits. In “the result was marginal,” marginal may mean small/limited, not related to a page margin.
+
+### Sentence correction
+
+Check subject–verb agreement, pronoun reference, tense consistency, parallel structure, and modifier placement. Example: “The engineer reviewed the logs, tested the patch, and documenting the fix” breaks parallelism. Change to “reviewed, tested, and documented.” A long sentence is not automatically incorrect; trace its subject and finite verb.
+
+### Short solved questions
+
+Passage: “Remote work reduced commute time, but new hires reported fewer informal learning opportunities.” Which statement follows? Remote work had a benefit and a cost for the groups measured. Does it prove remote work lowers productivity? No evidence says that.
+
+Choose the best parallel sentence:
+A. “The test checks memory, CPU use, and whether the disk is healthy.”
+B. “The test checks memory, CPU use, and disk health.”
+B is parallel: noun phrase, noun phrase, noun phrase.
+
+**Practice habit:** Underline evidence, circle the question's scope, and eliminate answers that overstate causation, time, or population.
