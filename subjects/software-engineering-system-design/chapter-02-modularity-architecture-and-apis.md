@@ -38,3 +38,43 @@ Create-order endpoint: validate cart and authorization; accept an idempotency ke
 A monolith can still have modular boundaries and one deployment. A service split is justified when independent scaling/ownership/deployment outweighs network calls, duplicated data, and operational load. A queue is appropriate for slow email generation; an order confirmation must not be lost, so persist an outbox event in the same database transaction and publish it reliably.
 
 **Practice:** Design a paginated list endpoint; define cursor stability; identify which service owns a user record; explain how to version an API without breaking old clients.
+
+## Extended lesson: design a dependable API boundary
+
+A module should hide decisions likely to change and expose a small contract. Cohesion asks whether a module's responsibilities belong together; coupling asks how many details other modules must know. High cohesion and low coupling make independent tests and changes easier.
+
+A REST-style order endpoint might be:
+~~~text
+POST /orders
+GET  /orders/{id}
+POST /orders/{id}/cancel
+~~~
+A request should define authentication, validation, success/error responses, and whether retries are safe. POST is not automatically idempotent. To handle a client retry after a timeout, accept an idempotency key and persist the result associated with that key:
+1. Client sends key K with create-order request.
+2. Server records K and the operation atomically.
+3. Retry with K returns the original result instead of creating a second order.
+4. Reuse of K with a different request body is rejected.
+
+### Database and message consistency
+
+Suppose an order service writes an order row, then publishes OrderCreated. If the process crashes between those actions, the database and message broker disagree. The transactional outbox pattern writes both the order and an outbox row in one database transaction. A worker later publishes outbox rows and marks them delivered; consumers must tolerate duplicate delivery.
+
+~~~text
+request -> DB transaction { order + outbox event }
+                                  |
+                                  v
+                         publisher -> broker -> consumers
+~~~
+
+The outbox gives atomic database state plus durable intent to publish; it does not make the entire distributed system exactly-once. At-least-once delivery plus idempotent processing is the practical design.
+
+### API review checklist
+
+- Who is the caller, and what authorization applies?
+- What are request/response schemas and error codes?
+- What is the timeout and retry policy?
+- Is the operation idempotent?
+- Are pagination and versioning defined?
+- Can sensitive data leak in logs or errors?
+
+**Interview prompt:** How do you prevent duplicate payments? Use a unique idempotency key tied to the customer/operation, enforce uniqueness transactionally, and reconcile uncertain provider outcomes instead of blindly issuing a second charge.
