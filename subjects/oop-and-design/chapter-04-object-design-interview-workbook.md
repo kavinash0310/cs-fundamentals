@@ -111,3 +111,36 @@ Start with clarifying questions, then core entities, invariants, API/use case, c
 **Answer guide:** The library needs Loan/Hold association records; vending machine needs explicit states and refund transitions; separate presentation/persistence from cart domain rules; booking needs atomic seat claim and idempotent payment. Class diagram shows types/relationships; sequence diagram shows messages over time.
 
 **Notebook work:** Redraw the garage class diagram from memory, then produce the entry/exit sequence and annotate transaction boundaries.
+
+
+## 6. Concurrency and durable state in the garage design
+
+A common bug is a check-then-act race: two entrance gates both read “spot 12 is free,” then both assign it. The invariant “one active ticket owns a spot” must be enforced atomically. In one database, use a transaction plus a uniqueness constraint on active spot assignment, or lock the selected spot row. In a distributed design, use a reservation with an expiration and an idempotency key; do not assume an in-memory mutex coordinates multiple servers.
+
+~~~text
+Available -> Reserved(ticket, expiry) -> Occupied
+      ^               |                    |
+      | timeout       | vehicle enters     | payment/exit succeeds
+      +---------------+                    v
+                                      Released
+~~~
+
+Keep separate the physical spot state and payment state. A payment timeout is ambiguous: the provider may have charged the customer even when the garage did not receive the response. Reuse the same provider idempotency key when retrying and reconcile status before issuing another charge. Ticket completion should be idempotent so an exit retry does not charge twice or free another vehicle's spot.
+
+### API and consistency choices
+
+- Search availability: may be eventually consistent for display, but assignment must be authoritative and atomic.
+- Reserve spot: return a reservation/ticket identifier and expiry.
+- Enter: transition only a matching, unexpired reservation to occupied.
+- Pay/exit: record payment outcome, close the ticket, and release its spot in a controlled workflow.
+- Admin override: require authorization, reason, audit record, and safe recovery path.
+
+### Interview trade-offs
+
+A single relational database is a strong starting point: it supports transactions, constraints, and straightforward reporting. Add a cache for read-heavy availability only after measuring; cached counts may be stale, so never use them as the final allocation decision. Partition by garage if scale requires it, because most operations are local to one facility.
+
+Discuss failure cases explicitly: gate offline, sensor disagrees with database, lost ticket, payment provider timeout, duplicate scan, and manual closure of a spot. Define reconciliation and operator workflow; “add a microservice” does not resolve inconsistent physical and digital state.
+
+### Final practice prompt
+
+Design a reservation expiration process. State who is allowed to release a reservation, how clock skew is handled, whether a late-arriving vehicle can still enter, what idempotency key identifies retries, and what event/audit record is written. A good answer states policy before proposing a timer or queue.
