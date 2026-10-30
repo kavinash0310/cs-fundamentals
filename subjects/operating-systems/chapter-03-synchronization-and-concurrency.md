@@ -47,3 +47,15 @@ Peterson's algorithm for two processes uses intent flags and turn; under assumpt
 Condition-variable pattern is lock, while predicate false wait, update predicate, signal/broadcast, unlock. Always protect the predicate with the same lock.
 
 **Practice:** Show the lost update in x=x+1; find why reversing semaphore order can deadlock; distinguish semaphore resource count from mutex ownership.
+
+## Critical-section reasoning
+
+A mutex protects a critical section, but it does not make arbitrary larger workflows atomic. Lock only the state needed, use a consistent global lock order, and avoid calling unknown callbacks while holding a lock.
+
+Binary semaphore initialized 1 can behave like a lock, but a semaphore has no inherent owner; one thread can signal a permit another acquired. A mutex typically has ownership semantics.
+
+Peterson's algorithm uses flag[0], flag[1], and turn. Each process raises its intent, gives priority to the other, and spins while the other wants entry and has priority. Under the sequentially consistent atomic-memory model it satisfies mutual exclusion, progress, and bounded waiting for two processes. Real compiler/CPU reordering means production code needs language atomics or OS primitives.
+
+Condition-variable example: while count==0, wait(notEmpty); then remove item. The monitor lock is released while waiting and reacquired before return. Rechecking the predicate protects against spurious wakeups and competing consumers.
+
+**Reasoning drill:** If two locks protect A and B, and T1 acquires A then waits for B while T2 acquires B then waits for A, circular wait occurs. A consistent order (always A before B) removes this cycle.
