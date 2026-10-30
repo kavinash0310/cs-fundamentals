@@ -47,3 +47,15 @@ response = first start - arrival
 ~~~
 
 **Practice:** Recompute the schedule with q=1; compare response and turnaround; explain starvation risk for SJF and a role for aging.
+
+## SJF/SRTF worked comparison
+
+Jobs: P1 arrives 0, burst 7; P2 arrives 2, burst 4; P3 arrives 4, burst 1.
+
+Non-preemptive SJF: at time 0 only P1 is ready, so run P1 [0,7]; then choose P3 [7,8], then P2 [8,12]. Completion times 7,12,8. Turnaround P1=7,P2=10,P3=4. Waiting P1=0,P2=6,P3=3.
+
+SRTF: P1 starts at 0; at t=2, P2 has 4 vs P1 remaining 5, so P2 preempts. At t=4, P3 arrives; P2 remaining 2, so P3 runs [4,5], then P2 [5,7], then P1 [7,12]. Completion P1=12,P2=7,P3=5. Turnaround 12,5,1; waiting 5,1,0. SRTF helps short jobs but delays P1.
+
+Scheduling assumes CPU bursts/arrival times and ignores switch overhead unless stated. If two jobs tie, tie-breaking policy affects exact order.
+
+**Exam method:** draw the ready set at every arrival/completion, mark remaining burst after preemption, then compute metrics from completion and first start.
