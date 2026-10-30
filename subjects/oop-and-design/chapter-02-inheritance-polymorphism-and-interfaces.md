@@ -118,3 +118,56 @@ An override should preserve the base method's failure contract. A subtype that u
 5. Draw a diamond inheritance graph and list one ambiguity that can occur.
 
 **Answer guide:** Prefer the most specific overload allowed by the compile-time type; use capability-specific interfaces; favor composition when no genuine substitutable “is-a” relation exists.
+
+
+## 6. Dispatch and substitutability by example
+
+An interface describes a capability; a class implements that capability. A service can depend on the abstraction:
+
+~~~java
+interface PaymentProcessor {
+    Receipt charge(Money amount);
+}
+
+final class Checkout {
+    private final PaymentProcessor processor;
+    Checkout(PaymentProcessor processor) {
+        this.processor = processor;
+    }
+    Receipt pay(Money amount) {
+        return processor.charge(amount);
+    }
+}
+~~~
+
+CreditCardProcessor and WalletProcessor can be substituted without changing Checkout. A test can inject a fake processor that returns a controlled receipt. This is polymorphism used to vary behavior behind a stable contract, not simply “many child classes.”
+
+### Overloading versus overriding
+
+Overloading selects a method from the declared argument types at compile time:
+~~~java
+print(int value)
+print(String value)
+~~~
+Overriding selects an implementation from the runtime class of the receiver:
+~~~text
+PaymentProcessor p = new WalletProcessor()
+p.charge(amount)  -> WalletProcessor implementation
+~~~
+Field access and static methods are generally resolved differently from virtual instance-method dispatch. Check the language rules rather than assuming every same-named member is polymorphic.
+
+### Liskov Substitution Principle as contract preservation
+
+If base operation withdraw(amount) promises that a valid amount reduces balance by exactly that amount, a subtype must not reject inputs the base contract accepts or weaken the result guarantee. In contract language, a subtype cannot strengthen preconditions and cannot weaken postconditions. It must preserve invariants visible through the base type.
+
+A classic rectangle/square inheritance model can fail if the base permits width and height to change independently while the square must keep them equal. Code that uses a Rectangle contract may set width then height and expect area=width×height; a Square override that changes both dimensions violates that expectation. The problem is the chosen subtype relation, not the arithmetic.
+
+### Prefer composition when behavior varies
+
+A class can contain a Strategy object, such as a pricing policy, instead of inheriting from a subclass for every combination of customer type and discount rule. Composition allows policies to change independently and avoids fragile base-class coupling. Use inheritance when the subtype truly is substitutable under the base contract; use interfaces for capability boundaries and composition for assembled behavior.
+
+### Practice
+
+1. A subtype accepts fewer inputs than its base method. Which principle is violated? LSP, because it strengthened the precondition.
+2. A method is selected based on receiver runtime type. Which mechanism? Overriding/dynamic dispatch.
+3. Why inject a PaymentProcessor into Checkout? To depend on a contract, substitute implementations, and test the workflow independently.
