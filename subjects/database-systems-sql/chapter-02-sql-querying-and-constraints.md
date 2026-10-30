@@ -86,3 +86,44 @@ Do not put COUNT(*) in WHERE because aggregation occurs after row filtering.
 A correlated EXISTS can test membership without multiplying outer rows. For “students with at least one enrollment,” EXISTS may express intent more directly than joining and deduplicating.
 
 **Practice:** Use LEFT JOIN to retain students with no enrollment; write a NOT EXISTS query for courses with no students; show how a one-to-many join changes row count.
+
+## Extended lecture: reason about SQL result sets
+
+SQL is declarative: write the desired relation and let the optimizer choose a physical plan. A useful conceptual order is FROM/JOIN, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY, LIMIT. This explains why a SELECT alias is not generally available in WHERE: WHERE is conceptually evaluated earlier.
+
+Suppose Student has rows (1,Ana), (2,Bo), (3,NULL). COUNT(*) counts all three rows; COUNT(Name) counts only non-NULL names, so it returns 2. COUNT(DISTINCT Name) counts distinct non-NULL values. NULL means unknown/missing, not zero and not an ordinary comparable value. Therefore Name = NULL is not true; use IS NULL. Comparisons with NULL yield UNKNOWN, and WHERE retains only rows whose condition is TRUE.
+
+### LEFT JOIN: preserve unmatched left rows
+
+~~~sql
+SELECT s.id, e.course_id
+FROM Student s LEFT JOIN Enrollment e
+  ON e.student_id = s.id
+ AND e.term = 'Fall';
+~~~
+
+This keeps every Student. Students with no Fall enrollment receive NULL in the e columns. Moving e.term='Fall' into WHERE filters those NULL-extended rows and can turn the query into an effective inner join. Put a condition in ON when it controls matching; put it in WHERE when it should filter the final joined result.
+
+### Grouping example
+
+To find departments with at least 10 employees:
+
+~~~sql
+SELECT department_id, COUNT(*) AS n
+FROM Employee
+GROUP BY department_id
+HAVING COUNT(*) >= 10;
+~~~
+
+WHERE filters individual rows before grouping; HAVING filters groups after aggregation. Selecting a nonaggregated column that is not grouped is invalid or dialect-dependent because a group has no unique value for it.
+
+### Constraints and safe updates
+
+A UNIQUE constraint can permit multiple NULLs depending on the DBMS and constraint semantics. A transaction can enforce multi-row invariants that a row-level CHECK cannot. UPDATE or DELETE without a selective WHERE may affect every row; inspect the predicate and expected row count. Parameterized queries keep data separate from SQL syntax and prevent injection; string concatenation is unsafe even when inputs “look numeric.”
+
+### Questions with answers
+
+1. What does COUNT(column) skip? NULL values.
+2. Why can LEFT JOIN plus right-table condition in WHERE lose rows? The WHERE predicate rejects NULL-extended rows.
+3. Can SQL produce duplicates? Yes, relations in SQL are generally bags unless DISTINCT is requested.
+4. How do you test for missing values? IS NULL or IS NOT NULL.
