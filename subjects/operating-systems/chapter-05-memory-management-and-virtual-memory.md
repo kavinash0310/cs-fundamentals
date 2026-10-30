@@ -49,7 +49,7 @@ A page fault may be valid demand paging or invalid access. Valid fault: trap to 
 Suppose TLB lookup takes 10 ns, memory access 100 ns, hit ratio 0.95, and a page-table lookup on miss costs one memory access. If TLB lookup precedes memory:
 ~~~text
 EAT = 0.95(10+100) + 0.05(10+100+100)
-    = 110 + 10 = 120 ns
+    = 104.5 + 10.5 = 115 ns
 ~~~
 This formula assumes one-level page-table memory access and no page fault. A page fault is much slower and should be modeled separately.
 
