@@ -76,5 +76,6 @@ Teacher recruitment varies by post, level, and cycle. Check the exact current no
 - [BPSC 2023 Higher Secondary Computer Science question booklet](https://bpsc.bihar.gov.in/Archive/2023/NB-2023-08-26-37.pdf)
 - [BPSC 2023 provisional answer key](https://bpsc.bihar.gov.in/Archive/2023/NB-2023-09-01-40.pdf)
 - [GATE 2027 official downloads](https://gate2027.iitm.ac.in/download)
+- [GATE 2023 CS question paper](https://gate.iitk.ac.in/GATE2023/doc/papers/2023/CS_GATE2023.pdf) and [official answer key](https://gate.iitk.ac.in/GATE2023/doc/papers/2023/ANS/CS_ANS_GATE2023.pdf)
 
 Use historical papers for practice and pattern awareness; use the latest official notice as the source of truth for the next recruitment exam.

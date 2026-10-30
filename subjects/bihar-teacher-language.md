@@ -17,4 +17,4 @@ Use this course for objective English and Hindi language practice. It teaches gr
 3. For comprehension, answer from the passage rather than outside assumptions.
 4. Keep separate error lists for English and Hindi and repeat missed rules after a delay.
 
-This repository contains English and Hindi learning notes. It does not yet contain complete Urdu or Bengali grammar courses. The official 2024 BPSC teacher booklet illustrates a historical qualifying-language section with common English items and a choice among Hindi, Urdu, or Bengali; future notices may change the pattern.
+This repository contains English and Hindi learning notes. It does not yet contain complete Urdu or Bengali grammar courses. The [official 2024 BPSC teacher booklet](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/NB-2024-08-09-19.pdf) illustrates a historical qualifying-language section with common English items and a choice among Hindi, Urdu, or Bengali; future notices may change the pattern.
