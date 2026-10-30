@@ -39,3 +39,37 @@ Induction in patterns: sequence 2,5,10,17,26 has differences 3,5,7,9; a plausibl
 Paper folding: if a square is folded left-to-right, a hole at a point off the crease mirrors to the corresponding point in the other half after unfolding. For multiple folds, reverse the folds in reverse order; each crease creates mirrored copies.
 
 **Practice:** Test syllogisms with a Venn diagram; rotate a shape 180°; reflect across vertical axis; fold twice and predict number/locations of holes. State why a guessed number pattern is not a proof of a unique next term.
+
+## Extended lesson: mixed timed set and review
+
+Try these without looking at the answers; target about one minute each.
+
+1. 15% of 240 = ?
+2. A 120 m train passes a pole in 6 s. Speed in km/h?
+3. If 3 workers finish a job in 8 days, at equal rates how long for 4 workers?
+4. Complete: 2, 6, 12, 20, 30, __.
+5. All A are B; no B are C. Can any A be C?
+6. A fair coin is tossed twice. Probability of exactly one head?
+7. Mean of 4, 6, 8, 10?
+8. A value rises from 80 to 100. Percentage increase?
+9. Which is larger: 3/7 or 4/9?
+10. A cube is painted and cut 3×3×3. How many pieces have exactly one painted face?
+
+### Answers and reasoning
+
+1. 0.15×240=36.
+2. 120/6=20 m/s; multiply by 3.6 to get 72 km/h.
+3. Total work=24 worker-days; 24/4=6 days.
+4. Differences are 4,6,8,10; next difference 12, so 42.
+5. No; A is contained in B and B is disjoint from C.
+6. Outcomes HH, HT, TH, TT; two of four, so 1/2.
+7. (4+6+8+10)/4=7.
+8. Increase=20; base=80; 20/80=25%.
+9. Cross-multiply: 3×9=27, 4×7=28, so 4/9 is larger.
+10. 6(n-2)^2=6 for n=3.
+
+### Build an error log
+
+For every miss, record the skill, the exact mistaken assumption, and a corrected method. Example: “Used final value as percent denominator” becomes “percentage change divides by original value.” Re-solve missed items after a day without viewing the solution. Track accuracy by topic, not just total score; a strong total can hide a repeat weakness.
+
+During the exam, take quick marks from clear questions first, then return to lengthy items. Do not spend several minutes defending one sunk-cost question. If negative marking applies, use the stated scoring rule rather than a blanket guessing rule.
