@@ -59,3 +59,43 @@ Peterson's algorithm uses flag[0], flag[1], and turn. Each process raises its in
 Condition-variable example: while count==0, wait(notEmpty); then remove item. The monitor lock is released while waiting and reacquired before return. Rechecking the predicate protects against spurious wakeups and competing consumers.
 
 **Reasoning drill:** If two locks protect A and B, and T1 acquires A then waits for B while T2 acquires B then waits for A, circular wait occurs. A consistent order (always A before B) removes this cycle.
+
+## Extended lesson: solve producer–consumer with semaphores
+
+A race occurs when outcome depends on interleaving. An increment typically has read, add, write steps; two threads can interleave and lose an update. A critical section is code that accesses shared state and must satisfy mutual exclusion, progress, and bounded waiting (for the classic critical-section requirements).
+
+For a bounded buffer of N slots, initialize empty=N, full=0, mutex=1:
+
+~~~text
+producer:
+  wait(empty)
+  wait(mutex)
+  insert item
+  signal(mutex)
+  signal(full)
+
+consumer:
+  wait(full)
+  wait(mutex)
+  remove item
+  signal(mutex)
+  signal(empty)
+~~~
+
+The counting semaphores track available slots/items; mutex protects the actual buffer. Order matters: if the producer takes mutex before waiting for empty, it may block while holding mutex and prevent the consumer from freeing a slot—deadlock.
+
+A binary semaphore can act like a mutex, but a mutex usually has ownership semantics: the thread that locks it must unlock it. A condition variable lets a thread sleep until a predicate may be true; always recheck the predicate in a loop because wakeups can be spurious or another thread can consume the condition first.
+
+### Peterson's algorithm and assumptions
+
+For two threads, Peterson's algorithm uses intent flags and a turn variable to guarantee mutual exclusion under its memory model. It is mainly a proof/teaching algorithm; compiler and CPU reordering mean the naïve source code is not a portable production lock without appropriate memory-order guarantees.
+
+### Deadlock versus starvation
+
+Deadlock means a set of threads wait forever on one another. Starvation means one thread is repeatedly denied resources while others continue. A fair queue can reduce starvation but may lower throughput. A lock-free algorithm avoids blocking at the algorithm level but does not automatically guarantee each thread finishes quickly.
+
+### Check yourself
+
+1. What prevents two consumers from removing the same item? Mutex around buffer update.
+2. Why wait(full) before taking mutex? A consumer must not hold the buffer lock while waiting for an item.
+3. What does signal(full) mean? One additional filled slot is available to a consumer.
