@@ -41,3 +41,32 @@ C-LOOK serves requests in one direction, then jumps from the last request to the
 A file operation may update data blocks, inode metadata, and directory entries. Journaling orders durable log records before home-location updates; after crash, replay committed journal transactions or discard incomplete ones according to mode. Data journaling and metadata journaling have different guarantees.
 
 **Practice:** Calculate FCFS, SSTF, and SCAN movement for a request list, stating direction and endpoints. Explain why cache buffers and disk scheduling are distinct from filesystem naming/permissions.
+
+## Extended lesson: files, directories, and disk scheduling
+
+A file system maps a name and offset to data blocks plus metadata. A directory maps names to file identifiers; an inode-like structure stores ownership, permissions, size, timestamps, and block pointers. Hard links are additional directory names for the same file identity; symbolic links store a path that must be resolved. Removing one hard link does not necessarily delete data while another link or open reference remains.
+
+### Allocation trade-offs
+
+- Contiguous allocation gives fast sequential and direct access but can fragment and makes file growth difficult.
+- Linked allocation grows easily and supports sequential access, but random access follows pointers and can be slow.
+- Indexed allocation stores block pointers in an index structure and supports direct access, with metadata overhead.
+- Extents group runs of contiguous blocks to balance efficient access and flexible growth.
+
+A journal records intended metadata changes so recovery can replay or discard incomplete operations after a crash. Journaling does not automatically mean file contents are fully protected; mode and filesystem differ.
+
+### Disk scheduling example
+
+Requests are at cylinders 10, 20, 80, 90; head starts at 50.
+- FCFS order 50→10→20→80→90 moves 40+10+60+10=120 cylinders.
+- SSTF chooses the nearest request; there is a tie between 10 and 80 initially (both 40? Wait from 50, distances are 40 to 10, 30 to 20, 30 to 80, 40 to 90), so choose 20 or 80 under a stated tie rule. If choose 20, then 10, then 80, then 90: movement 30+10+70+10=120. A different request set can produce a different total and can starve far requests.
+- SCAN sweeps in one direction servicing requests, then reverses at an endpoint; C-SCAN services in one direction and returns to the beginning, offering more uniform wait under its model.
+
+Always state the direction and whether endpoint travel counts. Disk-scheduling answers vary with those assumptions.
+
+### Review questions
+
+1. Which allocation supports direct lookup more naturally than a linked chain? Indexed allocation.
+2. Does deleting a filename always erase the data immediately? No; links/open references and delayed reclamation may keep it allocated.
+3. Which policy can starve distant requests? SSTF can.
+4. Why journal metadata? To recover a consistent filesystem structure after interrupted updates.
