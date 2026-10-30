@@ -64,3 +64,67 @@ Personal data can identify or locate a person. Collect only what a task needs, s
 2. What does DNS help resolve? A domain name to records such as IP addresses.
 3. Does HTTPS prove a website's claims are truthful? No; it protects a connection and authenticates a domain certificate, not the truthfulness of content.
 4. What should a learner do with a suspected phishing message? Avoid interaction, verify via trusted channel, and report it.
+
+## 5. Trace a web request across layers
+
+A learner enters a URL into a browser. The URL includes a scheme, host, optional port, path, and possibly query. The browser resolves the host through DNS, establishes a transport connection, protects HTTPS with TLS, sends an HTTP request, receives a response, and may request additional files.
+
+~~~text
+URL
+ | parse scheme + host + path
+ v
+DNS resolver -> address
+ |
+ v
+transport connection -> TLS for HTTPS
+ |
+ v
+HTTP request -> server/CDN -> HTTP response
+ |
+ v
+HTML/CSS/JavaScript/images -> browser rendering
+~~~
+
+At each stage ask what information is used: DNS needs the hostname; IP routes packets; TCP or QUIC carries transport data; TLS validates identity and protects a connection; HTTP supplies method, path, headers, and optional body. A web page may use many requests. A DNS answer can be cached; it is not necessarily looked up afresh for every click.
+
+A switch forwards frames within a LAN. A router sends packets between IP networks. They answer different questions: “Which local device should receive this frame?” versus “Which next network hop moves this packet toward its destination?”
+
+## 6. Hardware, operating system, and storage
+
+The CPU repeatedly fetches, decodes, and executes instructions. Registers hold small, fast values used immediately; cache keeps recently used data closer to the CPU; RAM stores active program/data; SSD/HDD keeps information persistently. This hierarchy trades capacity, speed, and cost.
+
+~~~text
+CPU registers -> cache -> RAM -> SSD/HDD
+fastest/smallest                    slowest/largest
+volatile working state               persistent files
+~~~
+
+The operating system creates and schedules processes, manages memory, provides file and device services, and enforces permissions. A file name is not the file's physical location: the filesystem maps names and directories to storage blocks and metadata. A process can be denied access even if the file exists.
+
+## 7. Cyber-safety threat model
+
+For a suspicious message, separate the asset, threat, weakness, and action:
+
+- Asset: account credentials, student records, device, or money.
+- Threat: phishing, malware, impersonation, data theft, or harassment.
+- Weakness: reused password, unexpected attachment, exposed personal details, or unpatched software.
+- Control: verify through a known channel, use unique credentials and MFA, update software, restrict access, and report an incident.
+- Recovery: change compromised credentials through the official site, notify the responsible administrator, and restore clean data from a protected backup if needed.
+
+A credible classroom response does not blame a learner for reporting a mistake. If someone clicked a suspicious link, stop further interaction, report promptly, and follow school policy. Fast reporting can reduce harm.
+
+HTTPS protects data in transit and helps authenticate the server name when certificate checks succeed. It does not prove that content is true, that the business is honest, or that a downloaded file is safe. A lock icon is not a complete security review.
+
+### Privacy, accessibility, and responsible practice
+
+Collect only information needed for the learning task. Use school-approved services for student data, limit access, and avoid placing identifiable information in public examples. Backups should be access-controlled and periodically checked. Give credit for reused code, images, and text; “found online” does not mean free to copy.
+
+Cyberbullying and unsafe content require a trusted reporting path, not public retaliation. Digital well-being includes breaks, ergonomics, respectful communication, and awareness that shared devices may retain accounts or files.
+
+**Questions with answers**
+
+1. Does a router normally choose a destination based on a file name? No; it forwards packets using network-layer information such as IP prefixes.
+2. Why can a browser reuse a DNS answer? A cached record may remain valid until its TTL expires.
+3. What does TLS certificate hostname validation check? That the certificate is valid for the name the browser intended to contact.
+4. What is the immediate response after entering a password on a suspected phishing site? Stop using that link, change the password through the official site, and report it through the trusted school channel.
+5. Why is a backup not automatically safe? It can be exposed, corrupted, or infected; protect it and verify recovery works.
