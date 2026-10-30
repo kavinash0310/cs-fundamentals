@@ -45,3 +45,32 @@ Host A on subnet X sends to a host outside X. A compares destination prefix with
 Distance-vector neighbors exchange route cost vectors; poisoned reverse can prevent some loops but not every topology issue. Link-state advertisements are flooded; each router builds topology database and runs shortest path. Routing-table updates eventually affect forwarding entries.
 
 **Practice:** Distinguish MAC destination from IP destination at first hop; trace TTL across two routers; select longest-prefix route among /8, /16, /24 matches.
+
+## Extended lecture: subnet, route, and fragment calculations
+
+An IPv4 address has 32 bits. A /n prefix fixes the first n network bits; the remaining 32-n bits identify host addresses within that subnet. For a normal subnet, addresses with all host bits 0 and all host bits 1 are the network and directed-broadcast addresses, leaving 2^(32-n)-2 usable hosts. Special-purpose prefixes have exceptions.
+
+**Worked subnet.** 192.168.10.70/26 has 6 host bits, so each block has 64 addresses. The last-octet block boundaries are 0, 64, 128, 192. Therefore network=192.168.10.64, broadcast=192.168.10.127, usable range .65–.126. To find the block quickly, floor(70/64)×64=64.
+
+Routers use longest-prefix match: if destination 10.2.3.4 matches 10.0.0.0/8 and 10.2.0.0/16, choose /16 because it is more specific. A default route 0.0.0.0/0 is used only when no more-specific route matches.
+
+### Fragmentation arithmetic
+
+Suppose an IPv4 datagram has a 20-byte header, total length 4,000 bytes, and must cross an MTU of 1,500 bytes. Each non-final fragment can carry at most floor((1500-20)/8)×8 = 1,480 payload bytes because fragment offsets count 8-byte units. Original payload=3,980 bytes, so fragments carry 1,480, 1,480, and 1,020 bytes. Their total lengths are 1,500, 1,500, and 1,040. Offsets are 0, 185, and 370 (offset = payload bytes before fragment / 8). The first two have MF=1; the last has MF=0.
+
+~~~text
+original payload: [0 ............. 1479][1480 ........ 2959][2960 ... 3979]
+fragment offset:          0                     185                370
+~~~
+
+Fragmentation adds headers and can cause the receiver to wait for all pieces before reassembly. IPv6 routers do not fragment packets in transit; the source adapts packet size using path-MTU discovery.
+
+### Routing concepts
+
+Distance-vector protocols share route distances with neighbors and use Bellman-Ford-style updates; count-to-infinity can occur after failures. Link-state protocols flood topology information and run Dijkstra's algorithm locally. Static route selection and forwarding are distinct: a routing protocol computes the table, while each packet lookup applies longest-prefix match.
+
+### Questions with answers
+
+1. How many usable hosts in /27? 2^5-2=30 in an ordinary IPv4 subnet.
+2. Why must non-final IPv4 fragment data be a multiple of 8 bytes? The offset field uses 8-byte units.
+3. Which route wins, /16 or /24, when both match? /24.
