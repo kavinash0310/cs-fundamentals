@@ -22,3 +22,14 @@ Practice: edit a paragraph for agreement; infer a word from context; summarize a
 
 ## Notebook work
 Keep a vocabulary log with word, context sentence, inferred meaning, and a new example.
+
+
+## Assessment rubric and inclusive lab practice
+
+A small programming rubric can score: correct output (0–2), algorithm explanation (0–2), meaningful test cases (0–2), readable organization (0–1), and safe/responsible handling of data (0–1). Publish criteria before the task; allow multiple valid algorithms unless a technique is being assessed.
+
+Accessibility: describe images, use readable contrast, provide keyboard alternatives, chunk instructions, and allow varied ways to explain learning. Avoid assuming every learner owns a laptop or reliable internet. Offer paired/unplugged tracing activity when needed.
+
+Lab safety includes ergonomics, cable/electrical awareness, account sign-out, privacy, backups, respectful collaboration, copyright, and reporting incidents. Follow institution policy for device handling and student data.
+
+**Practice:** Plan accommodations for a student who cannot distinguish color-only signals; design an exit ticket; identify when collaborative work becomes plagiarism.
