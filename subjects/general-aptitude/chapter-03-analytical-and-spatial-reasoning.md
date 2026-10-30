@@ -35,3 +35,16 @@ Practice: identify a sequence rule; solve a syllogism; rotate a grid shape; mirr
 
 ## Notebook work
 Sketch transformations on squared paper and label axes and direction.
+
+
+## Multi-step quantitative examples
+
+Successive percentages: price 800 rises 20% then falls 20%: 800×1.2×0.8=768, a net 4% decrease. Percentage base is original value for a single change, but sequential changes use updated base.
+
+Work rates: A completes in 6 days (1/6 job/day), B in 3 days (1/3). Together rate=1/2 job/day, so time=2 days, assuming constant independent rates.
+
+Permutation vs combination: choose president and secretary from 5 gives 5×4=20; choose two-person team gives C(5,2)=10.
+
+Data graph: if a line chart uses y-axis starting at 90, visual gap 95→100 may look large; calculate absolute difference and inspect full scale.
+
+**Practice with answers:** 30% of 250=75; ratio 2:3 totals 50 gives 20 and 30; mean of 2,4,9=5; probability of at least one head in two fair tosses=3/4; area circle radius 3=9π.
