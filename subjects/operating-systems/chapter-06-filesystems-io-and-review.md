@@ -20,3 +20,14 @@ Practice: compare file allocation; trace page replacement; explain journaling af
 
 ## Notebook work
 Sketch inode block pointers and summarize process, scheduler, synchronization, deadlock, and memory flow on one page.
+
+
+## File allocation and disk scheduling
+
+Contiguous file allocation gives fast sequential and random access but growth is difficult and external fragmentation may occur. Linked allocation grows flexibly but random access follows links. Indexed allocation stores block pointers in an index; inode direct/indirect blocks extend capacity.
+
+Disk scheduling examples: FCFS is fair by arrival; SSTF chooses nearest request but can starve far requests; SCAN moves in one direction servicing requests then reverses, like an elevator; C-SCAN services one direction and wraps to the beginning. For cylinders 0–199, head 50, requests 10,20,80,90, SSTF visits 80,90,20,10 (depending on tie policy); calculate total seek as sum of absolute movements.
+
+I/O scheduling policy affects latency/fairness; SSDs have no mechanical seek, so the same cylinder-distance model does not apply directly.
+
+**Review practice:** Compare direct/linked/indexed allocation; calculate SSTF and SCAN movement with direction/end assumptions stated; explain why journaling helps metadata consistency after crash.
