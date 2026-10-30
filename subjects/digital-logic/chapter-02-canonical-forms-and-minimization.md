@@ -52,3 +52,33 @@ For don't-care d, include it only if it enlarges a group or reduces implementati
 Quine-McCluskey example: minterms 000 and 001 differ only in last bit, combine to 00-. Repeat pairwise by number of ones; a dash position must match before combining.
 
 **Practice:** Minimize XOR using minterms; identify essential prime implicant (one covering a minterm no other prime implicant covers); check a proposed grouping for adjacency and power-of-two size.
+
+## Extended lesson: minimize with a three-variable K-map
+
+A Karnaugh map arranges minterms so horizontally and vertically adjacent cells differ in exactly one variable. For three variables A,B,C, Gray ordering for BC columns is 00, 01, 11, 10, not ordinary binary order.
+
+Consider F(A,B,C)=Σm(1,3,5,7). These are binary 001,011,101,111: every cell has C=1. Group all four cells as one rectangle, eliminating A and B, so F=C. Group sizes must be powers of two, and wraparound edges are adjacent. Groups may overlap if that reduces the number of literals.
+
+### SOP and POS
+
+For SOP, group 1-cells; each group yields a product term containing only variables fixed throughout the group. A variable fixed at 1 appears uncomplemented; fixed at 0 appears complemented. For POS, group 0-cells; each group yields a sum term. Use don't-care entries only when assigning them 0 or 1 helps produce larger groups; the circuit may choose either value for those input combinations.
+
+A second example: F=Σm(0,2,4,6) is the complement of the previous set, so F=C'. Recognizing complement patterns often saves work.
+
+### Quine–McCluskey connection
+
+For many variables, tabulate minterms by count of 1s, combine terms differing in one bit, and mark combined terms. Uncombined terms are prime implicants. Choose a minimum cover that includes every 1-minterm. K-maps and Quine–McCluskey are both ways to find implicant groupings; the tabular method scales more systematically.
+
+### A reliable exam procedure
+
+1. Fix variable order and map labels before placing values.
+2. Mark minterms and don't-cares.
+3. Make largest legal groups first; allow wraparound and overlap.
+4. Confirm every 1 is covered.
+5. Write the simplified expression and verify it against the original minterms.
+
+### Questions
+
+- Why are columns 00,01,11,10? Adjacent columns differ in one bit.
+- Can a group contain three cells? No, group cardinality must be a power of two.
+- When should a don't-care be used? Only if it helps simplification; otherwise treat it as 0 for SOP.
