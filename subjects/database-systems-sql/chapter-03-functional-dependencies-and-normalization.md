@@ -32,3 +32,14 @@ Practice: compute closure; find candidate keys; identify anomalies; test lossles
 
 ## Notebook work
 Write a dependency diagram and mark candidate keys, prime attributes, and the violating dependency.
+
+
+## Attribute closure and decomposition worked steps
+
+For F={A→BC, C→D, D→A}, compute A⁺: start {A}; A→BC adds B,C; C→D adds D; closure is {A,B,C,D}. Thus A is a superkey. To see if it is a candidate key, test minimality: empty set is not a key, so A is minimal.
+
+A decomposition is lossless if joining projected relations cannot create spurious tuples. For binary decomposition R→R1,R2, a standard test under FDs is that common attributes functionally determine all attributes of at least one side.
+
+3NF synthesis uses a minimal cover and creates a relation per dependency; add a key relation if none contains a candidate key. BCNF decomposition repeatedly splits on a violating FD, ensuring the determinant becomes a key in each resulting relation but may lose dependency preservation.
+
+**Practice:** For R(A,B,C,D), F={A→B,B→C,C→D}, find candidate key A; identify BCNF violations if key is A; normalize stepwise and state lossless/dependency-preservation considerations.
