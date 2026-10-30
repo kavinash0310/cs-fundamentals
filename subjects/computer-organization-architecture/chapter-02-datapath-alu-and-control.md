@@ -62,3 +62,41 @@ A microinstruction can specify several compatible control actions in one cycle. 
 ## 7. Trace practice
 
 For a store at address base 200 plus offset 16, effective address is 216; the data comes from a source register and is written to memory. For branch-if-zero, the ALU/test logic checks the condition; the PC mux chooses target or fall-through. Draw both paths and mark unused components too.
+
+## Extended lecture: follow an instruction through the datapath
+
+For a single-cycle MIPS-like datapath, every instruction completes in one long clock period. The period must be long enough for the slowest instruction, often a memory load. This is simple to reason about but wastes time on simpler operations.
+
+### Load instruction trace
+
+For lw r2, 12(r1):
+1. Fetch instruction from instruction memory using PC.
+2. Decode opcode and read r1 from the register file.
+3. Sign-extend immediate 12 and add it to r1 in the ALU.
+4. Read data memory at the effective address.
+5. Select memory output, rather than ALU result, for register write-back to r2.
+6. Select PC+4 as the next address unless control flow says otherwise.
+
+~~~text
+PC -> instruction memory -> decode/register read
+                         -> ALU(base + offset) -> data memory
+                         -> write-back mux -> register file
+~~~
+
+For sw, the ALU still computes base+offset, but register write is disabled; the second register's value goes to memory. For beq, subtract/compare register operands, and choose between PC+4 and the branch target based on the zero result. A mux is essential wherever one hardware resource receives values from different instruction paths.
+
+### Control signals are a decoder
+
+The opcode and function bits drive control choices such as RegWrite, MemRead, MemWrite, MemToReg, ALUSrc, Branch, and ALUOp. For a load: RegWrite=1, MemRead=1, MemWrite=0, MemToReg=memory, ALUSrc=immediate. For a store: RegWrite=0, MemRead=0, MemWrite=1. A wrong control signal can corrupt architectural state even when the ALU arithmetic is correct.
+
+The ALU computes selected operations (add, subtract, AND, OR, compare). ALU control is typically derived from a high-level ALUOp plus instruction function bits. Sign extension preserves a negative two's-complement immediate; zero extension is used for unsigned fields and must not be interchanged casually.
+
+### Timing reasoning
+
+Single-cycle clock period is at least the longest instruction path, including component delays and muxes. If load latency is 800 ps and an ALU instruction path is 500 ps, all instructions still take 800 ps. Multi-cycle designs reuse hardware over several shorter cycles; pipelined designs overlap instructions, with different control and hazard problems.
+
+### Questions
+
+- Why does a store not set RegWrite? Its architectural destination is memory, not a register.
+- Which value is added for an address calculation? Base register plus sign-extended displacement.
+- Why is the branch decision not just the opcode? The opcode selects branch behavior, while the ALU comparison supplies the condition.
