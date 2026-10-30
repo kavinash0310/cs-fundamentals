@@ -25,3 +25,22 @@ Practice: draw a two-lock cycle; show how lock ordering prevents it; test a smal
 
 ## Notebook work
 Draw a resource allocation graph and annotate request versus assignment edges.
+
+
+## Banker's safety check example
+
+Available resources A,B,C = (3,3,2). A process is finishable when Need≤Available; then release its Allocation.
+
+| Process | Allocation | Need |
+|---|---|---|
+| P0 | (0,1,0) | (7,4,3) |
+| P1 | (2,0,0) | (1,2,2) |
+| P2 | (3,0,2) | (6,0,0) |
+| P3 | (2,1,1) | (0,1,1) |
+| P4 | (0,0,2) | (4,3,1) |
+
+With available (3,3,2), P1 can finish, release (2,0,0) → (5,3,2). Then P3 can finish → (7,4,3); P4 can finish → (7,4,5); P0 can finish → (7,5,5); P2 can finish. A safe sequence is P1,P3,P4,P0,P2.
+
+Need=Max-Allocation. A request first must be ≤ Need and ≤ Available; tentatively allocate, then run safety test. A safe state has at least one completion sequence; unsafe does not automatically mean deadlock.
+
+**Practice:** Name the four deadlock conditions; explain why global lock ordering prevents circular wait; distinguish prevention from avoidance.
