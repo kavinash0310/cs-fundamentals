@@ -1,6 +1,12 @@
 # Bihar Computer Teacher Preparation Track
 
-Use this track to organize technical CS study for Bihar teacher recruitment. It is a broad preparation map, not an official or exhaustive syllabus: posts, teaching levels, examination stages, and prescribed content vary by notification.
+Use this track to organize technical CS study for Bihar teacher recruitment. It is a broad preparation map, not a substitute for the current post- and level-specific BPSC notice.
+
+## Current scope and coverage boundary
+
+- For TRE 4.0, check the current [BPSC Advertisement No. 15/2026](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-152026-TRE-4.0_BPSC-20260922-dbsf04.pdf) and every later corrigendum. Do not rely on the superseded Advertisement No. 14/2026.
+- This repository covers undergraduate/GATE-style technical CS foundations, school-level CS explanations, and a starter set of teaching practice. The technical notes are broader than one school level; use the exact prescribed SCERT/NCERT materials and teacher-exam notice to select depth.
+- The repository does not yet provide complete standalone preparation for the teacher exam's non-CS language and General Studies portions. If those papers apply to your class level, study them alongside these CS notes using their exact official syllabus. The official 2023 Higher Secondary booklet is useful historical practice: it labels Paper 4 “General Studies & Computer Science” and divides questions between those parts, but it does not define the current cycle's pattern.
 
 ## Technical course sequence
 
@@ -23,14 +29,15 @@ Use this track to organize technical CS study for Bihar teacher recruitment. It 
 2. Study the relevant course chapters and draw the diagrams by hand.
 3. For each topic, prepare a definition, example, short classroom explanation, and 3–5 objective questions.
 4. Practice official previous papers where available; record concepts and mistakes by topic.
-5. Add pedagogy, language, general studies, or Bihar-specific sections only when the notice requires them.
+5. Add notification-specific language, General Studies, Bihar-specific content, and pedagogy study where the current notice requires them; these non-CS areas are outside the repository's current complete coverage.
 
-The school-level course includes lesson planning, assessment, inclusion, and lab safety as teaching preparation. It does not cover every pedagogy framework or language/general-studies paper that a particular recruitment cycle may prescribe.
+The school-level course includes lesson planning, assessment, inclusion, and lab safety as teaching preparation. It is not a full B.Ed/CTET pedagogy course and does not cover every framework or the complete language/General Studies papers.
 
 ## Official starting points
 
 - [BPSC syllabus page](https://bpsc.bihar.gov.in/syllabus/)
 - [BPSC current notices](https://bpsc.bihar.gov.in/page/44/)
+- [BPSC official 2023 Higher Secondary Computer Science booklet](https://bpsc.bihar.gov.in/wp-content/uploads/2025/01/NB-2023-07-11-09.pdf)
 - [Bihar Education Department portal](https://betastate.bihar.gov.in/educationbihar/default)
 
 Always use the latest official notice as the source of truth.
