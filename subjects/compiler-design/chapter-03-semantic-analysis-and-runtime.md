@@ -28,3 +28,20 @@ Practice: annotate expression types; produce three-address code for a*b+c; draw 
 
 ## Notebook work
 Trace one function call and return, labeling the stack frame fields.
+
+
+## Typed translation and runtime frame example
+
+For x = a + b*c, a simple translation is:
+~~~text
+t1 = b * c
+t2 = a + t1
+x = t2
+~~~
+Type checking first verifies each operator accepts its operands and that the result can be assigned to x. A syntax-directed rule may synthesize expression type upward and generate code after child expressions.
+
+A typical activation record contains arguments/parameters, return address, saved registers, local variables, and temporaries. Recursive calls allocate distinct frames. A frame pointer gives stable offsets even when stack pointer moves during temporary pushes.
+
+Static scoping resolves names by lexical nesting; dynamic scoping follows call history. Most mainstream compiled languages use static/lexical scope, but closure conversion may preserve captured variables in an environment object.
+
+**Practice:** Draw two recursive factorial frames; identify where a captured variable lives; type-check a+b when a is integer and b is string under a language with no implicit conversion.
