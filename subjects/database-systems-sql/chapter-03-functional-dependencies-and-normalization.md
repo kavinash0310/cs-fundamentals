@@ -43,3 +43,13 @@ A decomposition is lossless if joining projected relations cannot create spuriou
 3NF synthesis uses a minimal cover and creates a relation per dependency; add a key relation if none contains a candidate key. BCNF decomposition repeatedly splits on a violating FD, ensuring the determinant becomes a key in each resulting relation but may lose dependency preservation.
 
 **Practice:** For R(A,B,C,D), F={A→B,B→C,C→D}, find candidate key A; identify BCNF violations if key is A; normalize stepwise and state lossless/dependency-preservation considerations.
+
+## Normalization reasoning and lossless joins
+
+For R(Student,Course,Instructor,Room) with FDs (Student,Course)→Instructor, Course→Room, candidate key is (Student,Course) if no other dependencies determine Student. Course→Room violates 2NF because Course is a proper part of the key and Room is non-prime. Decompose Course(Course,Room) and Enrollment(Student,Course,Instructor).
+
+A lossless decomposition preserves the original relation under join, without spurious combinations. Dependency preservation means constraints can be checked on decomposed relations without joining them. Sometimes BCNF improves redundancy but loses dependency preservation; 3NF synthesis often preserves dependencies.
+
+Armstrong derivation: from A→B, augmentation gives AC→BC; decomposition yields AC→B. Use closure rather than guessing keys: a key's closure must include every attribute and the key must be minimal.
+
+**Practice:** For R(A,B,C) with A→B and B→C, find key and highest normal form; decompose into 3NF and test whether joins can create spurious tuples under the stated FDs.
