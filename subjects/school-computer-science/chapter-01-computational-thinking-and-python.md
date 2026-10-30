@@ -89,3 +89,87 @@ A function should have a clear purpose, meaningful parameters, and a useful retu
 2. What is the loop invariant in one sentence? Count matches qualifying items already visited.
 3. Why does appending through b change a? Both names reference the same mutable list.
 4. What makes an algorithm finite? It eventually terminates after a bounded sequence of steps for its input.
+
+## 5. Worked mini-project: class score summary
+
+**Problem:** Given a list of quiz marks, report the number of valid marks, the average, and how many passed with mark >=40. State how the program behaves for an empty list and invalid marks.
+
+### Decompose before coding
+
+~~~text
+input marks
+  -> validate each mark is in [0, 100]
+  -> accumulate total, valid_count, pass_count
+  -> if valid_count is 0, report "no valid marks"
+     otherwise report total / valid_count and pass_count
+~~~
+
+A useful loop invariant is: after processing the first i entries, total equals the sum of valid marks among those i entries, valid_count equals their number, and pass_count equals the number at least 40. At the end, the accumulator describes the entire list.
+
+~~~python
+def summarize(marks):
+    total = 0
+    valid_count = 0
+    pass_count = 0
+
+    for mark in marks:
+        if not isinstance(mark, (int, float)) or mark < 0 or mark > 100:
+            continue
+        total += mark
+        valid_count += 1
+        if mark >= 40:
+            pass_count += 1
+
+    if valid_count == 0:
+        return None
+    return total / valid_count, pass_count
+~~~
+
+For [35, 40, 80], the trace is:
+
+| mark | valid? | total | valid_count | pass_count |
+|---:|---|---:|---:|---:|
+| 35 | yes | 35 | 1 | 0 |
+| 40 | yes | 75 | 2 | 1 |
+| 80 | yes | 155 | 3 | 2 |
+
+The result is average 155/3≈51.67 and 2 passes. For [], the function returns None. In production code, silently skipping invalid values may hide data errors; the specification should decide whether to reject the whole input or report invalid entries.
+
+### Control flow and common errors
+
+- if/elif/else chooses one branch; conditions are checked top to bottom.
+- A for loop visits each item in a sequence; a while loop repeats while a condition remains true.
+- Update the loop variable or state so a while loop eventually stops.
+- In Python, = assigns a value; == compares values.
+- and requires both conditions; or requires at least one; not reverses truth.
+- Python indentation is syntax. A block must use consistent indentation.
+
+Boundary tests: marks 0 and 100 are valid; −1 and 101 are invalid; 39 fails and 40 passes. These tests verify both the input limits and the inclusive threshold.
+
+### Teaching note: use the same idea in three representations
+
+An algorithm can be taught with a sentence, a flowchart, pseudocode, and runnable code. They should express the same decisions.
+
+~~~text
+            +------------------+
+            | read next mark   |
+            +--------+---------+
+                     |
+              valid mark?
+               /          \
+             no            yes
+             |              |
+         report/skip    add to total
+                            |
+                       mark >= 40?
+~~~
+
+Before showing code, ask learners what state must be remembered between marks. That state becomes the accumulator variables. After coding, ask them to predict one trace row before running the program; this reveals whether they understand state changes rather than merely recognize syntax.
+
+**Questions with reasoning**
+
+1. Why is the empty list a boundary case? The average would divide by zero unless the program defines a behavior.
+2. Why use >= 40 instead of > 40? The stated pass rule includes a score exactly equal to 40.
+3. What does the invariant establish? The accumulators mean what the algorithm claims at every iteration, so the final result follows after the last item.
+4. Why test 39 and 40 together? They lie on opposite sides of the decision boundary and expose an off-by-one condition.
+5. When should invalid inputs be rejected instead of skipped? When silently ignoring them could make a reported summary incomplete or misleading.
