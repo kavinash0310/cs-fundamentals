@@ -30,3 +30,14 @@ Practice: classify process states during disk I/O; compare shared memory and mes
 
 ## Notebook work
 Draw process states and label the events that cause each transition.
+
+
+## Process lifecycle and privilege boundary
+
+A system call typically switches from user mode to kernel mode, validates arguments/permissions, performs the service, then returns a result or error. A trap is synchronous with the instruction; a hardware interrupt may arrive asynchronously.
+
+On Unix-like systems, fork creates a child process (often copy-on-write pages); exec replaces the current process image; wait collects child status. After fork, parent and child both continue at the return point with different return values. File descriptors may refer to shared open-file descriptions.
+
+A thread context includes its own PC, registers, and stack, while sharing process address space. This makes communication easy but means unsynchronized writes race.
+
+**Practice:** A process blocks on disk I/O: it leaves the running state, another ready process may run, and completion interrupt makes it ready again. Explain why a blocked process is not consuming CPU and why context-switch time is overhead.
