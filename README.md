@@ -54,7 +54,7 @@ This map follows the ten technical sections of the official GATE CS 2027 syllabu
 ## Bihar teacher supporting courses and practice
 
 - [Bihar teacher General Studies](subjects/bihar-general-studies.md)
-- [Bihar teacher language preparation — English and Hindi](subjects/bihar-teacher-language.md)
+- [Bihar teacher language preparation — English, Hindi, Urdu, and Bengali](subjects/bihar-teacher-language.md)
 - [Practice index: BPSC past-paper walkthroughs, language practice, and timed mocks](practice/README.md)
 
 ## Learning tracks
