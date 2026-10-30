@@ -42,3 +42,39 @@ A PDA may accept by final state or empty stack; the conventions have equivalent 
 **Ambiguity check:** Grammar E→E+E|E*E|id can parse id+id*id with either root operator, so it is ambiguous. Splitting expression/term/factor layers encodes precedence.
 
 **Practice:** For balanced parentheses, push on '(' and pop on ')'; reject underflow and require empty stack at end. Write a CFG for aⁿbⁿ and draw the parse tree for aabb. Identify leftmost and rightmost derivations.
+
+## Full worked lesson: derive a string and track a PDA
+
+Consider G with S→aSb | ε. Each recursive step adds one a on the left and one b on the right. Therefore L(G)={a^n b^n | n≥0}. A derivation of aabb is:
+S ⇒ aSb ⇒ aaSbb ⇒ aabb.
+The parse tree has one recursive layer per matched pair. The grammar encodes both the equal-count condition and the order condition; a regular expression cannot generally count an unbounded number of a's and then match the same number of b's.
+
+### PDA intuition
+
+A pushdown automaton has finite control plus an unbounded stack. For each input a, push a marker A. When b's begin, pop one A per b. Accept only when the input ends and the stack has returned to its bottom marker. The stack remembers the number of a's, something a finite automaton cannot do for arbitrary n.
+
+~~~text
+input a a a b b b
+      push A A A | pop A A A
+stack bottom -> A A A -> bottom
+~~~
+
+A PDA for this language must also reject strings such as aba: once the machine switches from reading a's to b's, a later a is invalid. Nondeterministic PDAs recognize exactly the context-free languages; deterministic PDAs recognize a proper subset, which includes many programming-language parsing needs but not every CFL.
+
+### Ambiguity and grammar structure
+
+A grammar is ambiguous if some string has two distinct parse trees (equivalently, two distinct leftmost derivations). The grammar E→E+E | E*E | id is ambiguous because id+id*id can group as (id+id)*id or id+(id*id). Separate nonterminals by precedence:
+E→E+T | T; T→T*F | F; F→(E) | id.
+Associativity is also encoded by recursive structure: E→E-T | T gives left association. An ambiguous grammar may describe a language correctly but still be unsuitable when a compiler needs one unambiguous parse.
+
+### Normal forms and closure facts
+
+Chomsky normal form uses productions A→BC or A→a (plus an optional start ε rule). Conversion removes ε-productions, unit productions, and useless symbols before restructuring rules. It is valuable for theory and the CYK algorithm, though hand-written programming-language parsers often use other forms.
+
+CFLs are closed under union, concatenation, and Kleene star, but not generally under intersection or complement. A reliable non-CFL proof often uses closure: if L were context-free, then intersecting it with a suitable regular language would preserve context-freeness.
+
+### Questions
+
+1. What resource lets a PDA recognize equal numbers of a's then b's? Its stack.
+2. Why is S→aSb|ε unambiguous? Each outermost a must pair with the final b; removing them gives a unique smaller derivation.
+3. Is the intersection of two CFLs always a CFL? No.
