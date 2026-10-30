@@ -62,3 +62,66 @@ B. “The test checks memory, CPU use, and disk health.”
 B is parallel: noun phrase, noun phrase, noun phrase.
 
 **Practice habit:** Underline evidence, circle the question's scope, and eliminate answers that overstate causation, time, or population.
+
+## 6. Grammar checklist with worked corrections
+
+The syllabus names tenses, articles, adjectives, prepositions, conjunctions, verb–noun agreement, and parts of speech. In a correction question, first identify the subject and main verb; then check time, form, and connection between clauses.
+
+### Tense: locate the event on a timeline
+
+- Present simple: habits, facts, and scheduled events — “The router forwards packets.”
+- Present continuous: an action in progress or a temporary situation — “The team is testing the patch.”
+- Past simple: a completed event at a definite past time — “The process exited at 10:00.”
+- Present perfect: a past event connected to the present, with no finished-time phrase — “The process has exited.”
+- Past perfect: an event completed before another past event — “The process had exited before the monitor restarted it.”
+- Future forms: “will” for a prediction or decision; “is going to” often signals a plan or evidence-based prediction.
+
+Do not combine a finished past-time marker with present perfect: “I have submitted it yesterday” should be “I submitted it yesterday.” Keep the time frame consistent: “She opened the file and checks the result” should be “She opened the file and checked the result.”
+
+### Agreement and parts of speech
+
+A noun names a person, place, thing, or idea; a pronoun replaces a noun; a verb expresses an action or state; an adjective describes a noun; an adverb modifies a verb, adjective, or another adverb; a preposition relates a noun phrase to another part; a conjunction connects words or clauses; an interjection expresses a reaction.
+
+Find the head of the subject, not the nearest noun:
+
+- “The list of examples is useful.” Head noun: list.
+- “The examples in the list are useful.” Head noun: examples.
+- “Each of the answers is checked.” Each is singular.
+- “The student, as well as the teachers, is ready.” The inserted phrase does not change the singular head student.
+
+### Articles, adjectives, prepositions, and conjunctions
+
+Use a/an for a nonspecific singular count noun; choose by sound (“an hour,” “a university”). Use the for a specific or already identified noun; use no article for many plural or uncountable nouns in general statements (“Computers process data”; “Water conducts electricity under suitable conditions”).
+
+An adjective describes a noun (“a reliable connection”); an adverb describes an action (“the system responds reliably”). Comparatives compare two (“faster than”), while superlatives select from a group (“the fastest of the three”). Keep the compared items parallel.
+
+Prepositions are often tested as fixed relationships: interested in, depend on, responsible for, different from. Learn them in short phrases rather than translating word by word. Conjunctions show relationships: because gives a reason; although marks contrast; therefore signals a conclusion; unless gives a condition. Do not use both although and but for the same contrast in one clause structure.
+
+### Corrections with reasons
+
+1. “She has completed the report last night.” → “She completed the report last night.” The finished time requires past simple.
+2. “An useful diagram” → “A useful diagram.” Useful begins with a consonant sound /y/.
+3. “The code runs quick.” → “The code runs quickly.” The adverb modifies runs.
+4. “Although the test was short, but it was difficult.” → “Although the test was short, it was difficult.” Remove the duplicated contrast marker.
+5. “The results depends on the input.” → “The results depend on the input.” The plural subject takes depend.
+6. “The new method is more simpler.” → “The new method is simpler.” Do not mark the comparative twice.
+
+### Vocabulary, idioms, and sentence order
+
+Infer vocabulary from definition, contrast, example, or cause-and-effect clues. For “The optimization was modest: latency fell by only two milliseconds,” modest means limited or small in this context. An idiom is a phrase whose meaning is not the literal sum of its words; infer it from context before memorizing it.
+
+For narrative sequencing, establish who or what each pronoun refers to, then follow time and cause:
+
+A. “This reduced the number of repeated database reads.”
+B. “The team measured the slow query.”
+C. “It added an index to the frequently searched column.”
+
+Correct order is B → C → A: the pronoun It needs an antecedent, and This refers to the indexing action. A transition such as however signals a contrast; therefore signals a consequence.
+
+**Quick questions**
+
+1. Correct: “By the time the backup began, the service ___.” Answer: “had stopped,” because stopping happened earlier in the past.
+2. In “a surprisingly clear explanation,” what does surprisingly modify? Answer: clear, an adjective.
+3. Does “although” require “but” in the same clause? Answer: No.
+4. Why is “an hour” correct? Answer: The initial sound is a vowel sound.
+5. Which sentence is supported by “The trial included 20 devices, and 18 passed”? Answer: 18 of the 20 devices passed; do not generalize to every device.
