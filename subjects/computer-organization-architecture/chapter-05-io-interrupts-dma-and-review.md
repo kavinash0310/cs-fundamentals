@@ -47,3 +47,33 @@ Memory-mapped I/O shares address space with memory; a load/store to the device r
 3. Why is an interrupt asynchronous? It may arrive independently of current instruction.
 4. What could invalidate stale cached data after DMA? Cache coherence/invalidation requirements.
 Practice: draw three timelines and annotate when CPU is available for computation.
+
+## Extended lecture: I/O paths and interrupt control
+
+There are three common ways for a CPU to coordinate with a device:
+- Programmed I/O: CPU repeatedly checks device status and moves each item. Simple but wastes CPU cycles while waiting.
+- Interrupt-driven I/O: device interrupts when service is needed. CPU saves context, runs an interrupt handler, acknowledges the device, and resumes.
+- DMA: a DMA controller transfers a block between device and memory; CPU configures address, length, and direction, then is interrupted at completion or error.
+
+~~~text
+CPU -- configure channel --> DMA controller
+                              |          ^
+                              v          |
+                         main memory <-> device
+CPU continues other work until completion interrupt
+~~~
+
+An interrupt is usually asynchronous to the current instruction stream (for example, a timer or device event). An exception is synchronous with instruction execution (for example, divide-by-zero or page fault). Exact terminology can vary by architecture, but distinguish external event from instruction-caused event. On entry, hardware saves enough state to resume safely; software determines the source and performs service.
+
+Memory-mapped I/O assigns device registers addresses in the normal address space. Loads and stores access the device; such accesses may have ordering and side-effect rules, so compilers and CPUs cannot freely treat them as ordinary RAM.
+
+### Worked transfer-size comparison
+
+Suppose a device sends 4 MiB in 4 KiB blocks. Interrupt-per-byte is impractical: 4,194,304 interrupts. Interrupt-per-block means 1,024 interrupts. DMA can transfer each block with one setup and completion event while the CPU does useful work. DMA still consumes memory-bus bandwidth and needs cache-coherence or buffer-management care.
+
+### Review questions
+
+1. Which method minimizes CPU copying for large blocks? DMA.
+2. Why can a device status read have side effects? The register may clear an interrupt or acknowledge an event.
+3. Is a timer interrupt synchronous with the instruction executing? No; it is an asynchronous external event.
+4. What must be considered when DMA writes a buffer cached by the CPU? Coherence, cache maintenance, and correct ownership/ordering.
