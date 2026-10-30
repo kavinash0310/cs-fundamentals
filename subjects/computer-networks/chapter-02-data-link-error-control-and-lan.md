@@ -37,3 +37,13 @@ For stop-and-wait, if round-trip propagation dominates, utilization is roughly t
 Sequence numbers wrap modulo 2^k. Selective Repeat needs a sequence space at least twice the send-window size to avoid ambiguity between old and new frames. ACK/retransmission timers and duplicate handling define correctness.
 
 **Practice:** Why doesn't parity detect two flipped bits? Even parity remains unchanged. Compare cumulative ACK in Go-Back-N with individual ACKs in Selective Repeat. Explain why checksum/CRC is not authentication; attackers can alter data and recompute them.
+
+## Stop-and-wait versus sliding-window worked reasoning
+
+Let frame transmission time Tt=1 ms and RTT=39 ms; ignore ACK transmission. Stop-and-wait utilization ≈Tt/(Tt+RTT)=1/40=2.5%. To keep a 10 Mbps path with RTT 40 ms busy, bandwidth-delay product is 400,000 bits, or 50,000 bytes in flight.
+
+A sliding window of W frames can keep the line busy if W×frame-size is at least the bandwidth-delay product (modulo ACK, headers, losses, and protocol constraints). Window size and sequence-number space must be consistent.
+
+Error detection says a frame is corrupted; ARQ adds acknowledgments/timeouts/retransmission. Forward error correction adds enough redundancy to correct some errors without retransmit. Choose based on channel and latency requirements.
+
+**Practice:** Calculate minimum window for 1000-byte frames on 2 Mbps, RTT 20 ms: BDP=40,000 bits=5,000 bytes, so about 5 frames, ignoring overhead.
