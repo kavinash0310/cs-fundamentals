@@ -36,3 +36,31 @@ Layers provide a teaching model, but real paths include proxies, caches, TLS, an
 **Cyber-safety classroom scenario:** A learner receives a message asking for school password. Pause, inspect sender/link independently, do not enter credentials, report through school channel, and delete only according to policy.
 
 **Practice:** Draw local LAN plus router and server; distinguish RAM and storage; name one privacy risk from oversharing personal data.
+
+## Extended lesson: follow data through a computer and network
+
+A keyboard event becomes input handled by software; the CPU executes instructions using registers and main memory; persistent storage keeps data after power-off; output reaches a screen or printer. RAM is fast working memory and volatile. SSD/HDD storage is persistent. The CPU's control unit directs operations, while the ALU performs arithmetic and logic.
+
+On a network, data is divided into packets. A switch forwards frames within a local network using link-layer addresses; a router forwards packets between networks using IP addresses. DNS finds an address associated with a domain name. HTTPS uses TLS to protect data in transit and authenticate a server under its certificate trust model.
+
+### Safety scenario: suspicious account message
+
+A student receives “Your school account will close today—open this link and sign in.” Safe response:
+1. Do not open the link or enter credentials.
+2. Check the sender and verify through a known school channel.
+3. Report the message to the teacher/administrator.
+4. If credentials were entered, change them through the official site and notify the administrator.
+5. Use unique passwords and multifactor authentication where available.
+
+A password manager can create and store unique passwords. Public Wi-Fi is not a reason to ignore certificate warnings; HTTPS protects traffic only when the browser validates the connection. Never install unknown “security updates” from pop-up links.
+
+### Data, privacy, and responsible use
+
+Personal data can identify or locate a person. Collect only what a task needs, share only with authorized people, and check privacy settings before posting. Backups reduce data-loss risk but should be protected too. Copyright and attribution matter when copying images, code, or text. Digital citizenship includes respectful communication and reporting harmful behavior through safe channels.
+
+### Questions
+
+1. Which component loses its contents when power is removed: RAM or SSD? RAM.
+2. What does DNS help resolve? A domain name to records such as IP addresses.
+3. Does HTTPS prove a website's claims are truthful? No; it protects a connection and authenticates a domain certificate, not the truthfulness of content.
+4. What should a learner do with a suspected phishing message? Avoid interaction, verify via trusted channel, and report it.
