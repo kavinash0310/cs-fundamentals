@@ -32,7 +32,7 @@ Write the binary mask for /26 and trace a packet through two routers.
 
 For 192.168.4.0/26, block size is 64 addresses. Subnets begin .0, .64, .128, .192. First subnet's network is .0 and broadcast .63; commonly usable host range .1–.62. The mask is 255.255.255.192.
 
-IPv4 fragmentation example: payload length 4000 bytes, MTU 1500, IPv4 header 20 bytes. Each full fragment carries at most 1480 data bytes, divisible by 8. Data chunks can be 1480,1480,1040; total packet sizes 1500,1500,1060. Offsets: 0,185,370 because offset unit is 8 bytes. MF=1 on all but last.
+IPv4 fragmentation example: total datagram length 4000 bytes, MTU 1500, and IPv4 header 20 bytes. The original payload is 3980 bytes. Each non-final fragment carries at most 1480 data bytes, divisible by 8. Data chunks are 1480, 1480, and 1020; total packet sizes are 1500, 1500, and 1040. Offsets: 0, 185, and 370 because offset unit is 8 bytes. MF=1 on all but the last.
 
 Longest-prefix lookup chooses the most specific matching route. Distance-vector can suffer count-to-infinity; link-state floods topology then computes shortest paths. Both require convergence after changes.
 
@@ -74,3 +74,39 @@ Distance-vector protocols share route distances with neighbors and use Bellman-F
 1. How many usable hosts in /27? 2^5-2=30 in an ordinary IPv4 subnet.
 2. Why must non-final IPv4 fragment data be a multiple of 8 bytes? The offset field uses 8-byte units.
 3. Which route wins, /16 or /24, when both match? /24.
+
+## 5. IPv6: address, prefix, and neighbor discovery
+
+IPv6 uses a 128-bit address written as eight groups of four hexadecimal digits (16 bits each), separated by colons. Leading zeros within a group may be omitted. One consecutive run of all-zero groups may be compressed to :: once.
+
+Example:
+~~~text
+2001:0db8:0000:0000:0000:0000:0000:0001
+             becomes
+2001:db8::1
+~~~
+The :: must be used only once in an address because it stands for an unknown number of zero groups. A prefix such as 2001:db8:1234::/48 identifies the first 48 network bits; the remaining bits identify an interface or subnet according to the addressing plan.
+
+IPv6 has no broadcast address; multicast and anycast serve different one-to-many and one-to-nearest-receiver use cases. A link-local address supports communication on the local link. Neighbor Discovery, carried by ICMPv6, supports router discovery and neighbor address resolution; it fills functions that IPv4 commonly associates with ARP plus router-discovery mechanisms. Do not treat IPv6 Neighbor Discovery as simply “ARP with a new name”: it is a broader set of ICMPv6 messages.
+
+IPv4 and IPv6 differ in header design and deployment:
+
+| Property | IPv4 | IPv6 |
+|---|---|---|
+| Address width | 32 bits | 128 bits |
+| Typical notation | Dotted decimal | Colon-separated hexadecimal |
+| Broadcast | Directed broadcast exists in IPv4 concepts | No broadcast; multicast is used |
+| Router fragmentation | Possible in IPv4, subject to flags and path | Routers do not fragment packets in transit |
+| Neighbor resolution | ARP on Ethernet-like links | ICMPv6 Neighbor Discovery |
+
+IPv6 routers drop packets too large for the outgoing link and report the limit with ICMPv6 Packet Too Big; the sender adjusts packet size using Path MTU Discovery. Firewalls must allow the required ICMPv6 control messages, or path discovery and neighbor functions can fail.
+
+**Worked prefix check:** In 2001:db8:12:34::/64, the first four 16-bit groups (64 bits) are the prefix. Addresses with those first four groups and different remaining 64 bits belong to the same /64 subnet.
+
+**Questions and answers**
+
+1. How many bits are in an IPv6 address? Answer: 128.
+2. Can :: appear twice in one compressed address? Answer: No, because expansion would be ambiguous.
+3. Which protocol family supports IPv6 neighbor discovery? Answer: ICMPv6.
+4. Do IPv6 routers fragment packets in transit? Answer: No; the source uses Path MTU Discovery and fragmentation capabilities where required.
+5. Is 2001:db8::1 valid shorthand for eight groups? Answer: Yes; expand :: to the number of omitted zero groups needed to make eight groups.
