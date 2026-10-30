@@ -54,3 +54,31 @@ Deadlock avoidance examines maximum claims before granting. Need=Max-Allocation;
 Request example: Available=(2,1). P0 Need=(1,1), P1 Need=(2,0). Granting P0 request (1,0) leaves (1,1); P0 can finish and release resources, then P1 can finish. The request preserves safety. A request greater than Need is invalid; greater than Available must wait.
 
 Recovery trade-offs: abort all deadlocked processes (simple but wasteful), abort one at a time, or preempt resources. Repeatedly choosing the same victim can starve; include rollback cost and progress in victim choice.
+
+## Extended lesson: apply Banker's safety test
+
+Deadlock requires all four Coffman conditions: mutual exclusion, hold-and-wait, no preemption, and circular wait. Prevention breaks at least one condition. Avoidance instead examines each request and grants it only if the resulting state remains safe. Detection allows deadlock and later finds it; recovery may abort a process or preempt resources.
+
+In Banker's algorithm, Need=Max−Allocation. A state is safe if there exists an ordering in which every process can obtain its remaining Need from currently available resources plus resources released by earlier completed processes.
+
+Use this standard snapshot; vectors are resource types A,B,C:
+
+| Process | Allocation | Max | Need |
+|---|---|---|---|
+| P0 | (0,1,0) | (7,5,3) | (7,4,3) |
+| P1 | (2,0,0) | (3,2,2) | (1,2,2) |
+| P2 | (3,0,2) | (9,0,2) | (6,0,0) |
+| P3 | (2,1,1) | (2,2,2) | (0,1,1) |
+| P4 | (0,0,2) | (4,3,3) | (4,3,1) |
+
+Available=(3,3,2). Start Work=(3,3,2). P1 fits because (1,2,2)≤Work; after it finishes, release allocation (2,0,0), so Work=(5,3,2). P3 then fits and releases (2,1,1): Work=(7,4,3). P4 fits and releases (0,0,2): Work=(7,4,5). P0 fits and releases (0,1,0): Work=(7,5,5). P2 fits. Safe sequence: P1,P3,P4,P0,P2. A safe sequence is a certificate that completion is possible; it is not necessarily the only one.
+
+### Resource-allocation graph and recovery
+
+For single-instance resources, a cycle in the wait-for graph indicates deadlock. With multiple instances, a cycle alone is not sufficient. Recovery may terminate one process, roll it back to a checkpoint, or preempt a resource if its state can be restored. Victim choice should consider lost work, priority, and repeated rollback risk.
+
+### Questions
+
+- Is an unsafe state already deadlocked? Not necessarily; it means no safe completion order can be guaranteed.
+- Which condition does lock ordering prevent? Circular wait.
+- How does Banker differ from prevention? It grants requests only when the resulting state remains safe.
