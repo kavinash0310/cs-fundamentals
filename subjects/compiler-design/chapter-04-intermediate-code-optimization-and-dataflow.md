@@ -30,3 +30,21 @@ Practice: find leaders and basic blocks; compute one liveness iteration; remove 
 
 ## Notebook work
 Draw a CFG and calculate USE, DEF, IN, OUT for each block.
+
+
+## Dataflow worked example
+
+~~~text
+B1: x = 2
+    y = x + 3
+    if c goto B2 else B3
+B2: z = y
+B3: print(y)
+~~~
+Constant propagation can replace y with 5 if x is not redefined and overflow/side-effect semantics permit. Liveness: at B3, y is live-in because print uses it. At B1, y is live-out along both paths. If a variable is defined but never used before redefinition, that assignment is dead.
+
+Common-subexpression elimination: in t1=a*b; t2=a*b, reuse t1 only if neither a nor b changes and expression has no side effects. Memory loads are harder because another store or alias may change memory.
+
+Dataflow equations are monotone over finite sets, so iterative transfer to a fixed point terminates. Worklist algorithms process only blocks affected by changed facts.
+
+**Practice:** Mark leaders and basic blocks for a conditional; calculate USE/DEF; propagate a constant through a branch; explain why function calls complicate memory-value reuse.
