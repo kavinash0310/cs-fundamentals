@@ -32,3 +32,15 @@ A lock schedule may deadlock: T1 holds A waits for B; T2 holds B waits for A. Wa
 Write-ahead logging: before a dirty page reaches disk, its log record must be durable. REDO repeats committed updates after crash; UNDO reverses incomplete updates. Checkpoint records a recovery boundary but does not remove need for logs after it.
 
 **Practice:** Build precedence graph for two schedules; identify dirty read; state whether strict 2PL gives conflict serializability; describe which transaction to undo after a crash.
+
+## Isolation anomalies and serializability
+
+Dirty read: T2 reads T1's uncommitted value; if T1 aborts, T2 used data that never committed. Non-repeatable read: the same row returns a different committed value on a second read. Phantom: repeating a predicate query returns added/removed rows.
+
+Conflict graph edges follow operation order for same-item conflicting operations (RW, WR, WW across different transactions). Acyclic graph means conflict serializable; a cycle means not conflict serializable. View serializability is broader and harder to test.
+
+Strict two-phase locking: acquire locks before access, do not release early, and hold write locks until commit/abort. It ensures conflict serializability and prevents cascading aborts, but can deadlock.
+
+Recovery example: T1 writes A and commits; T2 writes B but has not committed when crash occurs. Recovery redoes T1 if its update is missing from data page and undoes T2's uncommitted change, using the log and checkpoint rules.
+
+**Practice:** Identify dirty/non-repeatable/phantom reads from schedules; build a precedence graph; explain why serializable isolation may reduce concurrency.
