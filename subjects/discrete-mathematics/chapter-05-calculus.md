@@ -41,3 +41,16 @@ Derivative gives a local rate; integral gives accumulation. A stationary point m
 ## Notebook work
 
 Sketch a function with a local minimum and label tangent slope, then interpret a definite integral as area and accumulated quantity.
+
+
+## Worked derivative and integral
+
+For f(x)=x(10-x)=10x-x² on [0,10], derivative f'=10-2x. Set it to zero: x=5. The derivative is positive before 5 and negative after, so maximum f(5)=25. Endpoints are zero.
+
+Chain rule: d/dx (3x+1)⁴ = 4(3x+1)³·3. Forgetting the inner derivative is a common error.
+
+Integration example: ∫₀³(2x+1)dx = [x²+x]₀³=12. Check by interpreting area under a line or differentiating the antiderivative.
+
+Continuity trap: a function can have a limit at a point but be assigned a different value there, so it is not continuous. A derivative may be zero at a stationary inflection, e.g. x³ at x=0, without a local maximum/minimum.
+
+**Practice:** Find max/min of x²-2x on [0,3] by checking critical point and endpoints. Differentiate sin(x²) using chain rule if familiar; otherwise explain the chain rule structure with a polynomial. Integrate 3x² from 1 to 2 = 7.
