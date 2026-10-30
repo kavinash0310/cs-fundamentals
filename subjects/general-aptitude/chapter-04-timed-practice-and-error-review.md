@@ -73,3 +73,47 @@ Try these without looking at the answers; target about one minute each.
 For every miss, record the skill, the exact mistaken assumption, and a corrected method. Example: “Used final value as percent denominator” becomes “percentage change divides by original value.” Re-solve missed items after a day without viewing the solution. Track accuracy by topic, not just total score; a strong total can hide a repeat weakness.
 
 During the exam, take quick marks from clear questions first, then return to lengthy items. Do not spend several minutes defending one sunk-cost question. If negative marking applies, use the stated scoring rule rather than a blanket guessing rule.
+
+## 7. Syllabus-wide practice: verbal, quantitative, and spatial
+
+Try the questions before reading the worked answers. They deliberately mix the syllabus areas that are easy to overlook in a short formula review.
+
+1. Choose: “Neither the diagrams nor the label ___ correct.” (is/are)
+2. Correct the tense: “The analyst has opened the file yesterday.”
+3. What does log₂(64) equal?
+4. A 120° sector represents what percentage of a pie chart?
+5. A rectangular room is 6 m by 4 m. How many 0.5 m square tiles cover it, ignoring cuts?
+6. Find the mean, median, and mode of 1, 2, 2, 3, 12.
+7. If a map scale is 1 cm = 3 km, what ground distance is 4.5 cm?
+8. Choose 3 people from 7 without assigning roles. How many groups?
+9. Translate point (−2,5) by (3,−4).
+10. Reflect (−2,5) across the y-axis.
+11. A paper is folded once; a hole away from the crease is punched. How many distinct holes after unfolding?
+12. All A are B; no B are C. Can any A be C?
+13. A value rises from 50 to 65. What is the percentage increase?
+14. A 3×3×3 cube painted on all outer faces is cut into unit cubes. How many pieces have exactly one painted face?
+15. Three consecutive sentences are: “The team measured the delay.” “It added a cache.” “This reduced repeated reads.” Put them in a coherent order.
+
+### Answers and explanations
+
+1. “are.” With neither…nor, the verb commonly agrees with the nearer subject; label is singular? Wait: the nearer subject is label, so the formal answer is “is.” The corrected sentence is “Neither the diagrams nor the label is correct.” When a test expects strict agreement, identify the nearest subject. A smoother rewrite is “Neither the diagrams nor the label is correct” or “The diagrams and the label are both incorrect.”
+2. “The analyst opened the file yesterday.” Yesterday names a finished past time, so use past simple.
+3. 6, because 2⁶=64.
+4. 120/360=1/3, or 33⅓%.
+5. Room area=24 m²; tile area=0.25 m²; 24/0.25=96 tiles.
+6. Sum=20, so mean=4; ordered middle value=2, so median=2; most frequent=2, so mode=2.
+7. 4.5×3=13.5 km.
+8. C(7,3)=7×6×5/(3×2×1)=35.
+9. Add coordinates: (−2+3, 5−4)=(1,1).
+10. Reflection across y-axis changes x sign: (2,5).
+11. Two, because unfolding mirrors the hole across one crease.
+12. No. A is contained within B, and B is disjoint from C.
+13. Change=15; 15/50×100=30%.
+14. Six face-center cubes: 6(n−2)²=6.
+15. Measure the delay → add a cache → observe the reduction. The pronouns It and This need earlier referents.
+
+For the grammar item in question 1, reversing the subject order avoids an awkward neither/nor construction: “The label and none of the diagrams are correct” is not equivalent in every logical reading, so preserve the intended meaning when rewriting. The important exam method is to locate the nearer subject and apply the convention taught by the question; if the two subjects differ greatly in number, rewrite for clarity in ordinary prose.
+
+### Self-check
+
+Mark each miss as grammar, reading inference, arithmetic, units, counting, chart/map interpretation, deduction, or spatial transformation. Re-solve only the missed items the next day without looking at the answers. A correct option reached through a wrong rule is still an error to fix.
