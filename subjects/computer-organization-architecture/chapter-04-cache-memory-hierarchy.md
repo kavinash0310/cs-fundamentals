@@ -60,3 +60,31 @@ The L2 time is paid only on L1 miss; memory penalty only on L2 miss.
 2. 8-way cache with 512 lines has 64 sets.
 3. Matrix row traversal often has spatial locality; column traversal can waste cache lines in row-major storage.
 4. Increasing associativity can reduce conflict misses but adds lookup complexity.
+
+## Extended lecture: decode a cache address
+
+A cache line transfers a block of adjacent bytes. A direct-mapped cache places each memory block in exactly one line; a set-associative cache allows it in any way of one indexed set; a fully associative cache has one set and permits placement anywhere.
+
+**Worked fields.** A 32-bit byte address uses a 16 KiB, 4-way cache with 64-byte blocks. Number of sets = 16,384/(64×4)=64. Block offset bits=log2(64)=6. Set index bits=log2(64)=6. Tag bits=32-6-6=20. Address layout:
+
+~~~text
+|       tag: 20       | set: 6 | byte offset: 6 |
+31                   12        6                 0
+~~~
+
+For address 0x12345678, the low 6 bits select byte offset, the next 6 bits select the set, and the remaining high 20 bits are compared with the stored tag. A hit requires both a valid line and matching tag. A dirty bit means a modified line must be written back on eviction in a write-back cache.
+
+### Average memory access time
+
+AMAT = hit time + miss rate × miss penalty. If L1 hit time=1 ns, miss rate=0.05, and additional miss penalty=50 ns, AMAT=1+0.05×50=3.5 ns. If there is a lower cache, be clear whether 50 ns is the full penalty or only time beyond the lower-level lookup. For two levels, account for each conditional miss rate:
+AMAT = T1 + MR1(T2 + MR2×Tmemory).
+
+### Locality and replacement
+
+Temporal locality: reuse recently accessed data. Spatial locality: nearby addresses are often accessed. Sequential array traversal benefits from spatial locality. LRU approximates temporal locality but exact recency tracking can be costly; pseudo-LRU is common in larger associativity. FIFO and random are simpler alternatives. Replacement applies only when a set has no invalid way.
+
+### Questions with answers
+
+1. Which changes when block size rises: offset bits? They increase because the block contains more byte positions.
+2. For a fixed cache capacity, what happens to set count if associativity doubles? It halves.
+3. Does a cache hit prove the data is current? It is current according to the write policy; multicore systems need coherence mechanisms.
