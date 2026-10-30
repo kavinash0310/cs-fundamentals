@@ -21,3 +21,19 @@ Practice: model Student and Course; define invariants and public methods; identi
 
 ## Notebook work
 Draw an object with private fields, public operations, and an invariant.
+
+
+## Invariant and lifecycle example
+
+Design a bounded BankAccount with balance≥0:
+- Constructor rejects a negative opening balance.
+- deposit requires amount>0 and adds it.
+- withdraw requires amount>0 and amount≤balance.
+- balance is observable but not arbitrarily writable.
+The invariant is checked before and after every public operation.
+
+Value equality example: Money(5,"USD") equals another Money(5,"USD"), but not Money(5,"EUR"). If used in a hash map, equals and hashCode must agree. Mutable keys are dangerous because changing hash-relevant fields can make entries unreachable.
+
+Resource ownership should be explicit: who closes a file/socket? Prefer scoped cleanup patterns (RAII, try-with-resources, context managers) in the language used.
+
+**Practice:** Define invariants for ShoppingCart and CourseEnrollment. Identify which fields should be immutable and what happens if duplicate identifiers are inserted.
