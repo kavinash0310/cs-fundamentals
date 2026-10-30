@@ -52,3 +52,33 @@ A 3-bit equality comparator computes (A2 XNOR B2)(A1 XNOR B1)(A0 XNOR B0). The p
 Ripple-adder delay example: carry from bit 0 may need to traverse all 31 preceding stages in a 32-bit adder. Carry-lookahead computes group generate/propagate to shorten this dependency at extra hardware cost.
 
 **Practice:** Derive carry for half adder; trace 0111+0001; make odd parity for inputs 101 (output 0); implement F(A,B)=A'B+AB' with a MUX.
+
+## Extended lesson: build circuits from truth tables
+
+A combinational circuit's outputs depend only on current inputs; it has no memory. To implement a function, derive its truth table, minimize the Boolean expression, then map it to gates or a standard block.
+
+A 2:1 multiplexer computes Y = S' I0 + S I1. When S=0 it chooses I0; when S=1 it chooses I1. A MUX can implement any Boolean function by assigning variables to select inputs and constants/functions to data inputs. For example, XOR has outputs 0,1,1,0; setting S=A, I0=B, I1=B' produces A'B + AB'.
+
+A decoder activates exactly one output for each input code. A 3-to-8 decoder can generate minterms of three inputs, then OR selected outputs to implement a function. Encoders perform the reverse mapping but need a priority rule if multiple inputs may be active.
+
+### Full-adder derivation
+
+For inputs A, B, carry-in Cin:
+- Sum = A XOR B XOR Cin.
+- Carry-out = AB + ACin + BCin.
+The carry is 1 when at least two inputs are 1. A ripple-carry adder connects each stage's Cout to the next stage's Cin. Its delay grows with bit-width because carry must propagate. Carry-lookahead logic computes group generate/propagate terms to reduce delay at the cost of more gates.
+
+~~~text
+A[i], B[i], Cin[i] -> full adder -> Sum[i], Cout[i]
+Cout[i] -------------------------------> Cin[i+1]
+~~~
+
+### Timing and hazards
+
+Gate count is not the same as delay. A circuit with fewer logic levels may be faster even if it uses more gates. Unequal path delays can create transient glitches when inputs change; a hazard may matter if the output is sampled asynchronously or drives a clock/control. Synchronous designs usually allow combinational logic to settle before the next clock edge.
+
+### Solved checks
+
+1. In a MUX, which input is selected when S=1? I1.
+2. Why is carry-lookahead faster than ripple-carry? It computes carry relationships in parallel rather than waiting for every bit.
+3. Is a decoder stateful? No, it is combinational.
