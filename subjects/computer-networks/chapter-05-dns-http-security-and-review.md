@@ -33,3 +33,13 @@ HTTPS trace: resolve hostname; establish transport; perform TLS handshake, valid
 A digital signature verifies possession of a private key and data integrity, but does not encrypt the message. Symmetric encryption is efficient for bulk data; public-key cryptography helps establish/agree keys and identities.
 
 **Practice:** Explain why a DNS cache can briefly return a stale address; distinguish authentication from authorization; identify the purpose of certificate hostname validation.
+
+## DNS, HTTP, and TLS details
+
+DNS caching reduces repeated lookup but stale data may persist until TTL expiry. Recursive resolver performs work on behalf of stub; authoritative server provides zone data. DNSSEC signs DNS data for authenticity/integrity but does not encrypt queries.
+
+HTTP methods express intent; idempotency is about repeating an operation having the same intended effect. GET is safe/idempotent by semantics; PUT is typically idempotent; POST may create repeated effects unless application uses an idempotency key.
+
+TLS certificate validation checks chain to a trusted root, validity period, and hostname match. Encryption without authentication can allow a man-in-the-middle. HSTS can require HTTPS for a domain after policy is learned.
+
+**Practice:** Trace DNS cache hit/miss; explain 301 vs 404 vs 500; distinguish TLS certificate authentication from HTTP authorization; explain why a valid certificate does not prove a site is benevolent.
