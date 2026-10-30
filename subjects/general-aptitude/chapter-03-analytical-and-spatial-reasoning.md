@@ -73,3 +73,82 @@ A mirror reverses left/right relative to the viewer, not top/bottom. For paper f
 ### Answer discipline
 
 Check every condition after deriving an arrangement. For a “must be true” question, test whether a counterexample can satisfy all premises. If one exists, the statement is not guaranteed even if it is possible.
+
+## 6. Spatial reasoning: move, reflect, assemble
+
+Keep a fixed coordinate frame. A translation moves every point by the same displacement; a rotation turns around a specified center; a reflection reverses orientation across a mirror line; scaling changes size by a factor. Track the object and the frame separately.
+
+For a point (x,y) about the origin:
+
+| Operation | Result |
+|---|---|
+| Translate by (a,b) | (x+a, y+b) |
+| Rotate 90° counterclockwise | (−y, x) |
+| Rotate 90° clockwise | (y, −x) |
+| Rotate 180° | (−x, −y) |
+| Reflect across the x-axis | (x, −y) |
+| Reflect across the y-axis | (−x, y) |
+| Scale uniformly by k about origin | (kx, ky) |
+
+Example: point (2,1) rotated 90° counterclockwise becomes (−1,2); reflecting that result across the y-axis gives (1,2). The order matters: transformations generally do not commute. A reflection followed by a rotation can differ from the same rotation followed by reflection.
+
+For grid questions, mark one distinctive corner, arrow, or color, perform the transformation, then check the other features. A mirror reverses left/right relative to the mirror line; it does not automatically turn the object upside down.
+
+## 7. Two-dimensional and three-dimensional visualization
+
+In 2D, compare orientation, adjacency, and relative position. In a 3D drawing, identify front, side, and top faces before rotating the cube mentally. A cube rotation moves faces while preserving which faces share an edge; a mirror image reverses handedness.
+
+A cube net is valid when six squares fold to six distinct faces without overlap. Opposite faces in a net cannot become adjacent on the folded cube. To solve a painted-cube question, count exposed faces before cutting:
+
+- A corner small cube has 3 painted faces.
+- A non-corner edge cube has 2.
+- A face-interior cube has 1.
+- An interior cube has 0.
+
+For an n×n×n cut with n≥2, these counts are 8, 12(n−2), 6(n−2)², and (n−2)³ respectively. For n=4, that is 8+24+24+8=64 pieces. For n=2 there are no edge-interior, face-interior, or unpainted interior pieces; the formulas correctly give zero.
+
+## 8. Assemble, group, and complete patterns
+
+Assembly questions ask which pieces can form a target without changing the permitted orientation. Compare boundary edges and unique features first; ignore internal edges after joining. Grouping asks for a shared rule: same number of sides, same reflection symmetry, same shaded fraction, or same operation. State the rule and verify every member; one matching feature may be accidental.
+
+For a visual pattern, test a fixed order: count elements, compare positions, compare orientation, inspect shading, then test size or alternation. Example:
+
+~~~text
+Pattern:  ↑   →   ↓   ←   ?
+Turn each arrow 90° clockwise. Next: ↑
+~~~
+
+Do not infer rotation from a moving position alone. A dot may translate while a shape rotates; track both independently.
+
+## 9. Paper folding and cutting
+
+Record each fold as a reflection across its crease. Unfold in reverse order. If a hole is away from a crease, it creates a mirrored hole at each reflected location; a hole on the crease does not double at that fold. A second fold may create up to four symmetric copies, but coincidences on creases reduce the count.
+
+~~~text
+Square, fold right half to left across vertical center:
+before:  •       crease       folded half
+unfold:  •   |   mirror •
+Two folds can create four reflected positions:
+             • | •
+            ---+---
+             • | •
+~~~
+
+The sketch is schematic: use coordinates and crease lines for the actual question. For a diagonal fold, reflect across the diagonal, not across horizontal or vertical axes. Paper-cut questions may also ask for the final shape after removing a piece; reverse the fold sequence and copy the cut by reflection at every step.
+
+**Worked fold:** A square is folded once along its vertical center, then once along its horizontal center. A hole is punched away from both creases. Unfolding first across the horizontal crease creates a pair; unfolding across the vertical crease mirrors both, giving four holes. If the punch lies on one crease, the corresponding reflection coincides there, so count distinct positions rather than blindly multiplying by four.
+
+## 10. Analytical reasoning checks
+
+For deduction, ask whether a conclusion must follow for every arrangement satisfying the premises. For induction, identify a pattern supported by the examples but remember that a finite sequence can have multiple possible rules. For analogy, state the relationship as a verb phrase (“is a part of,” “measures,” “causes”) and preserve its direction.
+
+Example: all kernels are programs; no programs are rocks. Therefore no kernel is a rock. But “some programs are kernels” is not guaranteed in formal logic unless existence is specified. For induction, 1, 4, 9, 16 suggests squares and next 25, but other rules could fit the four values; use the simplest consistent rule expected by the question.
+
+**Questions and answers**
+
+1. Point (3,−2) reflected across the x-axis? Answer: (3,2).
+2. Point (1,4) rotated 90° clockwise about origin? Answer: (4,−1).
+3. Does a pure translation change orientation? Answer: No.
+4. A square is folded once and a hole is punched away from the crease. How many holes after unfolding? Answer: Two.
+5. A 3×3×3 painted cube is cut into unit cubes. How many have exactly one painted face? Answer: 6(3−2)²=6.
+6. Is a mirror reflection equivalent to rotating the object 180° in every case? Answer: No; a reflection reverses handedness.
