@@ -23,3 +23,22 @@ Practice: model a library; identify keys; translate a sentence into σ and π; d
 
 ## Notebook work
 Draw an ER diagram and map each entity/relationship to relations with keys.
+
+
+## Relational calculus worked translation
+
+Tuple relational calculus uses tuple variables and predicates. Query CS student names:
+~~~text
+{ s.name | Student(s) AND s.dept = 'CS' }
+~~~
+Find students enrolled in a course:
+~~~text
+{ s.name | Student(s) AND EXISTS e (Enrollment(e) AND e.sid=s.sid) }
+~~~
+This describes which tuples satisfy a condition, not an execution plan. Safe calculus restricts results to values from the database domain so queries return finite relations.
+
+Candidate key example: relation R(A,B,C), dependencies A→B and B→C. A⁺={A,B,C}, so A is a candidate key. B⁺={B,C}; C⁺={C}. If a key is composite, test each proper subset for minimality.
+
+ER mapping reminder: 1:N puts the one-side key as foreign key on the many-side; M:N creates a relation containing both keys and relationship attributes; weak entity key includes owner key plus partial key.
+
+**Practice:** Translate “employees in department D with salary > x” into calculus; compute closures of A and B for the dependencies; identify candidate key and foreign-key direction.
