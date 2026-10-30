@@ -31,3 +31,13 @@ Disk scheduling examples: FCFS is fair by arrival; SSTF chooses nearest request 
 I/O scheduling policy affects latency/fairness; SSDs have no mechanical seek, so the same cylinder-distance model does not apply directly.
 
 **Review practice:** Compare direct/linked/indexed allocation; calculate SSTF and SCAN movement with direction/end assumptions stated; explain why journaling helps metadata consistency after crash.
+
+## Disk scheduling and crash-consistent files
+
+For head at cylinder 50 and requests 10,20,80,90, FCFS in that order moves 40+10+60+10=120 cylinders. SSTF chooses 80 (30), then 90 (10), then 20 (70), then 10 (10): total 120 here; other request sets can differ sharply. SCAN depends on initial direction and whether the head reaches the physical end before reversing, so state assumptions.
+
+C-LOOK serves requests in one direction, then jumps from the last request to the first pending request rather than the disk edge. It can give more uniform waits than SSTF but still has policy trade-offs.
+
+A file operation may update data blocks, inode metadata, and directory entries. Journaling orders durable log records before home-location updates; after crash, replay committed journal transactions or discard incomplete ones according to mode. Data journaling and metadata journaling have different guarantees.
+
+**Practice:** Calculate FCFS, SSTF, and SCAN movement for a request list, stating direction and endpoints. Explain why cache buffers and disk scheduling are distinct from filesystem naming/permissions.
