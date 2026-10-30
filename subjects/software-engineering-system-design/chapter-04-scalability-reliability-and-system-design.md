@@ -31,3 +31,16 @@ Practice: design URL shortener or rate limiter; estimate QPS/storage; identify s
 
 ## Notebook work
 For one design prompt, show request flow, data model, scaling bottleneck, and two failure scenarios.
+
+
+## Capacity and reliability calculations
+
+Estimate daily storage: 1 million events/day × 1 KB/event ≈ 1 GB/day raw; indexes, replicas, metadata, and retention multiply it. Estimate peak QPS separately from daily average. State assumptions and units.
+
+Availability composition: if two independent serial components each have 99.9% availability, combined availability is 0.999²≈99.8001%. Redundant parallel components can improve availability only when failover and dependencies are independent.
+
+Caching requires correct invalidation. If user permissions can change, cached results must include authorization context or be revalidated. A cache hit is not a reason to skip access control.
+
+CAP context: during a network partition, a distributed system cannot guarantee both every operation completes and all replicas immediately agree. Many real systems choose behavior per operation and recover consistency later.
+
+**Practice:** Estimate storage for 5M records × 2KB; calculate monthly downtime budget for 99.9%; identify a read bottleneck and a write bottleneck.
