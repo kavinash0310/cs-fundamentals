@@ -44,3 +44,13 @@ With available (3,3,2), P1 can finish, release (2,0,0) → (5,3,2). Then P3 can 
 Need=Max-Allocation. A request first must be ≤ Need and ≤ Available; tentatively allocate, then run safety test. A safe state has at least one completion sequence; unsafe does not automatically mean deadlock.
 
 **Practice:** Name the four deadlock conditions; explain why global lock ordering prevents circular wait; distinguish prevention from avoidance.
+
+## Resource graph and deadlock-avoidance details
+
+In a resource-allocation graph, request edge P→R means process P waits for resource R; assignment edge R→P means an instance is held by P. For one instance of each resource type, a cycle implies deadlock. With multiple instances, a cycle may only indicate the possibility of deadlock.
+
+Deadlock avoidance examines maximum claims before granting. Need=Max-Allocation; Available=Total-ΣAllocation. Safety algorithm repeatedly finds a process whose remaining Need fits Available, simulates completion, and returns its allocation. If all can finish, the state is safe.
+
+Request example: Available=(2,1). P0 Need=(1,1), P1 Need=(2,0). Granting P0 request (1,0) leaves (1,1); P0 can finish and release resources, then P1 can finish. The request preserves safety. A request greater than Need is invalid; greater than Available must wait.
+
+Recovery trade-offs: abort all deadlocked processes (simple but wasteful), abort one at a time, or preempt resources. Repeatedly choosing the same victim can starve; include rollback cost and progress in victim choice.
