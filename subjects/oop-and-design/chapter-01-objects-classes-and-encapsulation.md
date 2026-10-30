@@ -148,6 +148,8 @@ Draw the class boundary, invariant, public operations, and two object instances.
 A good class exposes operations that preserve its rules, not setters for every field. For money, use a decimal representation with an explicit currency and rounding policy; binary floating point is not an exact representation of most decimal fractions.
 
 ~~~java
+import java.math.BigDecimal;
+
 final class BankAccount {
     private BigDecimal balance;
 
@@ -163,13 +165,21 @@ final class BankAccount {
 
     public void withdraw(BigDecimal amount) {
         requirePositive(amount);
-        if (amount.compareTo(balance) > 0) {
-            throw new InsufficientFunds();
-        }
+        if (amount.compareTo(balance) > 0) throw new InsufficientFunds();
         balance = balance.subtract(amount);
     }
 
     public BigDecimal balance() { return balance; }
+
+    private static void requirePositiveOrZero(BigDecimal value) {
+        if (value == null || value.signum() < 0) throw new IllegalArgumentException();
+    }
+
+    private static void requirePositive(BigDecimal value) {
+        if (value == null || value.signum() <= 0) throw new IllegalArgumentException();
+    }
+
+    private static final class InsufficientFunds extends RuntimeException {}
 }
 ~~~
 
