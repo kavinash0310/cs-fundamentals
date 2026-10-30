@@ -32,3 +32,19 @@ Practice: interpret a bar chart; solve percentage and ratio problems; estimate a
 
 ## Notebook work
 Make a one-page formula sheet and solve a graph question with units shown at each step.
+
+
+## Reading-comprehension worked method
+
+Passage claim: “Urban trees reduce heat, but benefits vary by species and placement.” A supported inference is that planting location matters. “All cities should plant only one species” is unsupported and contradicts variation.
+
+For sentence correction, first find subject and main verb, then check agreement and tense. Ignore intervening phrases: “The quality of the examples is/are important”—head noun quality is singular, so is.
+
+For sequencing, link pronouns to antecedents and transitions:
+1. introduce the object/person,
+2. describe an action,
+3. use “this result” to refer to that action,
+4. conclude with consequence.
+Chronology alone may not determine order.
+
+**Practice:** Summarize a 4-sentence paragraph; identify one inference and one fact; edit “Each of the students have submitted their work” according to formal test convention (has).
