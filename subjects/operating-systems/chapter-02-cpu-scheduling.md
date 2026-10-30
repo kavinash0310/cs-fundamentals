@@ -59,3 +59,30 @@ SRTF: P1 starts at 0; at t=2, P2 has 4 vs P1 remaining 5, so P2 preempts. At t=4
 Scheduling assumes CPU bursts/arrival times and ignores switch overhead unless stated. If two jobs tie, tie-breaking policy affects exact order.
 
 **Exam method:** draw the ready set at every arrival/completion, mark remaining burst after preemption, then compute metrics from completion and first start.
+
+## Extended lesson: compute scheduling metrics
+
+For each process:
+- Turnaround = completion time − arrival time.
+- Waiting = turnaround − CPU burst time, when there is no I/O burst in the model.
+- Response = first time scheduled − arrival time.
+
+Use a Gantt chart to avoid mixing the measures. Example: P1 arrives 0 with burst 5; P2 arrives 1 with burst 2. FCFS runs P1 from 0–5, then P2 from 5–7. P1 completion=5, turnaround=5, waiting=0, response=0. P2 completion=7, turnaround=6, waiting=4, response=4. Average waiting=(0+4)/2=2.
+
+Under non-preemptive SJF, the shortest available job starts next but runs to completion. Under SRTF, a newly arrived job can preempt when its remaining time is smaller. SJF/SRTF minimize average waiting under ideal known CPU bursts, but long jobs may starve. Round Robin gives each ready process a time quantum q; too large behaves like FCFS, too small causes high context-switch overhead.
+
+### What each objective favors
+
+- Throughput: jobs completed per unit time.
+- Turnaround: completion latency for a job.
+- Response time: time until first visible service.
+- Fairness: avoid indefinite postponement.
+A scheduler can improve one and worsen another. Interactive systems value response; batch systems may emphasize throughput/turnaround.
+
+### Priority inversion
+
+A high-priority thread can wait on a lock held by a low-priority thread while medium-priority work keeps preempting the lock holder. Priority inheritance temporarily raises the holder's priority so it can release the lock. Priority scheduling alone does not solve this synchronization problem.
+
+### Practice
+
+If a process arrives at 4, first runs at 7, and completes at 15 after using 6 CPU units: response=3, turnaround=11, waiting=5. Always use arrival time in both response and turnaround calculations.
