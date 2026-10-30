@@ -26,3 +26,14 @@ Practice: split a /24 into /26s; calculate a fragment offset; compare link-state
 
 ## Notebook work
 Write the binary mask for /26 and trace a packet through two routers.
+
+
+## Subnetting and fragmentation worked examples
+
+For 192.168.4.0/26, block size is 64 addresses. Subnets begin .0, .64, .128, .192. First subnet's network is .0 and broadcast .63; commonly usable host range .1–.62. The mask is 255.255.255.192.
+
+IPv4 fragmentation example: payload length 4000 bytes, MTU 1500, IPv4 header 20 bytes. Each full fragment carries at most 1480 data bytes, divisible by 8. Data chunks can be 1480,1480,1040; total packet sizes 1500,1500,1060. Offsets: 0,185,370 because offset unit is 8 bytes. MF=1 on all but last.
+
+Longest-prefix lookup chooses the most specific matching route. Distance-vector can suffer count-to-infinity; link-state floods topology then computes shortest paths. Both require convergence after changes.
+
+**Practice:** How many /28 subnets fit in /24? 16. Why choose /28 for a small LAN? It allocates 16 addresses (conventionally 14 usable). Compute prefix for 64 total addresses: /26.
