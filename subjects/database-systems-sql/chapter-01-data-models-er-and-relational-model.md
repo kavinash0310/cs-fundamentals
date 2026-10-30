@@ -54,3 +54,34 @@ Tuple calculus expresses a declarative condition over tuple variables. Safe expr
 Key derivation example: R(A,B,C), F={A→B,B→C}. A⁺={A,B,C}, so A is a key. Any key must include A because no dependency produces A. Candidate key is {A}.
 
 **Practice:** Translate “names of students with an enrollment in course X” into relational algebra and tuple calculus; identify whether projection may remove duplicates in relational algebra versus SQL.
+
+## Extended lecture: design a relational schema from requirements
+
+Start with entities, attributes, and relationships; then decide which facts need independent identity. A university example may have Student(StudentID, Name), Course(CourseID, Title), and Enrollment(StudentID, CourseID, Term, Grade). Enrollment is not merely a list inside Student: it represents a many-to-many relationship and has its own attributes. Its natural key may be (StudentID, CourseID, Term), while a surrogate EnrollmentID is optional if it does not replace the need to enforce the natural uniqueness rule.
+
+### ER-to-relational mapping
+
+- Strong entity: create a relation; choose a candidate key as primary key.
+- Composite attribute: store its components (for example, address into street/city/postcode) when they need independent queries.
+- Multivalued attribute: create a separate relation with owner key plus value.
+- 1:N relationship: place the 1-side key as a foreign key on the N-side, unless relationship attributes or optionality suggest a separate table.
+- M:N relationship: create a relation containing both entity keys and relationship attributes.
+- Weak entity: include its identifying owner's key in its primary key.
+
+The foreign-key direction is frequently tested. For Department 1—N Employee, DepartmentID belongs as a foreign key in Employee. This avoids duplicating a list of employee IDs in each department row.
+
+### Relational algebra as query execution
+
+Selection σ filters rows; projection π chooses columns; rename ρ changes relation/attribute names; union, difference, and Cartesian product combine compatible relations; join combines tuples by a condition. For “names of students enrolled in course CS101”:
+1. Select Enrollment rows where CourseID=CS101.
+2. Join them with Student on StudentID.
+3. Project Name.
+A relational algebra expression is a logical plan; an optimizer may reorder operations when relational equivalences preserve the result. Push selections toward the leaves to reduce intermediate tuples, but account for NULL and outer-join semantics in SQL.
+
+### Integrity constraints
+
+Primary key requires uniqueness and non-NULL values. Foreign key requires each non-NULL reference to match a referenced key (unless the declared action handles deletion/update differently). CHECK enforces a row predicate; NOT NULL rejects missing values. A schema is a set of allowed states, and constraints define which database states are legal.
+
+### Practice
+
+For M:N Author–Book with attribute RoyaltyPercent, create Author, Book, and AuthorBook(AuthorID, BookID, RoyaltyPercent). For a 1:N Course–Section relation, put CourseID in Section. Explain why an enrollment grade belongs to the relationship: it describes a student's participation in a particular course offering.
