@@ -31,3 +31,14 @@ Practice: draw a 2-bit counter state diagram; trace register contents under shif
 
 ## Notebook work
 Draw a D flip-flop timing diagram, a 3-bit counter sequence, and a floating-point field layout.
+
+
+## FSM and timing worked example
+
+A mod-3 counter has states 00→01→10→00. State 11 is unused; define recovery to 00 if reached. For Moore outputs, output is a function of current state. State encoding affects combinational complexity and flip-flop count.
+
+For a synchronous D flip-flop, input D must be stable before setup interval and after hold interval around active edge. If clock period is too short for register-to-register combinational delay plus setup and skew, timing fails. Metastability risk rises when asynchronous inputs are sampled without synchronizers.
+
+IEEE single-precision normalized value uses 1.fraction × 2^(exponent-127). Example exponent bits 10000001₂=129 gives unbiased exponent 2; fraction 010... means significand 1.01₂=1.25, so value is 5.
+
+**Practice:** Trace mod-3 sequence; state what happens for unused state 11; decode sign/exponent/fraction fields; distinguish rounding error from overflow and underflow.
