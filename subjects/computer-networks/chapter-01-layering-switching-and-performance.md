@@ -31,3 +31,14 @@ Practice: compute delay components; trace encapsulation; compare circuit and pac
 
 ## Notebook work
 Draw sender/receiver layers and label headers at each hop.
+
+
+## End-to-end timing example
+
+A 1500-byte packet on a 10 Mbps link has transmission delay 1500×8/10,000,000=1.2 ms. If propagation is 5 ms, one-link delay (ignoring processing/queueing) is 6.2 ms. On a store-and-forward path with three such links, one packet has about 3×(1.2+5)=18.6 ms; pipelining multiple packets changes total message completion time.
+
+For packet length L bits and rate R, transmission=L/R. Propagation=d/s and is independent of packet length. Queueing varies with load and can dominate near saturation.
+
+For stop-and-wait over a path with RTT=40 ms and transmission time=2 ms, utilization is approximately 2/(40+2)=4.76% if ACK time is negligible. Sliding windows keep more data in flight; bandwidth-delay product estimates the needed window.
+
+**Practice:** Calculate packet transmission time for 8000 bits at 4 Mbps =2 ms; distinguish RTT from one-way delay; explain why higher bandwidth does not reduce propagation time.
