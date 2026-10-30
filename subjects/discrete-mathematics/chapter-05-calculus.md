@@ -54,3 +54,29 @@ Integration example: ∫₀³(2x+1)dx = [x²+x]₀³=12. Check by interpreting a
 Continuity trap: a function can have a limit at a point but be assigned a different value there, so it is not continuous. A derivative may be zero at a stationary inflection, e.g. x³ at x=0, without a local maximum/minimum.
 
 **Practice:** Find max/min of x²-2x on [0,3] by checking critical point and endpoints. Differentiate sin(x²) using chain rule if familiar; otherwise explain the chain rule structure with a polynomial. Integrate 3x² from 1 to 2 = 7.
+
+## Extended lesson: derivatives, extrema, and integrals
+
+A derivative is a local rate of change. From the limit definition, f'(x)=lim(h→0)[f(x+h)-f(x)]/h. The power rule gives d(x^n)/dx=nx^(n-1); product rule: (fg)'=f'g+fg'; chain rule: d f(g(x))/dx=f'(g(x))g'(x).
+
+**Worked optimization.** A rectangle has perimeter 40, so if sides are x and y, x+y=20 and area A=xy=x(20-x). Differentiate: A'=20-2x. Setting A'=0 gives x=10; then y=10, area=100. Since A''=-2<0, this is a maximum. Always check domain endpoints and units when optimizing.
+
+A definite integral accumulates signed area: ∫a^b f(x)dx=F(b)-F(a) when F'=f. Thus ∫0^1(3x²+2x)dx=[x³+x²]0^1=2. Geometrically, this is area under the curve because the integrand is nonnegative on [0,1].
+
+### Limits and continuity
+
+A function is continuous at a if its limit as x approaches a equals its value at a. For rational expressions, factor and cancel common factors only for x≠a, then evaluate the limit. Example: lim(x→2)(x²-4)/(x-2)=lim(x→2)(x+2)=4, although the original expression is undefined at x=2.
+
+### Partial derivatives
+
+For f(x,y), ∂f/∂x treats y as constant. If f=x²y+3y², then fx=2xy and fy=x²+6y. A stationary point satisfies both partial derivatives equal zero; classification uses the Hessian/second-derivative test and domain boundaries.
+
+### Exam routine
+
+- Identify what quantity is changing and with respect to what variable.
+- Write a formula before differentiating.
+- For maxima/minima, check stationary points and endpoints.
+- For definite integrals, preserve the sign; area as a geometric magnitude may require splitting at roots.
+- Verify chain-rule factors and integration bounds.
+
+**Check:** If position is s(t)=t³-6t²+9t, velocity is 3t²-12t+9. At t=1, v=0; this indicates an instantaneously stationary point, not necessarily a maximum or minimum in position.
