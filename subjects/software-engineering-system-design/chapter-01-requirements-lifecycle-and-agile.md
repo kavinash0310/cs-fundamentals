@@ -24,3 +24,16 @@ Practice: write criteria for file upload; identify ambiguous requirement; plan a
 
 ## Notebook work
 Map one requirement from user goal to API, tests, release, and monitoring.
+
+
+## Turn a vague request into acceptance criteria
+
+Request: “Make search better.” Ask: which users and data, exact versus fuzzy matching, sort order, response-time target, permissions, empty result behavior, and expected request volume. Then write criteria such as:
+- Given a signed-in user with three matching documents, search returns only documents they may read.
+- Given no match, show an empty state rather than an error.
+- For the agreed dataset and load, p95 response time is below the target.
+- Malformed queries return a clear validation message.
+
+Functional criteria can be tested with examples; non-functional criteria need a measurement setup. Separate assumptions from commitments. In agile planning, slice a vertical feature that delivers an observable user outcome; avoid splitting only by internal layer.
+
+**Practice:** Write acceptance criteria for profile photo upload, password reset, and CSV export. Include one failure path and one security/privacy condition for each.
