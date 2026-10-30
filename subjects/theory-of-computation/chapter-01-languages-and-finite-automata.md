@@ -54,3 +54,42 @@ Transition table: q0:0→q1,1→q0; q1:0→q1,1→q2; q2:0→q1,1→q0. Trace 11
 For subset construction, an NFA state set is updated by taking the union of transitions from all current states; for ε-NFA, take ε-closure before and after consuming a symbol. The empty subset is a legitimate dead state.
 
 **Exam checks:** DFA transition function is single-valued; an NFA string is accepted if at least one computation accepts; ε is a string of length zero, not a symbol. Practice: build DFA for strings with exactly one 1; draw NFA for substring 101; convert a small NFA to subset states.
+
+## Full worked lesson: build and trace a DFA
+
+A deterministic finite automaton is a 5-tuple (Q, Σ, δ, q0, F): states, alphabet, transition function, start state, and accepting states. After reading each symbol, exactly one next state is determined. A string is accepted only if the state reached after its final symbol belongs to F. The empty string ε leaves the machine in its start state.
+
+### Example: binary strings ending in 01
+
+We need remember the longest suffix of input that could still become the desired ending:
+
+~~~text
+             0             1
+        +---------+---------------+
+ -> q0  | q1      | q0            |
+   q1   | q1      | q2 (accept)   |
+ * q2   | q1      | q0            |
+~~~
+
+Interpretation: q0 means no useful suffix; q1 means the latest useful suffix is 0; q2 means the string currently ends in 01. q2 is accepting, but another input symbol can leave it. Trace 1101: q0→q0→q1→q0→q1? That would be wrong if the table's columns are read incorrectly; trace carefully with the table: 1:q0, 1:q0, 0:q1, 1:q2, so accepted. The accepting state means “the most recently read two symbols are 01,” not “01 has ever appeared.”
+
+A DFA for “contains 01 somewhere” needs a different meaning for the accepting state: once reached, it remains accepting on both 0 and 1. This illustrates a core design method: write down the information the state must remember, then derive transitions from that meaning.
+
+### NFA and subset construction
+
+An NFA may have zero, one, or several next states for a symbol; it accepts if at least one path ends in an accepting state. For an ε-NFA, ε-closure(q) is every state reachable from q using only ε edges, including q. Subset construction makes a DFA whose states are sets of NFA states:
+- Start set = ε-closure({q0}).
+- On symbol a, take all a-transitions from the set, then apply ε-closure.
+- A set is accepting when it contains at least one NFA accepting state.
+
+The DFA can have up to 2^n states for an n-state NFA, though many subsets may be unreachable. This construction proves NFAs and DFAs recognize exactly the regular languages.
+
+### State-design checklist
+
+For every state, write a short invariant such as “the input seen so far ends in 0” or “the pattern has already occurred.” Then test the invariant against every outgoing symbol. If two different histories need different future behavior, they cannot safely share one state.
+
+### Questions
+
+1. Does a DFA accept a string when it visits an accepting state at an intermediate point? No; acceptance is decided after all input is consumed.
+2. What does the accepting state mean for “ends in 01”? The final two symbols are 01.
+3. Why does an NFA accept if one path accepts? That is the existential-path definition.
