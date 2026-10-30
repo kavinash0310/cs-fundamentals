@@ -40,3 +40,24 @@ Practice: write inner/left join queries; find duplicate keys; use EXISTS; explai
 
 ## Notebook work
 Write one query with join, aggregation, HAVING, and a NULL-safe condition.
+
+
+## SQL NULL and join worked examples
+
+Tables Student(sid,name) and Enrollment(sid,cid). To list every student and matching course:
+~~~sql
+SELECT s.name, e.cid
+FROM Student AS s
+LEFT JOIN Enrollment AS e ON e.sid=s.sid;
+~~~
+Students without a match appear with NULL cid. Adding WHERE e.cid='CS101' removes those NULL rows, effectively turning this result into an inner-match filter. Put the restriction in ON if unmatched students must remain:
+~~~sql
+LEFT JOIN Enrollment AS e
+  ON e.sid=s.sid AND e.cid='CS101'
+~~~
+
+Three-valued logic: NULL='x' is UNKNOWN; WHERE retains only TRUE. NOT IN with a subquery containing NULL may evaluate UNKNOWN unexpectedly; NOT EXISTS is often safer.
+
+Aggregation example: COUNT(*) counts each row; COUNT(score) skips null scores; AVG(score) divides by non-null count. GROUP BY department creates one aggregate row per group.
+
+**Practice:** Write query for departments with average salary > 80,000; return authors even with no books; explain result of NULL=NULL and IS NULL.
