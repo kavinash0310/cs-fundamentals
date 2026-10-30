@@ -21,3 +21,14 @@ Practice: model payment methods through an interface; find a contract violation;
 
 ## Notebook work
 Draw a class/interface diagram and annotate which method dispatches at runtime.
+
+
+## Polymorphism trace and substitution test
+
+Suppose Shape has virtual area(); Circle and Rectangle override it. A function printArea(Shape s) calls s.area(). Runtime dispatch selects the override based on actual object type, while the static type ensures area() is in the available contract.
+
+A subtype must preserve expectations. If a base method accepts any positive width and promises width can later be changed independently of height, a Square subtype that forces both equal violates that contract. Prefer an immutable Rectangle or a separate Quadrilateral abstraction if both concepts must be modeled.
+
+Composition example: a Car has an Engine interface. ElectricEngine and CombustionEngine can be supplied; the Car need not inherit from an engine class.
+
+**Practice:** Trace overridden method through base reference; identify compile-time overload choice; state pre/postconditions for a payment interface.
