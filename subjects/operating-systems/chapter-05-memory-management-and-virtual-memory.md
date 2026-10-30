@@ -43,3 +43,18 @@ LRU with 3 frames, reference string 1,2,3,1,4: after 1,2,3, hit 1 updates recenc
 A page fault may be valid demand paging or invalid access. Valid fault: trap to OS, locate page, choose/evict frame if needed, read storage, update page table/TLB, restart instruction. Dirty victim must be written back.
 
 **Practice:** Trace FIFO and LRU for 1,2,3,1,4,2; calculate page offset bits for 8 KiB; explain thrashing using working set.
+
+## Effective access time and working-set analysis
+
+Suppose TLB lookup takes 10 ns, memory access 100 ns, hit ratio 0.95, and a page-table lookup on miss costs one memory access. If TLB lookup precedes memory:
+~~~text
+EAT = 0.95(10+100) + 0.05(10+100+100)
+    = 110 + 10 = 120 ns
+~~~
+This formula assumes one-level page-table memory access and no page fault. A page fault is much slower and should be modeled separately.
+
+A working set is the pages referenced in a recent window. If active working sets exceed physical frames, processes fault repeatedly and throughput collapses: thrashing. The OS can reduce multiprogramming or allocate more frames.
+
+Segmentation gives logical variable-sized regions (code, stack, data) with base/limit protection; external fragmentation can occur. Paging uses fixed-size pages and frames, avoiding external fragmentation but possibly wasting space within a page.
+
+**Practice:** With 16 KiB pages, offset uses 14 bits. With TLB hit 0.9, compute EAT using stated hit/miss costs. Explain why a valid page fault should restart the faulting instruction.
