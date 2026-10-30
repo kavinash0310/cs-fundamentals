@@ -26,3 +26,39 @@ Practice: mark dependencies in an instruction sequence; show where a load-use st
 
 ## Notebook work
 Draw five overlapping instruction timelines and shade a data stall and a branch flush.
+
+
+## 5. Pipeline timing and hazards in detail
+
+For k equal stages of latency τ and n instructions, ideal pipelined time is approximately (k+n-1)τ; an unpipelined machine takes nkτ. For large n, ideal speedup approaches k. Unequal stage delays, latch overhead, stalls, and flushes reduce this.
+
+Example five-stage pipeline:
+~~~text
+cycle:  1  2  3  4  5  6  7
+I1:    IF ID EX MEM WB
+I2:       IF ID EX MEM WB
+I3:          IF ID EX MEM WB
+~~~
+One instruction completes per cycle after fill, but each still traverses five stages.
+
+RAW example: I1 computes R1; immediately following I2 uses R1. Forwarding sends the produced value from a later pipeline stage to I2's EX input. If I1 is a load, memory data may arrive too late for the next cycle; insert a bubble, then forward.
+
+~~~text
+load R1,[R2]
+add  R3,R1,R4
+cycle 1: IF
+cycle 2:    ID
+cycle 3:       EX(load)   ID(add)
+cycle 4:          MEM     ID(add held / bubble)
+cycle 5:          WB      EX(add using forwarded value)
+~~~
+
+A structural hazard can be removed by separate instruction/data memories or by stalling. A branch hazard can be handled by stall, predict-not-taken, or dynamic prediction; a wrong prediction flushes speculative instructions.
+
+**CPI model:** CPI = base CPI + average stall cycles/instruction. If 25% of instructions are loads and 20% of those cause one stall, load stalls add 0.25×0.20×1=0.05 CPI.
+
+**Practice**
+1. Five-stage, 100 instructions, no stalls: ideal cycles = 5+100-1=104.
+2. If 12 branches per 100 instructions each incur 2 lost cycles, added CPI=0.24.
+3. A dependency is not automatically a stall if forwarding supplies the value in time.
+4. Distinguish latency (time for one instruction) from throughput (completion rate).
