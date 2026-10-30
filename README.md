@@ -36,7 +36,9 @@ This map follows the ten technical sections of the official GATE CS 2027 syllabu
 | Computer Networks | [Computer Networks](subjects/computer-networks.md) |
 | General Aptitude | [GATE General Aptitude](subjects/general-aptitude.md) |
 
-**Coverage note:** Every GATE CS technical section and General Aptitude now has a chaptered course index. The notes map to the official topic list and provide a learning base; exam readiness still requires solving full-length and previous-year questions. Syllabi and recruitment requirements can change.
+**Coverage note:** Every GATE CS technical section and General Aptitude has a chaptered course index. This audit expanded the previously thin General Aptitude coverage with explicit lessons on tenses and grammar, powers/exponents/logarithms, mensuration, elementary statistics, maps and plots, 2D/3D spatial reasoning, assembly/grouping, and paper folding/cutting. The notes include worked calculations, diagrams, and answer explanations. They provide a substantial learning base; full GATE readiness still requires past papers and timed mocks.
+
+**Bihar teacher scope:** The technical CS and school-teaching courses support the subject-preparation part. They do not yet contain complete language or General Studies courses for every teacher level. Follow current BPSC Advertisement No. 15/2026 and later corrigenda for the applicable papers; the earlier Advertisement No. 14/2026 is superseded. The teacher track states this boundary explicitly.
 
 ## Other CS and teaching courses
 
@@ -63,6 +65,8 @@ Teacher recruitment varies by post, level, and cycle. Check the exact current no
 - [GATE 2027 syllabus and question-paper pattern](https://gate2027.iitm.ac.in/exam_papers_and_syllabus)
 - [BPSC syllabus page](https://bpsc.bihar.gov.in/syllabus/)
 - [BPSC current notices](https://bpsc.bihar.gov.in/page/44/)
+- [BPSC TRE 4.0 Advertisement No. 15/2026](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-152026-TRE-4.0_BPSC-20260922-dbsf04.pdf)
+- [BPSC Project Manager CS syllabus (supplemental cross-reference; not a teacher syllabus)](https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/8-9-25-3-Syllabus-1-109-2025-Project-Manager-Industry-Dept_BPSC-20250908-sgu5bw.pdf)
 - [BPSC 2023 Higher Secondary teacher question booklet](https://bpsc.bihar.gov.in/wp-content/uploads/2025/01/NB-2023-07-11-09.pdf)
 
 Use historical papers for practice and pattern awareness; use the latest official notice as the source of truth for the next recruitment exam.
