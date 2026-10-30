@@ -39,3 +39,16 @@ Practice: derive full-adder truth table; make a 4-to-1 MUX from 2-to-1 MUXes; im
 
 ## Notebook work
 Draw a full adder from two half adders and an OR gate. Label carry direction in a 4-bit ripple adder.
+
+
+## Worked adder and selector traces
+
+Full adder with A=1,B=1,Cin=0: sum=0, carry=1. With 1,1,1: sum=1, carry=1. The carry equation AB+ACin+BCin is the majority function.
+
+A 4-to-1 MUX has selects S1S0: 00 chooses I0, 01 I1, 10 I2, 11 I3. To implement a 2-variable function, connect each data input to its truth-table value and use variables as selects.
+
+A 3-bit equality comparator computes (A2 XNOR B2)(A1 XNOR B1)(A0 XNOR B0). The product is 1 only when every bit matches.
+
+Ripple-adder delay example: carry from bit 0 may need to traverse all 31 preceding stages in a 32-bit adder. Carry-lookahead computes group generate/propagate to shorten this dependency at extra hardware cost.
+
+**Practice:** Derive carry for half adder; trace 0111+0001; make odd parity for inputs 101 (output 0); implement F(A,B)=A'B+AB' with a MUX.
