@@ -73,3 +73,48 @@ For A=[[2,0],[0,3]], characteristic equation is (2-λ)(3-λ)=0, so eigenvalues a
 If det(A)=0, columns are dependent and Ax=0 has a nonzero solution. If det(A)≠0, every b has exactly one x. Row reduction can solve a system even when determinant calculation is inconvenient.
 
 **Practice:** Compute determinant of [[1,2],[3,4]] = -2. Explain why no inverse exists if determinant is zero. For a triangular matrix, multiply diagonal entries to find determinant.
+
+## Extended lesson: row reduction, rank, and eigenvectors
+
+Gaussian elimination solves a linear system by replacing rows with equivalent combinations. For:
+x+y+z=6,
+2x+y-z=1,
+x-y+2z=5,
+write the augmented matrix:
+
+~~~text
+[1  1  1 |  6]
+[2  1 -1 |  1]
+[1 -1  2 |  5]
+~~~
+
+Apply R2←R2−2R1 and R3←R3−R1:
+~~~text
+[1  1  1 |  6]
+[0 -1 -3 | -11]
+[0 -2  1 | -1]
+~~~
+Multiply row 2 by -1, then R3←R3+2R2:
+~~~text
+[1 1 1 |  6]
+[0 1 3 | 11]
+[0 0 7 | 21]
+~~~
+Back-substitute: z=3, y+3z=11 gives y=2, and x+y+z=6 gives x=1.
+
+Rank is the number of pivots. A system is consistent iff rank(A)=rank([A|b]). If the common rank equals the number of unknowns, the solution is unique; if it is smaller, free variables may produce infinitely many solutions. A row [0 0 0 | c] for nonzero c signals inconsistency.
+
+### Linear transformations and eigenvectors
+
+A matrix A transforms vector x to Ax. An eigenvector v≠0 satisfies Av=λv; it keeps its direction while scaling by eigenvalue λ. For A=[[2,1],[1,2]], vectors [1,1] and [1,-1] are eigenvectors with eigenvalues 3 and 1. To find λ, solve det(A−λI)=0; then solve (A−λI)v=0.
+
+### Common mistakes
+
+- Row swaps, scaling by a nonzero constant, and adding a multiple of one row to another preserve the solution set.
+- Multiplying a row by zero is not an elementary reversible operation.
+- The zero vector is not an eigenvector.
+- A singular matrix has determinant 0 and no inverse; its columns are linearly dependent.
+
+### Quick questions
+
+If a 3-unknown augmented matrix has rank 2 and is consistent, how many free variables? One. What does a pivot in every variable column mean? A unique solution, if consistent.
