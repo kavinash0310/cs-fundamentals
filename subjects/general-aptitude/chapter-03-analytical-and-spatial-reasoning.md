@@ -48,3 +48,28 @@ Permutation vs combination: choose president and secretary from 5 gives 5×4=20;
 Data graph: if a line chart uses y-axis starting at 90, visual gap 95→100 may look large; calculate absolute difference and inspect full scale.
 
 **Practice with answers:** 30% of 250=75; ratio 2:3 totals 50 gives 20 and 30; mean of 2,4,9=5; probability of at least one head in two fair tosses=3/4; area circle radius 3=9π.
+
+## Extended lesson: translate reasoning into a model
+
+**Ordering puzzle.** Four talks P,Q,R,S occur once each. P is before R; Q is immediately after P; S is last. Since Q follows P immediately and S is last, possible sequence begins P,Q. R must be after P, and the remaining place before S is R, giving P,Q,R,S. Writing constraints first prevents random trial.
+
+**Syllogism.** “All coders are learners. Some learners are teachers.” It follows that some coders are learners, if the class of coders is nonempty under the exam's convention. It does **not** follow that some coders are teachers: the teachers may be learners outside the coder group. Use a Venn diagram and avoid assuming an intersection not stated.
+
+### Direction and distance
+
+Walk 3 km east, then 4 km north. The displacement is the straight-line distance √(3²+4²)=5 km, toward northeast. Total distance walked is 7 km. Distance traveled and displacement are different quantities.
+
+### Spatial reasoning
+
+For a cube painted on all faces and cut into n×n×n equal cubes:
+- 8 corner cubes have 3 painted faces.
+- 12(n-2) edge-interior cubes have 2 painted faces.
+- 6(n-2)² face-interior cubes have 1 painted face.
+- (n-2)³ interior cubes have no painted face.
+For n=4: 8 corners, 24 edge-interior, 24 face-interior, 8 unpainted interior; total 64.
+
+A mirror reverses left/right relative to the viewer, not top/bottom. For paper folding, track which holes overlap after unfolding: each fold reflects the visible mark across the crease. Sketch axes and coordinates for each fold.
+
+### Answer discipline
+
+Check every condition after deriving an arrangement. For a “must be true” question, test whether a counterexample can satisfy all premises. If one exists, the statement is not guaranteed even if it is possible.
