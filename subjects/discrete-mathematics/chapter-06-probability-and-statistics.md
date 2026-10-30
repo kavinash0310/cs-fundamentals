@@ -66,3 +66,29 @@ Draw a probability tree, a histogram, and a normal curve. Label mean, median, va
 **Conditional example:** If 30 of 100 students study both A and B, 50 study B, then P(A|B)=30/50=0.6. This differs from P(B|A) unless denominators match.
 
 **Practice:** For Binomial(10,.2), mean=2 and variance=1.6. For Poisson(3), P(X=0)=e^-3. For an exponential rate .5/hour, mean waiting time is 2 hours. Always identify the random variable and model assumptions.
+
+## Extended lesson: conditional probability and distributions
+
+Conditional probability is P(A|B)=P(A∩B)/P(B), for P(B)>0. Bayes' rule reverses the conditioning:
+P(A|B)=P(B|A)P(A)/P(B).
+
+**Medical-test style example.** Prevalence is 1%; sensitivity is 99%; false-positive rate is 5%. Among 10,000 people, about 100 have the condition and 9,900 do not. Expected positives: 99 true positives plus 495 false positives. So the probability a positive result is a true case is 99/(99+495)=1/6≈16.7%, not 99%. The base rate matters.
+
+For a discrete random variable X, E[X]=ΣxP(X=x). Variance is E[X²]−E[X]². A fair die has E[X]=(1+2+3+4+5+6)/6=3.5 and E[X²]=91/6; variance=91/6−(3.5)²=35/12.
+
+### Binomial and Poisson models
+
+If n independent trials each have success probability p, X~Binomial(n,p), with mean np and variance np(1-p). Example: n=10, p=0.2 gives expected successes 2 and variance 1.6.
+
+For a Poisson count with rate λ per interval, P(X=k)=e^-λ λ^k/k!, and mean and variance both equal λ. It approximates rare independent events over many opportunities when np=λ is moderate. Check assumptions before choosing a distribution.
+
+### Descriptive statistics
+
+Mean is sensitive to extreme values; median is the middle ordered observation and is more robust. Variance measures squared spread around the mean; standard deviation is its square root and returns to the original units. Correlation measures linear association, not causation, and may miss nonlinear relationships.
+
+### Questions with answers
+
+1. If A and B are independent, what is P(A∩B)? P(A)P(B).
+2. Does a 99%-sensitive test imply a positive result has a 99% chance of disease? No; specificity and prevalence also matter.
+3. For Bernoulli(p), mean and variance? p and p(1-p).
+4. When is median preferable to mean? When outliers/skew make the average unrepresentative.
