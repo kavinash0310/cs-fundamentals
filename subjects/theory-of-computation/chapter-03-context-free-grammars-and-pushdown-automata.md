@@ -27,3 +27,18 @@ Practice: derive aabb; draw its parse tree; design a PDA for balanced parenthese
 
 ## Notebook work
 Draw the stack trace for input aaabbb and a parse tree for aabb.
+
+
+## Trace a PDA and derivation
+
+For S→aSb|ε, derive aabb:
+~~~text
+S => aSb => aaSbb => aaεbb => aabb
+~~~
+The parse tree pairs each recursive a with a later b. PDA pushes marker A for each a; on the first b it switches phase and pops one A per b. Reject any a after entering b-phase, extra b when stack is empty, or leftover A at end.
+
+A PDA may accept by final state or empty stack; the conventions have equivalent language power, though a construction must match its acceptance rule. Stack top is the only directly accessible memory.
+
+**Ambiguity check:** Grammar E→E+E|E*E|id can parse id+id*id with either root operator, so it is ambiguous. Splitting expression/term/factor layers encodes precedence.
+
+**Practice:** For balanced parentheses, push on '(' and pop on ')'; reject underflow and require empty stack at end. Write a CFG for aⁿbⁿ and draw the parse tree for aabb. Identify leftmost and rightmost derivations.
