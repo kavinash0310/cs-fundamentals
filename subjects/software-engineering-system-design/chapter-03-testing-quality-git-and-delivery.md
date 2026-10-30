@@ -24,3 +24,14 @@ Practice: propose tests for payment retry; diagnose flaky test causes; review a 
 
 ## Notebook work
 Draw a pipeline from commit through build, test, deploy, health check, and rollback.
+
+
+## Test plan and delivery example
+
+Feature: failed payment retry. Unit tests cover retry-count policy and backoff; integration tests exercise payment adapter and database transaction; contract tests verify provider response assumptions; end-to-end test covers user-visible status. Test timeout, duplicate callback, invalid signature, and eventual success.
+
+A CI pipeline may run formatting/static checks, unit tests, integration tests, package/build, security scan, then deploy to staging. Production rollout can use canary/gradual traffic. Define a health metric and rollback threshold before release.
+
+A flaky test often depends on wall clock, shared mutable state, random order, or external network. Inject a clock, isolate data, control randomness, and use deterministic fakes where appropriate.
+
+**Practice:** Write test cases for a database migration; explain how to revert schema safely when old and new application versions overlap; review a commit that changes only an API response field.
